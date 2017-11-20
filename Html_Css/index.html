@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ngAuction</title>
+    <link rel="stylesheet" href="site.css" type="text/css">
+</head>
+<body onload="whenLoaded()">
+    <div class="flexMainContainer">
+            <div class="header">
+                    <div class="serviceBox1">
+                        <label class="left-control-label">ngAuctions</label>
+                    </div>   
+                    <div class="serviceBox4">
+                        <!--<input type="button" class="click" id="click" value="Click" style="width: 45px; height: 20px; text-align: center; color: white; background: #23b7e5; font-size: 13px; border-color: #23b7e5; border-radius:2px; padding: 0px; ">--> 
+                        <input type="button" class="sellButton" id="click" value="Sell">
+                        <label class="control-label">Hilit Egozi-Koniarsky</label>
+                    </div>    
+             </div>   
+    <div class="categorycontainer">
+
+        <div class="col span_1_of_7">
+            <div class="floating-box" style="justify-content:center">
+                <label class="category-label" data-on-active = "All Auctions" >ALL AUCTIONS</label>
+            </div>
+        </div>
+        <div class="col span_2_of_7">
+            <div class="floating-box">
+                <img src="img\electricity.png" alt="electronics"  /> 
+                <label class="category-label" data-on-active = "Electronics">ELECTRONICS</label>
+            </div>
+        </div>
+        <div class="col span_3_of_7">
+            <div class="floating-box">
+                <img src="img\fashion.png" alt="electronics" /> 
+                <label class="category-label" data-on-active = "Fashion">FASHION</label>
+            </div>
+        </div>
+        <div class="col span_4_of_7">
+            <div class="floating-box">
+                <img src="img\home.png" alt="electronics"  /> 
+                <label class="category-label" data-on-active = "Home">HOME</label>
+            </div>
+        </div>
+        <div class="col span_5_of_7">
+            <div class="floating-box">
+                <img src="img\books.png" alt="electronics"  />
+                <label class="category-label" data-on-active = "Books">BOOKS</label>
+            </div>
+        </div>
+        <div class="col span_6_of_7">
+            <div class="floating-box">
+                <img src="img\children.png" alt="electronics"  />
+                <label class="category-label" data-on-active = "Children">CHILDREN</label> 
+            </div>
+        </div>
+        <div class="col span_7_of_7">
+            <div class="floating-box">
+                <img src="img\misc.png" alt="electronics"  /> 
+                <label class="category-label" data-on-active = "Misc"> MISC.</label> 
+            </div>
+        </div>
+    </div>
+   <div class="contentViewBox">
+       <div class="flexMainContainer">
+        <label class="content-view-left-control-label">...</label>
+        <ul class = "limheight">
+            <li class="listItem">
+                <div class="card">
+                    <div class="tag">
+                        <div class="tag-top-label">
+                            ILS 1200.00
+                        </div>
+                        <div class="tag-bottom-label">
+                            be the first bidder!
+                        </div>
+                    </div>
+                    <img src="img\shoes.png" alt="shoes">
+                    <div class="cardContainer">
+                            <div class="card-main-div">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    Integer nec odio. Praesent libero.
+                            </div>
+                            <div class="card-bottom-div" style="margin-left: 6px;width: 58.5%; color: #5b5b5b; font-size: 12px; float: left; text-align: left;">
+                                    <p style="font-family:RobotoLight; margin: 0px;color: #5b5b5b; font-size: 12px;">Seller:<a href="website_hills.htm" style="color: #097dd3">Hilit Egozi Koniarski</a></p>
+                            </div>
+                            <div class="card-bottom-div" style="margin-right: 0px; margin-left: 0px;width: 10.5%; color: #5b5b5b; font-size: 12px; float: left; text-align: left;">
+                                    <img style="width: 18px; height: 15px; margin:0px; padding: 0px" src="img/email.png" alt="email">
+                            </div>
+                            
+                            <div class="card-bottom-div" style="margin-right: 6px;width: 20.5%; color: #7c7c7c; font-size: 11px;float: right; text-align: right">
+                                    6d 10d left
+                            </div>
+                    </div>
+                </div>
+            </li>
+            <li class="listItem">
+                <div class="card">
+                    <div class="tag">
+                        <div class="tag-top-label">
+                            ILS 1200.00
+                        </div>
+                        <div class="tag-bottom-label">
+                            be the first bidder!
+                        </div>
+                    </div>
+                    <img src="img\toster.png" alt="toster">
+                    <div class="cardContainer">
+                            <div class="card-main-div">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    Integer nec odio. Praesent libero.
+                            </div>
+                            <div class="card-bottom-div" style="margin-left: 6px;width: 58.5%; color: #5b5b5b; font-size: 12px; float: left; text-align: left;">
+                                    <p style="font-family:RobotoLight; margin: 0px;color: #5b5b5b; font-size: 12px;">Seller:<a href="website_hills.htm" style="color: #097dd3">Hilit Egozi Koniarski</a></p>
+                            </div>
+                            <div class="card-bottom-div" style="margin-right: 0px; margin-left: 0px;width: 10.5%; color: #5b5b5b; font-size: 12px; float: left; text-align: left;">
+                                    <img style="width: 18px; height: 15px; margin:0px; padding: 0px" src="img/email.png" alt="email">
+                            </div>
+                            
+                            <div class="card-bottom-div" style="margin-right: 6px;width: 20.5%; color: #7c7c7c; font-size: 11px;float: right; text-align: right">
+                                    6d 10d left
+                            </div>
+                    </div>
+                </div> 
+            </li>
+            <li class="listItem">
+                <div class="card">
+                    <div class="tag">
+                        <div class="tag-top-label">
+                            ILS 1200.00
+                        </div>
+                        <div class="tag-bottom-label">
+                            be the first bidder!
+                        </div>
+                    </div>
+                    <img src="img\Sofa.png" alt="sofa">
+                    <div class="cardContainer">
+                            <div class="card-main-div">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    Integer nec odio. Praesent libero.
+                            </div>
+                            <div class="card-bottom-div" style="margin-left: 6px;width: 58.5%; color: #5b5b5b; font-size: 12px; float: left; text-align: left;">
+                                    <p style="font-family:RobotoLight; margin: 0px;color: #5b5b5b; font-size: 12px;">Seller:<a href="website_hills.htm" style="color: #097dd3">Hilit Egozi Koniarski</a></p>
+                            </div>
+                            <div class="card-bottom-div" style="margin-right: 0px; margin-left: 0px;width: 10.5%; color: #5b5b5b; font-size: 12px; float: left; text-align: left;">
+                                    <img style="width: 18px; height: 15px; margin:0px; padding: 0px" src="img/email.png" alt="email">
+                            </div>
+                            
+                            <div class="card-bottom-div" style="margin-right: 6px;width: 20.5%; color: #7c7c7c; font-size: 11px;float: right; text-align: right">
+                                    6d 10d left
+                            </div>
+                    </div>
+                </div> 
+            </li>
+            <li class="listItem">
+                <div class="card">
+                    <div class="tag">
+                        <div class="tag-top-label">
+                            ILS 1200.00
+                        </div>
+                        <div class="tag-bottom-label">
+                            be the first bidder!
+                        </div>
+                    </div>
+                    <img src="img\shoes_2.png" alt="shoes">
+                    <div class="cardContainer">
+                            <div class="card-main-div">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    Integer nec odio. Praesent libero.
+                            </div>
+                            <div class="card-bottom-div" style="margin-left: 6px;width: 58.5%; color: #5b5b5b; font-size: 12px; float: left; text-align: left;">
+                                    <p style="font-family:RobotoLight; margin: 0px;color: #5b5b5b; font-size: 12px;">Seller:<a href="website_hills.htm" style="color: #097dd3">Hilit Egozi Koniarski</a></p>
+                            </div>
+                            <div class="card-bottom-div" style="margin-right: 0px; margin-left: 0px;width: 10.5%; color: #5b5b5b; font-size: 12px; float: left; text-align: left;">
+                                    <img style="width: 18px; height: 15px; margin:0px; padding: 0px" src="img/email.png" alt="email">
+                            </div>
+                            
+                            <div class="card-bottom-div" style="margin-right: 6px;width: 20.5%; color: #7c7c7c; font-size: 11px;float: right; text-align: right">
+                                    6d 10d left
+                            </div>
+                    </div>
+                </div>  
+            </li>  
+            <li class="listItem">  
+                <div class="card">
+                        <div class="tag">
+                                <div class="tag-top-label">
+                                    ILS 1200.00
+                                </div>
+                                <div class="tag-bottom-label">
+                                    be the first bidder!
+                                </div>
+                            </div>
+                    <img src="img\tickets.png" alt="tickets">
+                    <div class="cardContainer">
+                            <div class="card-main-div">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    Integer nec odio. Praesent libero.
+                            </div>
+                            <div class="card-bottom-div" style="margin-left: 6px;width: 58.5%; color: #5b5b5b; font-size: 12px; float: left; text-align: left;">
+                                    <p style="font-family:RobotoLight; margin: 0px;color: #5b5b5b; font-size: 12px;">Seller:<a href="website_hills.htm" style="color: #097dd3">Hilit Egozi Koniarski</a></p>
+                            </div>
+                            <div class="card-bottom-div" style="margin-right: 0px; margin-left: 0px;width: 10.5%; color: #5b5b5b; font-size: 12px; float: left; text-align: left;">
+                                    <img style="width: 18px; height: 15px; margin:0px; padding: 0px" src="img/email.png" alt="email">
+                            </div>
+                            
+                            <div class="card-bottom-div" style="margin-right: 6px;width: 20.5%; color: #7c7c7c; font-size: 11px;float: right; text-align: right">
+                                    6d 10d left
+                            </div>
+                    </div>
+                </div>
+            </li>
+            <li class="listItem">
+                <div class="card">
+                        <div class="tag">
+                                <div class="tag-top-label">
+                                    ILS 1200.00
+                                </div>
+                                <div class="tag-bottom-label">
+                                    be the first bidder!
+                                </div>
+                            </div>
+                    <img src="img\book.png" alt="book">
+                    <div class="cardContainer">
+                            <div class="card-main-div">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    Integer nec odio. Praesent libero.
+                            </div>
+                            <div class="card-bottom-div" style="margin-left: 6px;width: 58.5%; color: #5b5b5b; font-size: 12px; float: left; text-align: left;">
+                                    <p style="font-family:RobotoLight; margin: 0px;color: #5b5b5b; font-size: 12px;">Seller:<a href="website_hills.htm" style="color: #097dd3">Hilit Egozi Koniarski</a></p>
+                            </div>
+                            <div class="card-bottom-div" style="margin-right: 0px; margin-left: 0px;width: 10.5%; color: #5b5b5b; font-size: 12px; float: left; text-align: left;">
+                                    <img style="width: 18px; height: 15px; margin:0px; padding: 0px" src="img/email.png" alt="email">
+                            </div>
+                            
+                            <div class="card-bottom-div" style="margin-right: 6px;width: 20.5%; color: #7c7c7c; font-size: 11px;float: right; text-align: right">
+                                    6d 10d left
+                            </div>
+                    </div>
+                </div> 
+            </li>
+            <li class="listItem">
+                <div class="card">
+                        <div class="tag">
+                                <div class="tag-top-label">
+                                    ILS 1200.00
+                                </div>
+                                <div class="tag-bottom-label">
+                                    be the first bidder!
+                                </div>
+                            </div>
+                    <img src="img\cake.png" alt="cake">
+                    <div class="cardContainer">
+                            <div class="card-main-div">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                    Integer nec odio. Praesent libero.
+                            </div>
+                            <div class="card-bottom-div" style="margin-left: 6px;width: 58.5%; color: #5b5b5b; font-size: 12px; float: left; text-align: left;">
+                                    <p style="font-family:RobotoLight; margin: 0px;color: #5b5b5b; font-size: 12px;">Seller:<a href="website_hills.htm" style="color: #097dd3">Hilit Egozi Koniarski</a></p>
+                            </div>
+                            <div class="card-bottom-div" style="margin-right: 0px; margin-left: 0px;width: 10.5%; color: #5b5b5b; font-size: 12px; float: left; text-align: left;">
+                                    <img style="width: 18px; height: 15px; margin:0px; padding: 0px" src="img/email.png" alt="email">
+                            </div>
+                            
+                            <div class="card-bottom-div" style="margin-right: 6px;width: 20.5%; color: #7c7c7c; font-size: 11px;float: right; text-align: right">
+                                    6d 10d left
+                            </div>
+                    </div>
+                </div>
+            </li>
+            <li class="listItem">
+                <div class="card">
+                        <div class="tag">
+                                <div class="tag-top-label">
+                                    ILS 1200.00
+                                </div>
+                                <div class="tag-bottom-label">
+                                    be the first bidder!
+                                </div>
+                            </div>
+                    <img src="img\carpet.png" alt="carpet">
+                    <div class="cardContainer">
+                        <div class="card-main-div">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                Integer nec odio. Praesent libero.
+                        </div>
+                        <div class="card-bottom-div" style="margin-left: 6px;width: 58.5%; color: #5b5b5b; font-size: 12px; float: left; text-align: left;">
+                                <p style="font-family:RobotoLight; margin: 0px;color: #5b5b5b; font-size: 12px;">Seller:<a href="website_hills.htm" style="color: #097dd3">Hilit Egozi Koniarski</a></p>
+                        </div>
+                        <div class="card-bottom-div" style="margin-right: 0px; margin-left: 0px;width: 10.5%; color: #5b5b5b; font-size: 12px; float: left; text-align: left;">
+                                <img style="width: 18px; height: 15px; margin:0px; padding: 0px" src="img/email.png" alt="email">
+                        </div>
+                        
+                        <div class="card-bottom-div" style="margin-right: 6px;width: 20.5%; color: #7c7c7c; font-size: 11px;float: right; text-align: right">
+                                6d 10d left
+                        </div>
+                    </div>
+                 </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+//Create anonymous function that listens for a click on anything with the class colorBlock
+$(".floating-box").click(function() {
+   log("in click method ");
+  var $backgroundColor = $(this).parent().css("background-color");
+  setBackGroundJQ($(this))
+});
+
+$(".floating-box").on('click', function(e) {
+    setAuctionName(e.target.parentNode);
+});
+
+function whenLoaded() {
+    var targetLabel = document.getElementsByClassName("content-view-left-control-label")[0];
+    var collection = document.getElementsByClassName("category-label");
+    for (index = 0, len = collection.length; index < len; ++index) 
+    {
+        var data = collection[index].getAttribute('data-on-active');
+        if(data == "Books")
+        {
+            log("selected Books");
+            setAuctionName(collection[index].parentNode);
+            var coloredParent = collection[index].parentElement.parentElement;
+            log(coloredParent);
+            var style = window.getComputedStyle(coloredParent, null); 
+            log(style.getPropertyValue("background-color"));
+            elements = document.getElementsByClassName("listItem");
+            for (var i = 0; i < elements.length; i++) 
+            {
+                elements[i].style.backgroundColor=style.getPropertyValue("background-color");
+            }
+        }
+    }
+}
+
+
+function setAuctionName(obj)
+{
+    var data = obj.getElementsByClassName("category-label")[0].getAttribute('data-on-active');
+    log(data);
+    var label = document.getElementsByClassName("content-view-left-control-label")[0];
+    log("before click method ");
+    log(label.innerHTML);
+    label.innerHTML = data;
+    log("after click method ");
+    log(label.innerHTML);
+}
+
+function setBackGroundJQ(obj)
+{
+    var $backgroundColor = obj.parent().css("background-color");
+    log($backgroundColor.toString());
+    $(".listItem").css("background-color", $backgroundColor);
+}
+
+
+function log(msg)
+{
+    console.log(msg);
+}
+</script>
+</body>
+</html>

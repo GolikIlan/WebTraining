@@ -1,0 +1,344 @@
+@font-face {
+    font-family: "RobotoLight";
+    src: url("Roboto-Light.ttf");
+}
+@font-face {
+    font-family: "RobotoRegular";
+    src: url("Roboto-Regular.ttf");
+}
+@font-face {
+    font-family: "RobotoBold";
+    src: url("Roboto-Bold.ttf");
+}
+
+.flexMainContainer
+{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.header{
+    height: 50px;
+    width: 1280px;
+    align-items: center;
+    justify-content: center;
+    padding:0px;
+    margin: 10px auto;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.contentViewBox
+{
+    width: 1280px;
+    height: 100%;
+    max-width: 1280px;
+    padding:0px;
+    margin: 10px auto;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.limheight {
+    padding: 0px;
+    -webkit-column-count: 4;
+       -moz-column-count: 4;
+            column-count: 4; /*3 is just placeholder -- can be anything*/
+}
+.limheight li {
+    display: inline-block;
+    padding: 0px;  
+    margin-bottom:   20px;
+    height: 288px;
+}
+.limheight li a {
+    color: rgb(0, 162, 232);
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 258px;
+    height:282px;
+    background-color: white;
+}
+
+.card img{
+    width: 256px;
+    height: 186px;
+    margin: 0px;
+}
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.cardContainer {
+    padding: 0px;
+    margin: 0px;
+}
+
+.card-main-div
+{
+    width: 95%;
+    height: 42px;
+    padding: 0px;
+    float: left; 
+    text-align: left;
+    font-family: RobotoRegular;
+    font-size: 13px;
+    color: #5b5b5b;
+    margin: 9px 6px;
+}
+
+.card-bottom-div
+{
+    width: 42.5%;
+    padding: 0px; 
+    font-family: RobotoLight;
+    margin-top: 9px;
+    margin-bottom: 9px;
+}
+
+.tag {
+    width: 50%;
+    height: 45px;
+    float: left;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    background-color: rgba(0, 0, 0, 0.84);
+    z-index: 1000;
+    margin-bottom: -45px;
+}
+
+.tag-top-label
+{
+    float: left;
+    text-align: left;
+    color: white;
+    margin-top: 6px;
+    margin-left: 9px;
+    margin-right: 6px;
+    margin-bottom: 0px;
+    font-family: RobotoBold;
+    font-size: 17px;
+}
+.tag-bottom-label
+{
+    float: left;
+    text-align: left;
+    color: #bababa;
+    margin-top: 0px;
+    margin-left: 9px;
+    margin-right: 6px;
+    margin-bottom: 12px;
+    font-family: RobotoLight;
+    font-size: 11px;
+
+}
+
+.serviceBox4 {
+    float:right;
+      width:45%;
+      margin: 0px;
+      text-align: right;
+      font-family: RobotoLight;
+  }
+.serviceBox1{
+      float:left;
+      width:45%;
+      margin: 10px 0px 0px 0px;
+      text-align: left;
+      font-family: RobotoRegular;
+  }
+
+.sellButton{
+      background-color: #acb700;
+      width: 110px;
+      height: 26;
+      box-shadow:  1px #7c7c01;
+      border-radius: 3px;
+      color:white
+  }
+
+.sellButton:hover{
+    background-color: #a6b100;
+}
+
+.content-view-left-control-label
+  {
+      width: 100%; 
+      text-align: left; 
+      margin-left: 25px; 
+      color:black;
+      font-family: RobotoRegular;
+      font-size: 20px;
+      margin-bottom: 5px;
+      margin-top: 5px;
+  }
+
+  .control-label{
+      /*font-family: RobotoLight;*/
+      font-family: RobotoLight, Helvetica, sans-serif;
+      font-size: 12px;
+      margin-bottom: 10px;
+  }
+
+  .left-control-label
+  {
+    font-family: RobotoLight, Helvetica, sans-serif;
+    color: #909192;
+    font-size:20px; 
+    margin:0px
+  }
+
+  .cellButton, .control-label{
+    display: inline-block;
+    vertical-align: middle;
+    align-items: flex-start;
+  }
+
+.floating-box {
+    background-color: #f4f4ed;
+    height: 39px; 
+    width:100%;
+    display: flex;
+    align-items: center;
+    font-size: 12;   
+}
+
+
+
+.floating-box:active {
+    opacity: 0.8;
+}
+
+.category-label{
+    width:80%;
+    font-family: RobotoLight, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.categorycontainer
+{
+   max-width: 1280px;
+   width: 100%;
+   padding:0px;
+   margin:0 auto;
+   text-align: center;
+   outline-offset: 1;
+    box-shadow: 0 3px 1px -1px rgba(0, 0, 0, 0.3);
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: flex;
+    float:left;
+    height: 45px;
+    margin: 0 0 1px 1px;
+    font-family: RobotoLight;
+    font-size: 12;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.col:first-child { margin-left: 0; }
+.col:last-child { margin-right: 0; }
+
+/*  GROUPING  */
+.group:before,
+.group:after { content:""; display:table; }
+.group:after { clear:both;}
+.group { zoom:1; /* For IE 6/7 */ }
+
+/*  GRID OF SEVEN  */
+.span_7_of_7 {
+    width: 14.19383%;
+    background-color: #E87B21;
+}
+
+.span_6_of_7 {
+    width: 14.19383%;
+    background-color: #E32F65;
+}
+
+.span_5_of_7 {
+    width: 14.19383%;
+    background-color: #8E59E6;
+}
+
+.span_4_of_7 {
+    width: 14.19383%;
+    background-color: #2AADAD;
+}
+
+.span_3_of_7 {
+    width: 14.19383%;
+    background-color: #B31E89;
+}
+
+.span_2_of_7 {
+    width: 14.19383%;
+    background-color: #FBBB12;
+}
+
+.span_1_of_7 {
+    width: 14.19383%;
+    background-color: #CECEC4;
+}
+
+
+@media only screen and (max-width: 1279px) {
+	.col {  margin: 0 0 1px 1px; }
+    .span_1_of_7, .span_2_of_7, .span_3_of_7, .span_4_of_7
+    { 
+        width: 24.82%; 
+    }
+
+    .span_4_of_7
+    {
+        margin-right: 0;
+    }
+
+    .span_5_of_7, .span_6_of_7, .span_7_of_7 
+    { 
+        width: 33.120% 
+    }
+
+    .span_5_of_7
+    {
+        margin-left: 0;
+    }
+
+    .span_7_of_7 
+    {
+        margin-right: 1;
+    }
+
+}
+
+
+/*  GO FULL WIDTH BELOW 899 PIXELS */
+@media only screen and (max-width: 900px) {
+    .col 
+    {  
+        margin: 0px 0px 1px 0px; 
+        float:none;
+    }
+
+    .span_1_of_7, .span_2_of_7, .span_3_of_7, .span_4_of_7, .span_5_of_7, .span_6_of_7, .span_7_of_7 
+    { 
+        width: 100%; 
+    }
+}
+
