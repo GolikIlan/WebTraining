@@ -64,6 +64,14 @@
     width: 258px;
     height:282px;
     background-color: white;
+    position: relative;
+}
+
+.card-bottom-div a img:active{
+    background-color: #eff;
+    box-shadow: 1px 1px #eff;
+    transform: translateY(1px);
+    transform: translateX(1px);
 }
 
 .card img{
@@ -106,12 +114,19 @@
     width: 50%;
     height: 45px;
     float: left;
-    position: relative;
+    position: absolute;
     left: 0px;
     top: 0px;
     background-color: rgba(0, 0, 0, 0.84);
     z-index: 1000;
-    margin-bottom: -45px;
+}
+
+.card-bottom-div-email-image
+{
+    width: 3px; 
+    height: 3px; 
+    margin:0px; 
+    padding: 0px
 }
 
 .tag-top-label
