@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+/*:root {
+  font-size: calc(0.6em + 1vw);
+}*/
+
+.custom{
+    width: 100%;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 15px;
+  }
+
+html,body {
+    padding:0;
+    margin:0;
+    height:100%;
+    min-height:100%;
+    font-family: 'Roboto', sans-serif;
+    padding: .5rem;
+   }
+
+   .with-top-margin{
+       margin-top: 0;
+   }
+
+   /*.btn {
+    margin-right: 0.5em;
+    padding: .5em;
+    font-size: 1rem;
+  }*/
+  
+  .top{
+    width:100%;
+    height:20%;
+    float:left;
+  }
+  .contents{
+    width:100%;
+    height:60%;
+    float:left;
+  }
+  .bottom{
+    width:100%;
+    height:20%;
+    float:left;
+  }
+
+  no-marging{
+    margin: 0px;
+  }
+
+  no-padding{
+      padding: 0px;
+  }
+
+  .with-right-margin{
+      margin-right:5%;
+  }
+
+  .with-right-margin-sm{
+      margin-right: 6px;
+  }
+
+  .transparent
+  {
+      background-color: rgba(255, 0, 0, 0)
+  }
+
+  .red{
+      background-color: rgba(255, 0, 0, 0)
+  }
+
+
+  .green{
+      background-color: rgba(0, 255, 0, 0)
+  }
+
+  .blue{
+    background-color: rgba(0, 0, 255, 0)
+  }
+
+  .with-border
+  {
+    border: 1px dotted #7a7878;
+  }
+
+  .with-margin-bottom{
+      margin-bottom: 10px;
+  }
+  .with-margin-top{
+    margin-top: 10px;   
+  }
+
+     
+
+     @media (max-width: 768px) {
+        
+            .top, .bottom 
+            { 
+                height: 20%; 
+            }
+        
+            .contents{
+                height: 60%;
+            }
+
+    }
+
+    @media (max-width: 767px) {
+        
+        .top, .bottom 
+        { 
+            height: 15%;
+            /*background-color:  blue;*/
+        }
+        
+        .contents{
+            height: 70%;
+        }
+
+        .with-right-margin{
+            margin-right: 0%;
+        }
+
+        .with-top-margin{
+            margin-top:15%;
+        }
+    }
+    @media (max-width: 766px) {
+        
+    .top, .bottom 
+    { 
+        height: 5%; 
+        /*background-color:  green;*/
+    }
+
+    .with-top-margin{
+        margin-top:15%;
+    }
+        
+    .contents{
+        height: 90%;
+    }
+}    
+
+         
