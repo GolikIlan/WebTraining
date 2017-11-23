@@ -17,8 +17,12 @@ html,body {
     height:100%;
     min-height:100%;
     font-family: 'Roboto', sans-serif;
-    padding: .5rem;
    }
+
+   body {
+    display:flex;
+    align-items:center;
+  }
 
    .with-top-margin{
        margin-top: 0;
@@ -55,12 +59,9 @@ html,body {
   }
 
   .with-right-margin{
-      margin-right:5%;
+      margin-right: 5%;
   }
 
-  .with-right-margin-sm{
-      margin-right: 6px;
-  }
 
   .transparent
   {
@@ -71,6 +72,10 @@ html,body {
       background-color: rgba(255, 0, 0, 0)
   }
 
+  .w-above-100
+  {
+      width: 107%;
+  }
 
   .green{
       background-color: rgba(0, 255, 0, 0)
@@ -92,56 +97,20 @@ html,body {
     margin-top: 10px;   
   }
 
-     
+ .with-padding-right-zero{
+      padding-right: 0px;
+  }
 
-     @media (max-width: 768px) {
-        
-            .top, .bottom 
-            { 
-                height: 20%; 
-            }
-        
-            .contents{
-                height: 60%;
-            }
+  @media (max-width: 767px) {
 
+    .with-right-margin{
+        margin-right: 0%;
     }
 
-    @media (max-width: 767px) {
-        
-        .top, .bottom 
-        { 
-            height: 15%;
-            /*background-color:  blue;*/
-        }
-        
-        .contents{
-            height: 70%;
-        }
-
-        .with-right-margin{
-            margin-right: 0%;
-        }
-
-        .with-top-margin{
-            margin-top:15%;
-        }
-    }
-    @media (max-width: 766px) {
-        
-    .top, .bottom 
-    { 
-        height: 5%; 
-        /*background-color:  green;*/
+    .w-above-100{
+        width: 100%;
     }
 
-    .with-top-margin{
-        margin-top:15%;
-    }
-        
-    .contents{
-        height: 90%;
-    }
-}    
+}
 
          
