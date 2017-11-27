@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #map {
+        width: 100%;
+        height: 400px;
+        background-color: grey;
+      }
+    </style>
+  </head>
+  <body>
+      <h3>My Google Maps Demo</h3>
+      <div id="map"></div>
+      <script>
+        var mainMarker;
+        var mainInfowindow
+        function initMap() {
+          var uluru = {lat: 31.781570930881824, lng:  35.1397705078125};
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            center: uluru
+          });
+
+          mainInfowindow = new google.maps.InfoWindow();
+
+          google.maps.event.addListener(map, 'click', function(event) {
+            resetMainMarker(null);
+            var lng = event.latLng.lng();
+            var lat = event.latLng.lat();
+            log(lat);
+            log(lng);
+            log('till here')
+            var theUrl = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat +"&lon=" + lng + "&units=metric" + "&APPID=346395e9c14775fa4eb404340637a125";
+            log(theUrl);
+            log('till here')
+            var xhr = new XMLHttpRequest();
+            var jsonResult = "";
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    {
+                      log("inside XMLHttpRequest callback");
+                      jsonResult = JSON.parse(this.responseText);
+                      log(jsonResult);
+                    }
+                }
+            };
+            xhr.open("GET", theUrl, false);
+            xhr.send();
+
+            log(xhr.status);
+            log(xhr.statusText);
+            var contentArr = getMsgArr(jsonResult);
+            createMarker(event.latLng, contentArr, map);
+          });
+        };
+
+        function createMarker(latlng, arr, map) {
+          mainMarker = new google.maps.Marker({
+          position: latlng,
+          map: map
+        });
+
+          mainInfowindow.setContent("<p>" + arr[0] + "<br />" + arr[1] + "<br />" + "</p>");
+          mainInfowindow.open(map, mainMarker);
+        };
+
+        function  resetMainMarker(map)
+        {
+           if(mainMarker == null)
+           {
+             log("no marker presented");
+           }
+           else{
+            log("reset marker");
+            mainMarker.setMap(map);
+           }
+        }
+
+        function showMsg(jsonObj)
+        {
+          var msg = getMsg(jsonObj);
+          log(msg);
+          alert(msg);
+        }
+
+        function getMsgArr(jsonObj)
+        {
+          var temp = jsonObj["main"]["temp"];
+          var location = jsonObj["name"];
+          var msg = "location: " + location + "\n" + "temperature: " + temp + String.fromCharCode(176) + "\n";
+          var locationLine = "location: " + location;
+          var tempLine = "temperature: " + temp + String.fromCharCode(176);
+          var list = [];
+          list.push(locationLine)
+          list.push(tempLine);
+          log(list.length);
+          return list;
+        }
+
+        function getMsg(jsonObj)
+        {
+          var temp = jsonObj["main"]["temp"];
+          var location = jsonObj["name"];
+          var msg = "location: " + location + "\n" + "temperature: " + temp + String.fromCharCode(176) + "\n";
+          return msg;
+        }
+
+        function log(msg)
+        {
+          //console.log(msg);
+        }
+      </script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL7L9zRNCubUEKJFh7qabThvUp3Srxvdg&callback=initMap">
+  </script>
+  </body>
+</html>
