@@ -44,58 +44,62 @@
           var _wheatherWrapper;
           var _mainInfowindow;
           var _mainMarker;
+          var _whenFailedCallback;
+          var _whenSucceededCallback;
+          var _markers;
 
           function GoogleMapsObject(log, mapHtmlContainer, wheatherWrapper, initPoint, zoomValue)
           {
+            _markers = [];
             this._map = new google.maps.Map(mapHtmlContainer, {
               zoom: zoomValue,
               center: initPoint,
               });
             _log = log;
-            _log("c'tor map object is " + this._map);
             _wheatherWrapper = wheatherWrapper;
             _mainInfowindow = new google.maps.InfoWindow();
           }
 
           function   whenMapClicked(event, googleMapObject) {
-            resetMainMarker(null);
-            var whenSucceededCallback = function( data, point ) {
+            clearMapFromMarkers();
+            _whenSucceededCallback = function( data, point ) {
               var contentArr = getMsgArr(data);
               createMarker(point, contentArr, googleMapObject);
             };
-            var whenFailedCallback = function( status, xhr ) {
+            _whenFailedCallback = function( status, xhr ) {
               _log("inside getWeatherAtPointAsync fault callback");
               _log(status);
             };
             var point = event.latLng;
-            _wheatherWrapper.getWeatherAtPointAsync(point, whenSucceededCallback, whenFailedCallback);
+            _wheatherWrapper.getWeatherAtPointAsync(point, _whenSucceededCallback, _whenFailedCallback);
           }
 
           function createMarker(latlng, arr, googleMapObject) {
             _log("inside createMarker method");
             _log(arr);
             _log(latlng.toString());
-            var markerMap = googleMapObject
-            _log(markerMap);
+            _log(googleMapObject);
             _mainMarker = new google.maps.Marker({
               position: latlng,
-              map: markerMap,
+              map: googleMapObject,
               });
             _mainInfowindow.setContent("<p>" + arr[0] + "<br />" + arr[1] + "<br />" + "</p>");
-            _mainInfowindow.open(markerMap, _mainMarker);
+            _mainInfowindow.open(googleMapObject, _mainMarker);
+            google.maps.event.addListener(_mainInfowindow,'closeclick',function(){
+              clearMapFromMarkers();
+            });
+            _markers.push(_mainMarker);
             _log("createMarker method done");
           };
 
-        function  resetMainMarker(map)
+        function  clearMapFromMarkers()
         {
-           if(_mainMarker == null)
-           {
-             _log("no marker presented");
-           }
-           else{
-            _log("reset marker");
-            _mainMarker.setMap(map);
-           }
+          var currentLength = _markers.length;
+          for(var index = 0; index < currentLength; index ++ )
+          {
+            _markers[index].setMap(null);
+          }
+          _markers = [];
         }
 
         function getMsgArr(jsonObj)
@@ -134,7 +138,7 @@
 
         function log(msg)
         {
-          console.log(msg);
+          //console.log(msg);
         }
       </script>
   <script async defer
