@@ -14,9 +14,6 @@
         </div>
     </div>
       <script>
-        var _mainInfowindow;
-        var _mainMarker;
-
         var OpenWeatherMapWrapper = (function(){
           var _log;
           function OpenWeatherMapWrapper(log)
@@ -45,7 +42,8 @@
         var GoogleMapsObject = (function(){
           var _log;
           var _wheatherWrapper;
-
+          var _mainInfowindow;
+          var _mainMarker;
 
           function GoogleMapsObject(log, mapHtmlContainer, wheatherWrapper, initPoint, zoomValue)
           {
