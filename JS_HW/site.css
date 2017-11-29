@@ -1,16 +1,23 @@
 html { height: 100%; }
-body { height: 100%; width: 90%; margin: auto; }
-.wrap { min-height: 100%;background-color:gray; position: relative;}
-.main {
-    position: absolute;
-    overflow: auto;
-    padding-bottom: 0px; /* must be same height as the footer */
-    background-color: red;
-    border: solid 1px blue;
-    top: 20px;
-    bottom: 0px;
-    left:0px;
-    right:0px;
+body { height: 100%; width: 100%; margin: auto; }
+
+.title{
+    position:absolute;
+    top: 0px;
+    left: 60px;
+    font-family: "Times New Roman", Times, serif;
+    font-size:22px;
+    font-weight: bold;
+}
+
+.box
+{
+	background-color:black;
+    position:absolute;
+    top: 30px;
+    left: 60px;
+    right: 60px;
+    bottom: 30px;
 }
 
 #map {

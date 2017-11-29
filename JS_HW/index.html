@@ -6,14 +6,14 @@
       "sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
   </head>
   <body>
-    <div class="wrap">
-        <h3>My Google Maps Demo</h3>
-        <div class="main">
-          <div div id="map">
-          </div>
-        </div>
-    </div>
+      <div class="title">
+          Weather App
+      </div>
+      <div class="box">
+        <div id="map"></div>
+      </div>
       <script>
+        //weather provider
         var OpenWeatherMapWrapper = (function(){
           var _log;
           function OpenWeatherMapWrapper(log)
@@ -38,7 +38,7 @@
           };
           return OpenWeatherMapWrapper;
         })();                                                        
-
+        //google maps api provider
         var GoogleMapsObject = (function(){
           var _log;
           var _wheatherWrapper;
@@ -106,7 +106,6 @@
         {
           var temp = jsonObj["main"]["temp"];
           var location = jsonObj["name"];
-          var msg = "location: " + location + "\n" + "temperature: " + temp + String.fromCharCode(176) + "\n";
           var locationLine = "location: " + location;
           var tempLine = "temperature: " + temp + String.fromCharCode(176);
           var list = [];
