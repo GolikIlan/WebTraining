@@ -51,6 +51,234 @@ class Patterns {
   
   };
 
+  const _stepIndex = Symbol('stepIndex');
+  const _stepIndexLim = Symbol('stepIndexLim');
+  class GameMatrixManager{
+      constructor(patterns)
+      {
+          this._patterns = patterns;
+          this[_stepIndex] = 0;
+          this[_stepIndexLim] = 0;
+          this._mainMattrix = this.getFullMatrix();
+          this.init();
+      }
+  
+      applyRules(){
+          if(this[_stepIndex] < this[_stepIndexLim])
+          {
+              this[_stepIndex]  ++;
+              return;
+          }
+          this[_stepIndex]  = 0;
+          var resultMat = this.getFullMatrix();
+          for(let rowIndex = 1; rowIndex < length - 1; rowIndex ++)
+          {
+              var resultRowArray = resultMat[rowIndex]
+              var rowArray = this._mainMattrix[rowIndex];
+              for(let columnIndex= 1; columnIndex < length - 1; columnIndex ++)
+              {
+                  var nearBy = this.getNearByIndex(rowIndex, columnIndex);
+                  if(rowArray[columnIndex] == 1)
+                  {
+                    this.applyForAFullByNearBy(nearBy, columnIndex, resultRowArray);
+                  }
+                  else
+                  {
+                    this.applyForAnEmptyByNearBy(nearBy, columnIndex, resultRowArray);
+                  }
+              }
+          }
+          this._mainMattrix = resultMat;
+      }
+  
+      applyForAnEmptyByNearBy(nearBy, columnIndex, resultRowArray)
+      {
+          if(nearBy == 3)
+          {
+              resultRowArray[columnIndex] = 1;
+          }
+      }
+  
+      applyForAFullByNearBy(nearBy, columnIndex, resultRowArray)
+      {
+          if(nearBy < 2)
+          {
+              resultRowArray[columnIndex] = 0;
+          }
+          if(nearBy > 3)
+          {
+              resultRowArray[columnIndex] = 0;
+          }
+          if(nearBy == 2)
+          {
+              resultRowArray[columnIndex] = 1;
+          }
+          if(nearBy == 3)
+          {
+              resultRowArray[columnIndex] = 1;
+          }
+      
+      }
+  
+      getNearByIndex(rowIndex, columnIndex)
+      {
+          var count = 0;
+          if(this._mainMattrix[rowIndex - 1][columnIndex - 1] == 1)
+          {
+              count += 1;
+          }
+          if(this._mainMattrix[rowIndex - 1][columnIndex] == 1)
+          {
+              count += 1;
+          }
+          if(this._mainMattrix[rowIndex][columnIndex - 1] == 1)
+          {
+              count += 1;
+          }
+          if(this._mainMattrix[rowIndex - 1][columnIndex + 1] == 1)
+          {
+              count += 1;
+          }
+          if(this._mainMattrix[rowIndex + 1][columnIndex - 1] == 1)
+          {
+              count += 1;
+          }
+          if(this._mainMattrix[rowIndex + 1][columnIndex + 1] == 1)
+          {
+              count += 1;
+          }
+          if(this._mainMattrix[rowIndex][columnIndex + 1]== 1)
+          {
+              count += 1;
+          }
+          if(this._mainMattrix[rowIndex + 1][columnIndex]== 1)
+          {
+              count += 1; 
+          }
+          return count;
+      }
+  
+      init()
+      {
+          let a = this._patterns.getPulsarPattern();
+          var pulsarA = new NamedShape(a, 10, 10, "A");
+          this.add(pulsarA);
+      
+          let b = this._patterns.getPulsarPattern();
+          var pulsarB = new NamedShape(b, 575, 575, "B");
+          this.add(pulsarB);
+      
+          let c = this._patterns.getPulsarPattern();
+          var pulsarC = new NamedShape(c, 575, 10, "C");
+          this.add(pulsarC);
+      
+          let d = this._patterns.getPulsarPattern();
+          var pulsarD = new NamedShape(d, 10, 575, "D");
+          this.add(pulsarD);
+       
+          let o = this._patterns.getPulsarPattern();
+          var pulsarO = new NamedShape(patterns.getPulsarPattern(), 293, 293, "O");
+          this.add(pulsarO);
+      
+          let gA = this._patterns.getGunPattern();
+          var gunA = new NamedShape(gA, 150, 145, "A");
+          this.add(gunA);
+      
+          let gB = this._patterns.getGunPattern();
+          var gunB = new NamedShape(gB, 405, 150, "B");
+          gunB.rotateContent90(3);
+          this.add(gunB);
+      
+          let gc = this._patterns.getGunPattern();
+          var gunC = new NamedShape(gc, 400, 400, "C");
+          gunC.rotateContent90(2);
+          this.add(gunC);
+      
+          let gd = patterns.getGunPattern();
+          var gunD = new NamedShape(gd, 165, 400, "D");
+          gunD.rotateContent90(1);
+          this.add(gunD);
+      }
+  
+      add(namedShape)
+      {
+          this[_stepIndexLim] = 1000;
+          var offsetR = namedShape._x;
+          var offsetC = namedShape._y;
+          var limR = namedShape.content.length + offsetR;
+          var limC = namedShape.content[0].length + offsetC;
+          for(let rowIndex = offsetR; rowIndex < limR; rowIndex ++)
+          {
+              var rowArray = this._mainMattrix[rowIndex]
+              for(let columnIndex= offsetC; columnIndex < limC; columnIndex ++)
+              {
+                  let row = rowIndex - offsetR;
+                  let col = columnIndex - offsetC;
+                  if(namedShape.content[row][col] == 1)
+                  {
+                      rowArray[columnIndex] = 1;
+                  }
+              }
+          }
+          this[_stepIndexLim] = 0;
+      }
+  
+      clearArea(x, y, rows, cols)
+      {
+          this[_stepIndexLim] = 1000;
+          var offsetR = x;
+          var offsetC = y;
+          var limR = rows + offsetR;
+          var limC = cols + offsetC;
+          for(let rowIndex = offsetR; rowIndex < limR; rowIndex ++)
+          {
+              var rowArray = this._mainMattrix[rowIndex]
+              for(let columnIndex= offsetC; columnIndex < limC; columnIndex ++)
+              {
+                  rowArray[columnIndex] = 0;
+              }
+          }
+          this[_stepIndexLim] = 0;
+      }
+      
+      clear(namedShape)
+      {
+          this[_stepIndexLim] = 1000;
+          var offsetR = namedShape._x;
+          var offsetC = namedShape._y;
+          var limR = namedShape.content.length + offsetR;
+          var limC = namedShape.content[0].length + offsetC;
+          for(let rowIndex = offsetR; rowIndex < limR; rowIndex ++)
+          {
+              var rowArray = this._mainMattrix[rowIndex]
+              for(let columnIndex= offsetC; columnIndex < limC; columnIndex ++)
+              {
+                  let row = rowIndex - offsetR;
+                  let col = columnIndex - offsetC;
+                  if(namedShape.content[row][col] == 1)
+                  {
+                      rowArray[columnIndex] = 0;
+                  }
+              }
+          }
+          this[_stepIndexLim] = 0;
+      }
+      
+      getFullMatrix()
+      {
+          var mat = [];
+          for(let rowIndex = 0; rowIndex < length; rowIndex ++)
+          {
+              mat[rowIndex] = [];
+              for(let columnIndex= 0; columnIndex < length; columnIndex ++)
+              {
+                  mat[rowIndex].push(0);
+              }
+          }
+          return mat;
+      }
+  }
+
   const getMatrixByDim = Symbol('getMatrixByDim');
   class Shape{
       constructor(pattern, x, y)
@@ -119,16 +347,22 @@ class Patterns {
   const _patternsProvider = Symbol('patternsProvider');
   const getTimes90 = Symbol('getTimes90');
   const _managerLog = Symbol('managerLog');
-  const parse = Symbol('parse');
+  const applyCmd = Symbol('applyCmd');
   const _shapes = Symbol('shapes');
   const findShape = Symbol('findShape');
+  const draw = Symbol('draw');
+  const _canvasWrapper = Symbol('canvasWrapper');
+  const _playAction = Symbol('_playAction');
+  const _gameMatrixManager = Symbol('gameMatrixManager')
   class Manager{
-      constructor(log, patterns)
+      constructor(log, patterns, canvasWrapper, playAction, matrixManager)
       {
           this[_shapes] = [];
           this[_managerLog] = log;
           this[_patternsProvider] = patterns;
-          this[_patternsProvider].init();
+          this[_canvasWrapper] = canvasWrapper;
+          this[_playAction] = playAction;
+          this[_gameMatrixManager] = matrixManager;
       }
 
       [getTimes90](angle)
@@ -160,7 +394,7 @@ class Patterns {
           return null;
       }
 
-      [parse](params)
+      [applyCmd](params)
       {
         var key = params[0];
         switch(key) { 
@@ -172,7 +406,7 @@ class Patterns {
                let pulsar = this[_patternsProvider].getPulsarPattern();
                let shape = new NamedShape(pulsar, x, y, name);
                shape.rotateContent90(this[getTimes90](angle))
-               add(shape);
+               this[_gameMatrixManager].add(shape);
                this[_shapes].push(shape);
                break; 
             } 
@@ -180,19 +414,19 @@ class Patterns {
                 let name = params[1].trim();
                 let angle = parseInt(params[2].trim());
                 var shape = this[findShape](name);
-                clear(shape);
+                this[_gameMatrixManager].clear(shape);
                 shape.rotateContent90(this[getTimes90](angle));
-                add(shape);
+                this[_gameMatrixManager].add(shape);
                break; 
             }
             case "move pulsar": { 
                 let name = params[1].trim();
-                let x = params[2].trim();
-                let y = params[3].trim();
+                let x = parseInt(params[2].trim()) ;
+                let y = parseInt(params[3].trim());
                 var shape = this[findShape](name);
-                clear(shape);
+                this[_gameMatrixManager].clear(shape);
                 shape.move(x,y);
-                add(shape);
+                this[_gameMatrixManager].add(shape);
                break;    
             } 
             case "create gun": { 
@@ -203,7 +437,7 @@ class Patterns {
                 let gun = this[_patternsProvider].getGunPattern();
                 let shape = new NamedShape(gun, x, y, name);
                 shape.rotateContent90(this[getTimes90](angle))
-                add(shape);
+                this[_gameMatrixManager].add(shape);
                 this[_shapes].push(shape);
                break; 
             } 
@@ -211,29 +445,37 @@ class Patterns {
                 let name = params[1].trim();
                 let angle = parseInt(params[2].trim());
                 var shape = this[findShape](name);
-                clearArea(shape._x, shape._y, 42, 42);
+                this[_gameMatrixManager].clearArea(shape._x, shape._y, 42, 42);
                 shape.rotateContent90(this[getTimes90](angle));
-                add(shape);
+                this[_gameMatrixManager].add(shape);
                break; 
             }
             case "move gun": { 
                 let name = params[1].trim();
-                let x = params[2].trim();
-                let y = params[3].trim();
+                let x = parseInt(params[2].trim()) ;
+                let y = parseInt(params[3].trim());
                 var shape = this[findShape](name);
-                clearArea(shape._x, shape._y, 42, 42);
+                this[_gameMatrixManager].clearArea(shape._x, shape._y, 42, 42);
                 shape.move(x,y);
-                add(shape);
+                this[_gameMatrixManager].add(shape);
                break;    
             } 
             case "step": { 
-                step();
+                this.step();
                break; 
             }
             case "play": { 
-                play();
+                this[_playAction]();
                break;    
             } 
+            case "clear area": { 
+                let x = parseInt(params[1].trim()) ;
+                let y = parseInt(params[2].trim());
+                let rows = parseInt(params[3].trim()) ;
+                let cols = parseInt(params[4].trim());
+                this[_gameMatrixManager].clearArea(x, y, rows, cols);
+               break;    
+            }
             default: { 
                 this[_managerLog]("Invalid command"); 
                break;              
@@ -244,18 +486,69 @@ class Patterns {
       onCommand(params)
       {
         this[_managerLog](params);
-        this[parse](params);
+        this[applyCmd](params);
+      }
+
+      step()
+      {
+          this[draw]();
+          this[_gameMatrixManager].applyRules();
+      }
+      
+      [draw]()
+      {
+          this[_canvasWrapper].drawMattrix(this[_gameMatrixManager]._mainMattrix);
       }
   }
 
-let manager = new Manager(log, new Patterns());
+  const _canvas = Symbol('cancas');
+  const _canvasContext = Symbol('canvasContext');
+  class CanvasWrapper{
+      constructor(canvas)
+      {
+          this[_canvas] = canvas;
+          this[_canvasContext] = this[_canvas].getContext("2d");
+      }
 
+      drawMattrix(mat)
+      {
+        let rows = mat.length;
+        let cols = mat[0].length;
+        this[_canvasContext].clearRect(0,0,rows,cols);
+        for(let rowIndex = 0; rowIndex < rows; rowIndex ++)
+        {
+            for(let columnIndex= 0; columnIndex < cols; columnIndex ++)
+            {
+                if(mat[rowIndex][columnIndex] == 1)
+                {
+                    this[_canvasContext].fillStyle = "rgba(10, 241, 106, 0.7)";
+                    this[_canvasContext].fillRect(rowIndex, columnIndex, 1, 1);
+                }
+            }
+        }
+      }
+  }
+
+function play()
+{
+    manager.step();
+    requestAnimationFrame(play);
+}
+
+let innerCanvas = document.getElementsByClassName("innerCanvas")[0];
+var length = 600;
+innerCanvas.width = length;
+innerCanvas.height = length;
+let patterns = new Patterns();
+patterns.init();
+let matrixManager = new GameMatrixManager(patterns)
+let manager = new Manager(log, patterns, new CanvasWrapper(innerCanvas), play, matrixManager);
 
 $(".cmdInput").on('keyup', function (e) {
     if (e.keyCode == 13) {
         let cmd = $(".cmdInput").val();
         $(".cmdInput").val("");
-        $(".result").append("<li><span>" + cmd + "</span></a></li>");
+        $(".result").prepend("<li><span>" + cmd + "</span></a></li>");
         onCommand(cmd);
         log(cmd);
     }
@@ -270,299 +563,22 @@ function onCommand(cmd)
     else{
         if(cmd == "menu")
         {
-            $(".result").append("<li><span>" + "- these are allowed commands:" + "</span></a></li>");
-            $(".result").append("<li><span>" + "- menu- displays allowed commands" + "</span></a></li>");
-            $(".result").append("<li><span>" + "- create pulsar, name, x, y, angle  - creates a named pulsar in [x,y] coordinates with rotation angle" + "</span></a></li>");
-            $(".result").append("<li><span>" + "- rotate pulsar, name, angle  - rotates specific pulsar with angle" + "</span></a></li>");
-            $(".result").append("<li><span>" + "- move pulsar, name, x, y  - moves specific pulsar to [x,y]" + "</span></a></li>");
-            $(".result").append("<li><span>" + "- create gun, name, x, y, angle  - creates a named gun in [x,y] coordinates with rotation angle" + "</span></a></li>");
-            $(".result").append("<li><span>" + "- rotate gun, name, angle  - rotates specific gun with angle" + "</span></a></li>");
-            $(".result").append("<li><span>" + "- move gun, name, x, y  - moves specific gun to [x,y]" + "</span></a></li>");
-            $(".result").append("<li><span>" + "- step - performs a single step" + "</span></a></li>");
-            $(".result").append("<li><span>" + "- play - starts the game" + "</span></a></li>");
-            $(".result").append("<li><span>" + "- clear - clears the cmd console" + "</span></a></li>");
+            $(".result").prepend("<li><span>" + "- clear - clears the cmd console" + "</span></a></li>");
+            $(".result").prepend("<li><span>" + "- rotate pulsar, name, angle  - rotates specific pulsar with angle" + "</span></a></li>");
+            $(".result").prepend("<li><span>" + "- move pulsar, name, x, y  - moves specific pulsar to [x,y]" + "</span></a></li>");
+            $(".result").prepend("<li><span>" + "- rotate gun, name, angle  - rotates specific gun with angle" + "</span></a></li>");
+            $(".result").prepend("<li><span>" + "- create pulsar, name, x, y, angle  - creates a named pulsar in [x,y] coordinates with rotation angle" + "</span></a></li>");
+            $(".result").prepend("<li><span>" + "- create gun, name, x, y, angle  - creates a named gun in [x,y] coordinates with rotation angle" + "</span></a></li>");
+            $(".result").prepend("<li><span>" + "- clear area, x, y, rows, cols  - clears specific area of the game canvas" + "</span></a></li>");
+            $(".result").prepend("<li><span>" + "- step - performs a single step" + "</span></a></li>");
+            $(".result").prepend("<li><span>" + "- play - starts the game" + "</span></a></li>");
+            $(".result").prepend("<li><span>" + "- these are allowed commands:" + "</span></a></li>");
         }
         else{
             let splitCmd = cmd.split(",")
             manager.onCommand(splitCmd);
         }
     }
-}
-
-function log(msg)
-{
-    console.log(msg);
-}
-
-
-
-/*let mainCanvas = document.querySelector("canvas");
-log(mainCanvas);
-let height = window.innerHeight;
-let width = window.innerWidth;
-mainCanvas.width = width;
-mainCanvas.height = height;*/
-
-let innerCanvas = document.getElementsByClassName("innerCanvas")[0];
-log(innerCanvas);
-var length = 600;
-innerCanvas.width = length;
-innerCanvas.height = length;
-let i = 0;
-let lim = 2;
-let ctx = innerCanvas.getContext("2d");
-
-let patterns = new Patterns();
-patterns.init();
-let mainMattrix = getFullMatrix();
-log(mainMattrix.length);
-init();
-draw();
-play();
-
-function step()
-{
-    draw();
-    applyRules();
-}
-
-
-function play()
-{
-    step();
-    requestAnimationFrame(play);
-}
-
-
-function applyRules(){
-    if(i < lim)
-    {
-        i ++;
-        return;
-    }
-    i = 0;
-    var resultMat = getFullMatrix();
-    for(let rowIndex = 1; rowIndex < length - 1; rowIndex ++)
-    {
-        var resultRowArray = resultMat[rowIndex]
-        var rowArray = mainMattrix[rowIndex];
-        for(let columnIndex= 1; columnIndex < length - 1; columnIndex ++)
-        {
-            var nearBy = getNearByIndex(rowIndex, columnIndex);
-            if(rowArray[columnIndex] == 1)
-            {
-                applyForAFullByNearBy(nearBy, columnIndex, resultRowArray);
-            }
-            else
-            {
-                applyForAnEmptyByNearBy(nearBy, columnIndex, resultRowArray);
-            }
-        }
-    }
-    mainMattrix = resultMat;
-}
-
-function applyForAnEmptyByNearBy(nearBy, columnIndex, resultRowArray)
-{
-    if(nearBy == 3)
-    {
-        resultRowArray[columnIndex] = 1;
-    }
-}
-
-function applyForAFullByNearBy(nearBy, columnIndex, resultRowArray)
-{
-    if(nearBy < 2)
-    {
-        resultRowArray[columnIndex] = 0;
-    }
-    if(nearBy > 3)
-    {
-        resultRowArray[columnIndex] = 0;
-    }
-    if(nearBy == 2)
-    {
-        resultRowArray[columnIndex] = 1;
-    }
-    if(nearBy == 3)
-    {
-        resultRowArray[columnIndex] = 1;
-    }
-
-}
-
-function getNearByIndex(rowIndex, columnIndex)
-{
-    var count = 0;
-    if(mainMattrix[rowIndex - 1][columnIndex - 1] == 1)
-    {
-        count += 1;
-    }
-    if(mainMattrix[rowIndex - 1][columnIndex] == 1)
-    {
-        count += 1;
-    }
-    if(mainMattrix[rowIndex][columnIndex - 1] == 1)
-    {
-        count += 1;
-    }
-    if(mainMattrix[rowIndex - 1][columnIndex + 1] == 1)
-    {
-        count += 1;
-    }
-    if(mainMattrix[rowIndex + 1][columnIndex - 1] == 1)
-    {
-        count += 1;
-    }
-    if(mainMattrix[rowIndex + 1][columnIndex + 1] == 1)
-    {
-        count += 1;
-    }
-    if(mainMattrix[rowIndex][columnIndex + 1]== 1)
-    {
-        count += 1;
-    }
-    if(mainMattrix[rowIndex + 1][columnIndex]== 1)
-    {
-        count += 1; 
-    }
-    return count;
-}
-
-function draw()
-{
-    ctx.clearRect(0,0,length,length);
-    for(let rowIndex = 0; rowIndex < length; rowIndex ++)
-    {
-        for(let columnIndex= 0; columnIndex < length; columnIndex ++)
-        {
-            if(mainMattrix[rowIndex][columnIndex] == 1)
-            {
-                ctx.fillStyle = "rgba(10, 241, 106, 0.7)";
-                ctx.fillRect(rowIndex, columnIndex, 1, 1);
-            }
-        }
-    }
-}
-
-function init()
-{
-    let a = patterns.getPulsarPattern();
-    var pulsarA = new NamedShape(a, 10, 10, "A");
-    add(pulsarA);
-
-    let b = patterns.getPulsarPattern();
-    var pulsarB = new NamedShape(b, 575, 575, "B");
-    add(pulsarB);
-
-    let c = patterns.getPulsarPattern();
-    var pulsarC = new NamedShape(c, 575, 10, "C");
-    add(pulsarC);
-
-    let d = patterns.getPulsarPattern();
-    var pulsarD = new NamedShape(d, 10, 575, "D");
-    add(pulsarD);
- 
-    let o = patterns.getPulsarPattern();
-    var pulsarO = new NamedShape(patterns.getPulsarPattern(), 293, 293, "O");
-    add(pulsarO);
-
-    let gA = patterns.getGunPattern();
-    var gunA = new NamedShape(gA, 150, 145, "A");
-    add(gunA);
-
-    let gB = patterns.getGunPattern();
-    var gunB = new NamedShape(gB, 405, 150, "B");
-    gunB.rotateContent90(3);
-    add(gunB);
-
-    let gc = patterns.getGunPattern();
-    var gunC = new NamedShape(gc, 400, 400, "C");
-    gunC.rotateContent90(2);
-    add(gunC);
-
-    let gd = patterns.getGunPattern();
-    var gunD = new NamedShape(gd, 165, 400, "D");
-    gunD.rotateContent90(1);
-    add(gunD);
-}
-
-function add(namedShape)
-{
-    lim = 1000;
-    var offsetR = namedShape._x;
-    var offsetC = namedShape._y;
-    var limR = namedShape.content.length + offsetR;
-    var limC = namedShape.content[0].length + offsetC;
-    for(let rowIndex = offsetR; rowIndex < limR; rowIndex ++)
-    {
-        var rowArray = mainMattrix[rowIndex]
-        for(let columnIndex= offsetC; columnIndex < limC; columnIndex ++)
-        {
-            let row = rowIndex - offsetR;
-            let col = columnIndex - offsetC;
-            if(namedShape.content[row][col] == 1)
-            {
-                rowArray[columnIndex] = 1;
-            }
-        }
-    }
-    lim = 0;
-}
-
-function clearArea(x, y, rows, cols)
-{
-    lim = 1000;
-    var offsetR = x;
-    var offsetC = y;
-    var limR = rows + offsetR;
-    var limC = cols + offsetC;
-    for(let rowIndex = offsetR; rowIndex < limR; rowIndex ++)
-    {
-        var rowArray = mainMattrix[rowIndex]
-        for(let columnIndex= offsetC; columnIndex < limC; columnIndex ++)
-        {
-            rowArray[columnIndex] = 0;
-        }
-    }
-    lim = 0;
-}
-
-function clear(namedShape)
-{
-    lim = 1000;
-    var offsetR = namedShape._x;
-    var offsetC = namedShape._y;
-    var limR = namedShape.content.length + offsetR;
-    var limC = namedShape.content[0].length + offsetC;
-    for(let rowIndex = offsetR; rowIndex < limR; rowIndex ++)
-    {
-        var rowArray = mainMattrix[rowIndex]
-        for(let columnIndex= offsetC; columnIndex < limC; columnIndex ++)
-        {
-            let row = rowIndex - offsetR;
-            let col = columnIndex - offsetC;
-            if(namedShape.content[row][col] == 1)
-            {
-                rowArray[columnIndex] = 0;
-            }
-        }
-    }
-    lim = 0;
-}
-
-function getFullMatrix()
-{
-    var mat = [];
-    for(let rowIndex = 0; rowIndex < length; rowIndex ++)
-    {
-        mat[rowIndex] = [];
-        for(let columnIndex= 0; columnIndex < length; columnIndex ++)
-        {
-            mat[rowIndex].push(0);
-        }
-    }
-    return mat;
 }
 
 function log(msg)

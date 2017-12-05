@@ -1,7 +1,8 @@
 body{
     margin: 0px;
     position:relative;
-    background-color: rgb(10, 241, 106);
+    background-image: url("andromeda.jpg");
+    background-color: transparent;
 }
 
 .canvas{
@@ -12,12 +13,11 @@ body{
 }
 
 .manage-console{
-    width: 50%;
+    width: 600px;
     height: 600px;
-    /*background-color: black;
-    border: 1px solid red;*/
     position: absolute;
-    left: 610px;
+    left: 925px;
+    top: 150px;
 }
 
 .cmdInput
@@ -37,11 +37,15 @@ body{
     padding-left:0;
     margin-top: 0;
     font-size: 12px;
+    max-height:567px;
+    overflow:hidden; 
+    overflow-y:auto;
 }
 
 .innerCanvas{
     border: 1px solid rgb(240, 9, 125);
     background-color: black;
     position: absolute;
-    left: 0;
+    left: 315px;
+    top: 150px;
 }
