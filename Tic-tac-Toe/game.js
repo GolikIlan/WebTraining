@@ -23,6 +23,18 @@ class Game {
             throw new Error("Fatal error the number of rows should be equals to the number of columns.");
         }
     }
+    get currentPlayer() {
+        let currentPlayerIndex = this._totalMovesCount % 2;
+        let currentPlayerToken = Array.from(this._players.keys())[currentPlayerIndex];
+        let player = this._players.get(currentPlayerToken);
+        if (player === undefined) {
+            return { name: "",
+                token: "",
+                score: 0,
+                incrementScore: () => { } };
+        }
+        return player;
+    }
     get board() {
         return this._board;
     }
@@ -66,38 +78,46 @@ class Game {
         }
         return result;
     }
-    printHistory() {
+    getHistory() {
+        let result = "";
         if (this._history.length === 0) {
-            this._logger.log("still no history of moves");
-            return;
+            result = "still no history of moves";
         }
         for (let index = 0; index < this._history.length; index++) {
             const element = this._history[index];
-            this._logger.log(`token ${element.token} to [${element.rowIndex},${element.columnIndex}]`);
+            result += `token ${element.token} to [${element.rowIndex},${element.columnIndex}] \n`;
         }
+        return result;
     }
-    printWinner() {
+    getWinner() {
         let token = this._analizer.winnerState.moves[0].token;
         if (token === undefined)
             throw Error("fatal error winner state has wrong token");
         let player = this._players.get(token);
         if (player === undefined)
             throw Error("fatal error no player with that token");
-        this._logger.log(`${player.name} won!`);
+        player.incrementScore();
+        return `${player.name} won! \n`;
     }
-    printSummary() {
+    get summary() {
+        let final = "";
+        let result = "";
+        let lines = this.getHistory();
         if (this._analizer.winnerState.isWinner === false && this._board.availableMoves > 0) {
-            this._logger.log("Game is in progress");
-            this.printHistory();
+            result = "Game is in progress \n";
         }
         else if (this._analizer.winnerState.isWinner === false && this._board.availableMoves == 0) {
-            this._logger.log("The game ended in a draw");
-            this.printHistory();
+            result = "The game ended in a draw \n";
         }
         else if (this._analizer.winnerState.isWinner === true) {
-            this.printWinner();
-            this.printHistory();
+            result = this.getWinner();
         }
+        final = result + lines;
+        return final;
+    }
+    printSummary() {
+        this._logger.log(this.summary);
+        ;
     }
 }
 exports.Game = Game;

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,152 +70,10 @@
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const game_1 = __webpack_require__(1);
-const player_1 = __webpack_require__(6);
-let game = new game_1.Game(3, 3);
-game.addPlayer(new player_1.Player('John Doe', 'x'));
-game.addPlayer(new player_1.Player('Jason Bourne', 'o'));
-game.board.print();
-console.log(game.status);
-game.printSummary();
-let resOfMove;
-resOfMove = game.nextMove(0, 0);
-resOfMove = game.nextMove(0, 0);
-resOfMove = game.nextMove(1, 1);
-resOfMove = game.nextMove(0, 2);
-resOfMove = game.nextMove(2, 2);
-resOfMove = game.nextMove(0, 1);
-resOfMove = game.nextMove(2, 1);
-game.board.print();
-game.printSummary();
-/*variation tests*/
-/*let game = new Game(3,3);
-
-game.addPlayer(new Player('John Doe', 'x'));
-game.addPlayer(new Player('Jason Bourne', 'o'));
-
-game.board.print();
-
-console.log(game.status);
-game.printSummary();
-
-let resOfMove:boolean;
-resOfMove = game.nextMove(0, 0);
-resOfMove = game.nextMove(0, 0);
-resOfMove = game.nextMove(1, 1);
-resOfMove = game.nextMove(0, 2);
-resOfMove = game.nextMove(2, 2);
-resOfMove = game.nextMove(1, 2);
-resOfMove = game.nextMove(2, 1);
-resOfMove = game.nextMove(1,0);
-resOfMove = game.nextMove(2,0);
-game.board.print();
-
-game.printSummary();*/
-/*let game = new Game(3,3);
-
-game.addPlayer(new Player('John Doe', 'x'));
-game.addPlayer(new Player('Jason Bourne', 'o'));
-
-game.board.print();
-
-console.log(game.status);
-game.printSummary();
-
-let resOfMove:boolean;
-resOfMove = game.nextMove(0, 0);
-resOfMove = game.nextMove(0, 0);
-resOfMove = game.nextMove(1, 1);
-resOfMove = game.nextMove(1, 0);
-resOfMove = game.nextMove(2, 2);
-resOfMove = game.nextMove(2, 0);
-resOfMove = game.nextMove(2, 1);
-resOfMove = game.nextMove(1,0);
-resOfMove = game.nextMove(2,0);
-game.board.print();
-
-game.printSummary();*/
-//diagonals tests
-/*let game = new Game(3,3);
-game.addPlayer(new Player('John Doe', 'x'));
-game.addPlayer(new Player('Jason Bourne', 'o'));
-
-game.board.print();
-
-console.log(game.status);
-game.printSummary();
-
-let resOfMove:boolean;
-resOfMove = game.nextMove(0, 0);
-resOfMove = game.nextMove(0, 0);
-resOfMove = game.nextMove(0, 2);
-resOfMove = game.nextMove(1, 1);
-resOfMove = game.nextMove(1, 2);
-resOfMove = game.nextMove(2, 2);
-resOfMove = game.nextMove(2, 1);
-resOfMove = game.nextMove(1,0);
-resOfMove = game.nextMove(2,0);
-game.board.print();
-
-game.printSummary();*/
-/*let game = new Game(3,3);
-game.addPlayer(new Player('John Doe', 'x'));
-game.addPlayer(new Player('Jason Bourne', 'o'));
-
-game.board.print();
-
-console.log(game.status);
-game.printSummary();
-
-let resOfMove:boolean;
-resOfMove = game.nextMove(0, 0);
-resOfMove = game.nextMove(0, 0);
-resOfMove = game.nextMove(1, 1);
-resOfMove = game.nextMove(1, 1);
-resOfMove = game.nextMove(2, 2);
-resOfMove = game.nextMove(2, 0);
-resOfMove = game.nextMove(2, 1);
-resOfMove = game.nextMove(0,2);
-resOfMove = game.nextMove(2,0);
-game.board.print();
-
-game.printSummary();*/
-//draw test
-/*let game = new Game(3,3);
-game.addPlayer(new Player('John Doe', 'x'));
-game.addPlayer(new Player('Jason Bourne', 'o'));
-
-game.board.print();
-
-console.log(game.status);
-game.printSummary();
-
-let resOfMove:boolean;
-resOfMove = game.nextMove(0, 0);
-resOfMove = game.nextMove(0, 1);
-resOfMove = game.nextMove(0, 2);
-resOfMove = game.nextMove(1, 0);
-resOfMove = game.nextMove(2, 0);
-resOfMove = game.nextMove(1, 1);
-resOfMove = game.nextMove(1, 2);
-resOfMove = game.nextMove(2, 2);
-resOfMove = game.nextMove(2, 1);
-game.board.print();
-
-game.printSummary();*/ 
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const common_1 = __webpack_require__(2);
-const board_1 = __webpack_require__(3);
-const analizer_1 = __webpack_require__(4);
-const logger_1 = __webpack_require__(5);
+const common_1 = __webpack_require__(1);
+const board_1 = __webpack_require__(4);
+const analizer_1 = __webpack_require__(5);
+const logger_1 = __webpack_require__(6);
 class Game {
     constructor(_rows, _cols) {
         this._rows = _rows;
@@ -234,6 +92,16 @@ class Game {
         else {
             throw new Error("Fatal error the number of rows should be equals to the number of columns.");
         }
+    }
+    get currentPlayer() {
+        let currentPlayerIndex = this._totalMovesCount % 2;
+        let currentPlayerToken = Array.from(this._players.keys())[currentPlayerIndex];
+        let player = this._players.get(currentPlayerToken);
+        if (player === undefined) {
+            return { name: "",
+                token: "", };
+        }
+        return player;
     }
     get board() {
         return this._board;
@@ -278,38 +146,45 @@ class Game {
         }
         return result;
     }
-    printHistory() {
+    getHistory() {
+        let result = "";
         if (this._history.length === 0) {
-            this._logger.log("still no history of moves");
-            return;
+            result = "still no history of moves";
         }
         for (let index = 0; index < this._history.length; index++) {
             const element = this._history[index];
-            this._logger.log(`token ${element.token} to [${element.rowIndex},${element.columnIndex}]`);
+            result += `token ${element.token} to [${element.rowIndex},${element.columnIndex}] \n`;
         }
+        return result;
     }
-    printWinner() {
+    getWinner() {
         let token = this._analizer.winnerState.moves[0].token;
         if (token === undefined)
             throw Error("fatal error winner state has wrong token");
         let player = this._players.get(token);
         if (player === undefined)
             throw Error("fatal error no player with that token");
-        this._logger.log(`${player.name} won!`);
+        return `${player.name} won! \n`;
     }
-    printSummary() {
+    get summary() {
+        let final = "";
+        let result = "";
+        let lines = this.getHistory();
         if (this._analizer.winnerState.isWinner === false && this._board.availableMoves > 0) {
-            this._logger.log("Game is in progress");
-            this.printHistory();
+            result = "Game is in progress \n";
         }
         else if (this._analizer.winnerState.isWinner === false && this._board.availableMoves == 0) {
-            this._logger.log("The game ended in a draw");
-            this.printHistory();
+            result = "The game ended in a draw \n";
         }
         else if (this._analizer.winnerState.isWinner === true) {
-            this.printWinner();
-            this.printHistory();
+            result = this.getWinner();
         }
+        final = result + lines;
+        return final;
+    }
+    printSummary() {
+        this._logger.log(this.summary);
+        ;
     }
 }
 exports.Game = Game;
@@ -332,7 +207,7 @@ class MoveImpl {
 
 
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -347,7 +222,63 @@ var GameStatus;
 
 
 /***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+class Player {
+    constructor(name, token) {
+        this.name = name;
+        this.token = token;
+    }
+}
+exports.Player = Player;
+
+
+/***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const game_1 = __webpack_require__(0);
+const player_1 = __webpack_require__(2);
+const tic_tac_toe_view_manager_1 = __webpack_require__(7);
+let game = new game_1.Game(3, 3);
+game.addPlayer(new player_1.Player('John Doe', 'x'));
+game.addPlayer(new player_1.Player('Jason Bourne', 'o'));
+game.board.print();
+console.log(game.status);
+game.printSummary();
+let resOfMove;
+resOfMove = game.nextMove(0, 0);
+resOfMove = game.nextMove(0, 0);
+resOfMove = game.nextMove(1, 1);
+resOfMove = game.nextMove(0, 2);
+resOfMove = game.nextMove(2, 2);
+resOfMove = game.nextMove(0, 1);
+resOfMove = game.nextMove(2, 1);
+game.board.print();
+game.printSummary();
+let canvas = document.getElementById('tic-tac-toe-board');
+let resetButton = document.getElementsByClassName('resetButton')[0];
+let manager = new tic_tac_toe_view_manager_1.GameViewManager(canvas, 3, (msg) => { }, resetButton);
+manager.initBoard(new player_1.Player('John Doe', 'x'), new player_1.Player('Jason Bourne', 'o'));
+manager.nextMove(0, 0);
+manager.nextMove(0, 0);
+manager.nextMove(1, 1);
+manager.nextMove(0, 2);
+manager.nextMove(2, 2);
+manager.nextMove(0, 1);
+manager.nextMove(2, 1);
+manager.alertSummary();
+
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -400,7 +331,7 @@ exports.Board = Board;
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -523,7 +454,7 @@ class DefaultState {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -538,19 +469,180 @@ exports.Logger = Logger;
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-class Player {
-    constructor(name, token) {
-        this.name = name;
-        this.token = token;
+const common_1 = __webpack_require__(1);
+const game_1 = __webpack_require__(0);
+const player_1 = __webpack_require__(2);
+class GameViewManager {
+    constructor(_canvas, _colsAndRows, _whenHasWinner, _resetButton) {
+        this._canvas = _canvas;
+        this._colsAndRows = _colsAndRows;
+        this._whenHasWinner = _whenHasWinner;
+        this._resetButton = _resetButton;
+        this._lineColor = "#ddd";
+        this.initBoard(new player_1.Player('John Doe', 'x'), new player_1.Player('Jason Bourne', 'o'));
+        this.initCanvas();
+        this._canvas.addEventListener('mouseup', (event) => {
+            let canvasMousePosition = this.getCanvasMousePosition(event);
+            let cordinates = this.getCordinates(canvasMousePosition);
+            this.play(cordinates);
+        });
+        this._resetButton.addEventListener('mouseup', () => {
+            this.startNewGame();
+        });
+    }
+    startNewGame() {
+    }
+    nextMove(row, column) {
+        let lim = this._colsAndRows - 1;
+        if (row > lim || column > lim) {
+            throw new Error("coordinate should not be greater than the board dimensions");
+        }
+        let xCordinate = column * this._sectionSize;
+        let yCordinate = row * this._sectionSize;
+        let currentInput = {
+            x: row,
+            y: column,
+            xCordinateOnCanvas: xCordinate,
+            yCordinateOnCanvas: yCordinate,
+        };
+        this.play(currentInput);
+    }
+    initBoard(xPlayer, oPlayer) {
+        this._game = new game_1.Game(this._colsAndRows, this._colsAndRows);
+        this._game.addPlayer(xPlayer);
+        this._game.addPlayer(oPlayer);
+    }
+    alertSummary() {
+        var summary = this._game.summary;
+        alert(summary);
+    }
+    play(gameInput) {
+        let currentPlayer = this._game.currentPlayer;
+        let result = this._game.nextMove(gameInput.x, gameInput.y);
+        if (result === true && currentPlayer.token !== "") {
+            this.drawOnCanvas(gameInput, currentPlayer.token);
+            this.checkGameStatus(this._game.status);
+            this.drawLines(10, this._lineColor);
+        }
+    }
+    checkGameStatus(gameStatus) {
+        if (gameStatus !== common_1.GameStatus[common_1.GameStatus.InProgress]) {
+            let summaryMsg = this._game.summary;
+            this._whenHasWinner(summaryMsg);
+        }
+    }
+    drawOnCanvas(gameInput, token) {
+        this.clearPlayingArea(gameInput.xCordinateOnCanvas, gameInput.yCordinateOnCanvas);
+        switch (token) {
+            case "x":
+                {
+                    this.drawX(gameInput.xCordinateOnCanvas, gameInput.yCordinateOnCanvas);
+                }
+                break;
+            case "o":
+                {
+                    this.drawO(gameInput.xCordinateOnCanvas, gameInput.yCordinateOnCanvas);
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    drawO(xCordinate, yCordinate) {
+        let halfSectionSize = (0.5 * this._sectionSize);
+        let centerX = xCordinate + halfSectionSize;
+        let centerY = yCordinate + halfSectionSize;
+        let dia = this._sectionSize * 0.397590361;
+        let radius = (dia) * 0.5;
+        let startAngle = 0 * Math.PI;
+        let endAngle = 2 * Math.PI;
+        this._context.lineWidth = 10;
+        this._context.strokeStyle = "#01bBC2";
+        this._context.beginPath();
+        this._context.arc(centerX, centerY, radius, startAngle, endAngle);
+        this._context.stroke();
+    }
+    drawX(xCordinate, yCordinate) {
+        this._context.strokeStyle = "#f1be32";
+        this._context.beginPath();
+        let offset = (this._sectionSize * 0.301204819);
+        this._context.moveTo(xCordinate + offset, yCordinate + offset);
+        this._context.lineTo(xCordinate + this._sectionSize - offset, yCordinate + this._sectionSize - offset);
+        this._context.moveTo(xCordinate + offset, yCordinate + this._sectionSize - offset);
+        this._context.lineTo(xCordinate + this._sectionSize - offset, yCordinate + offset);
+        this._context.stroke();
+    }
+    clearPlayingArea(xCordinate, yCordinate) {
+        this._context.fillStyle = "#fff";
+        this._context.fillRect(xCordinate, yCordinate, this._sectionSize, this._sectionSize);
+    }
+    getCordinates(moseXandYPosition) {
+        let xCordinate;
+        let yCordinate;
+        for (let x = 0; x < this._colsAndRows; x++) {
+            for (let y = 0; y < this._colsAndRows; y++) {
+                xCordinate = x * this._sectionSize;
+                yCordinate = y * this._sectionSize;
+                if (moseXandYPosition.x >= xCordinate && moseXandYPosition.x <= xCordinate + this._sectionSize &&
+                    moseXandYPosition.y >= yCordinate && moseXandYPosition.y <= yCordinate + this._sectionSize) {
+                    return {
+                        x: x,
+                        y: y,
+                        xCordinateOnCanvas: xCordinate,
+                        yCordinateOnCanvas: yCordinate,
+                    };
+                }
+            }
+        }
+        throw new Error(`fatal error mouse positions [${moseXandYPosition.x}, ${moseXandYPosition.y}] are not on canvas`);
+    }
+    initCanvas() {
+        this._context = this._canvas.getContext('2d');
+        this._canvasSize = 500;
+        this._sectionSize = this._canvasSize / this._colsAndRows;
+        this._canvas.width = this._canvasSize;
+        this._canvas.height = this._canvasSize;
+        this._context.translate(0.5, 0.5);
+        this.drawLines(10, this._lineColor);
+    }
+    drawLines(lineWidth, strokeStyle) {
+        let lineStart = 4;
+        let lineLenght = this._canvasSize - 5;
+        this._context.lineWidth = lineWidth;
+        this._context.lineCap = 'round';
+        this._context.strokeStyle = strokeStyle;
+        this._context.beginPath();
+        /*
+         * Horizontal lines
+         */
+        for (let y = 1; y <= this._colsAndRows - 1; y++) {
+            this._context.moveTo(lineStart, y * this._sectionSize);
+            this._context.lineTo(lineLenght, y * this._sectionSize);
+        }
+        /*
+         * Vertical lines
+         */
+        for (let x = 1; x <= this._colsAndRows - 1; x++) {
+            this._context.moveTo(x * this._sectionSize, lineStart);
+            this._context.lineTo(x * this._sectionSize, lineLenght);
+        }
+        this._context.stroke();
+    }
+    getCanvasMousePosition(event) {
+        let rect = this._canvas.getBoundingClientRect();
+        return {
+            x: event.clientX - rect.left,
+            y: event.clientY - rect.top
+        };
     }
 }
-exports.Player = Player;
+exports.GameViewManager = GameViewManager;
 
 
 /***/ })

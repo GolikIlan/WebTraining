@@ -1,14 +1,18 @@
 export  interface PlayerInterface{
     name:string;
     token:string;
+    score:number;
+    incrementScore():void;
 }
 
 export interface GameInterface{
     board:BoardDisplayInterface;
     status:string;
+    currentPlayer:PlayerInterface;
     addPlayer(player:PlayerInterface):void;
     nextMove(rowIndex:number, colIndex:number):boolean;
     printSummary():void;
+    summary: string
 }
 
 export interface AnalizerStateInterface{

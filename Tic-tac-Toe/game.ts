@@ -5,7 +5,6 @@ import { Analizer } from "./analizer";
 import { Logger } from "./logger";
 
 export class Game implements GameInterface{
-
     private _board: BoardInterface;
     private _players:Map<string, PlayerInterface>;
     private _totalMovesCount:number;
@@ -31,6 +30,21 @@ export class Game implements GameInterface{
         else{
             throw new Error("Fatal error the number of rows should be equals to the number of columns.");
         }
+    }
+
+    get currentPlayer(): PlayerInterface
+    {
+        let currentPlayerIndex = this._totalMovesCount % 2;
+        let currentPlayerToken = Array.from(this._players.keys())[currentPlayerIndex];
+        let player = this._players.get(currentPlayerToken)
+        if(player === undefined)
+        {
+            return {name:"",
+                    token:"", 
+                    score:0, 
+                    incrementScore:() => {}}
+        }
+        return player;
     }
 
     get board() : BoardDisplayInterface{
@@ -82,39 +96,48 @@ export class Game implements GameInterface{
         return result;
     }
 
-    printHistory(): void {
+    private getHistory(): string {
+        let result:string = "";
         if(this._history.length === 0)
         {
-            this._logger.log("still no history of moves");
-            return;
+            result = "still no history of moves"
         }
         for (let index = 0; index < this._history.length; index++) {
             const element = this._history[index];
-            this._logger.log(`token ${element.token} to [${element.rowIndex},${element.columnIndex}]`);
+            result += `token ${element.token} to [${element.rowIndex},${element.columnIndex}] \n`;
         }
+        return result;
     }
 
-    printWinner(): void {
+    private getWinner(): string {
+
         let token = this._analizer.winnerState.moves[0].token;
         if(token === undefined) throw Error("fatal error winner state has wrong token")
         let player = this._players.get(token);
         if(player === undefined) throw Error("fatal error no player with that token")
-        this._logger.log(`${player.name} won!`)
+        player.incrementScore();
+        return `${player.name} won! \n`;
     }
     
-    printSummary(): void {
+    get summary(): string {
+        let final:string = "";
+        let result:string = "";
+        let lines = this.getHistory();
         if(this._analizer.winnerState.isWinner === false && this._board.availableMoves > 0){
-            this._logger.log("Game is in progress")
-            this.printHistory();
+            result = "Game is in progress \n";
         }
         else if(this._analizer.winnerState.isWinner === false && this._board.availableMoves == 0){
-            this._logger.log("The game ended in a draw")
-            this.printHistory();
+            result = "The game ended in a draw \n";
         }
         else  if(this._analizer.winnerState.isWinner === true){
-            this.printWinner();
-            this.printHistory(); 
+            result = this.getWinner();
         }
+        final = result + lines;
+        return final;
+    }
+
+    printSummary(): void {
+        this._logger.log(this.summary);;
     }
     
 }
