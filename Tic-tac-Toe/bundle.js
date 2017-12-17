@@ -99,7 +99,9 @@ class Game {
         let player = this._players.get(currentPlayerToken);
         if (player === undefined) {
             return { name: "",
-                token: "", };
+                token: "",
+                score: 0,
+                incrementScore: () => { } };
         }
         return player;
     }
@@ -164,6 +166,7 @@ class Game {
         let player = this._players.get(token);
         if (player === undefined)
             throw Error("fatal error no player with that token");
+        player.incrementScore();
         return `${player.name} won! \n`;
     }
     get summary() {
@@ -232,6 +235,13 @@ class Player {
     constructor(name, token) {
         this.name = name;
         this.token = token;
+        this._score = 0;
+    }
+    incrementScore() {
+        this._score++;
+    }
+    get score() {
+        return this._score;
     }
 }
 exports.Player = Player;
@@ -265,7 +275,8 @@ game.board.print();
 game.printSummary();
 let canvas = document.getElementById('tic-tac-toe-board');
 let resetButton = document.getElementsByClassName('resetButton')[0];
-let manager = new tic_tac_toe_view_manager_1.GameViewManager(canvas, 3, (msg) => { }, resetButton);
+let scorePresenter = document.getElementsByClassName('scoreDiv')[0];
+let manager = new tic_tac_toe_view_manager_1.GameViewManager(canvas, 3, (msg) => { alert(msg); }, resetButton, scorePresenter);
 manager.initBoard(new player_1.Player('John Doe', 'x'), new player_1.Player('Jason Bourne', 'o'));
 manager.nextMove(0, 0);
 manager.nextMove(0, 0);
@@ -274,7 +285,6 @@ manager.nextMove(0, 2);
 manager.nextMove(2, 2);
 manager.nextMove(0, 1);
 manager.nextMove(2, 1);
-manager.alertSummary();
 
 
 /***/ }),
@@ -479,11 +489,12 @@ const common_1 = __webpack_require__(1);
 const game_1 = __webpack_require__(0);
 const player_1 = __webpack_require__(2);
 class GameViewManager {
-    constructor(_canvas, _colsAndRows, _whenHasWinner, _resetButton) {
+    constructor(_canvas, _colsAndRows, _whenHasWinner, _resetButton, _scorePresenter) {
         this._canvas = _canvas;
         this._colsAndRows = _colsAndRows;
         this._whenHasWinner = _whenHasWinner;
         this._resetButton = _resetButton;
+        this._scorePresenter = _scorePresenter;
         this._lineColor = "#ddd";
         this.initBoard(new player_1.Player('John Doe', 'x'), new player_1.Player('Jason Bourne', 'o'));
         this.initCanvas();
@@ -497,6 +508,15 @@ class GameViewManager {
         });
     }
     startNewGame() {
+        if (this._xPlayer === undefined || this._oPlayer === undefined) {
+            throw new Error("there have to be two players to play the game.");
+        }
+        this.initBoard(this._xPlayer, this._oPlayer);
+        this.clearCanvas();
+        this.drawLines(10, this._lineColor);
+    }
+    clearCanvas() {
+        this._context.clearRect(0, 0, this._canvasSize, this._canvasSize);
     }
     nextMove(row, column) {
         let lim = this._colsAndRows - 1;
@@ -515,8 +535,11 @@ class GameViewManager {
     }
     initBoard(xPlayer, oPlayer) {
         this._game = new game_1.Game(this._colsAndRows, this._colsAndRows);
-        this._game.addPlayer(xPlayer);
-        this._game.addPlayer(oPlayer);
+        this._xPlayer = xPlayer;
+        this._oPlayer = oPlayer;
+        this._game.addPlayer(this._xPlayer);
+        this._game.addPlayer(this._oPlayer);
+        this.updateScorePresenter();
     }
     alertSummary() {
         var summary = this._game.summary;
@@ -535,7 +558,11 @@ class GameViewManager {
         if (gameStatus !== common_1.GameStatus[common_1.GameStatus.InProgress]) {
             let summaryMsg = this._game.summary;
             this._whenHasWinner(summaryMsg);
+            this.updateScorePresenter();
         }
+    }
+    updateScorePresenter() {
+        this._scorePresenter.innerHTML = `${this._xPlayer.token} ${this._xPlayer.score} : ${this._oPlayer.score} ${this._oPlayer.token}`;
     }
     drawOnCanvas(gameInput, token) {
         this.clearPlayingArea(gameInput.xCordinateOnCanvas, gameInput.yCordinateOnCanvas);
