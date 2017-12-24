@@ -1,0 +1,46 @@
+.productDetailsRootContainer{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.productDetailsRootContainer label{
+    font-size: 18px;
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+
+.detailsPresenter{
+    margin: 5px;
+    top: 0px;
+    left: 5px;
+}
+
+.valuePresenter{
+    margin: 5px;
+    font-size: 25px;
+    color: wheat;
+}
+
+.imgContainer{
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    width: 50%;
+    height: 45%;
+    border: 1px red solid;
+}
+
+.descriptionPresenter{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+}
+
+.imgContainer img{
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+}

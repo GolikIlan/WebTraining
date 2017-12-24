@@ -1,0 +1,51 @@
+.mySideMenu a{
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.myLeftPanMenu a{
+    margin-top: 8px;
+    margin-left: 8px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+}
+
+
+.myLeftPanMenu a.selectedMenuItem{
+    color: rgb(60, 188, 248);
+}
+
+.mySideMenu a.selectedMenuItem{
+    color: rgb(60, 188, 248);
+}
+
+
+.mySideMenu, .myLeftPanMenu{
+    height: 95%;
+}
+
+.footer{
+    height: 5%;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.footer a{
+    color: #818181;
+    margin: 0px 0px 0px 6px;
+    font-size: 12px;
+}
+
+.root{
+    height: 100%;
+    position: relative;
+}

@@ -1,0 +1,25 @@
+<div class="productDetailsRootContainer">
+    <div class="imgContainer">
+        <img src="{{product.image}}" alt="product image">
+    </div>
+    <div class="detailsPresenter">
+        <label for="nameContainer">Title:</label>
+        <div class="nameContainer valuePresenter">
+            {{product.title}}
+        </div>
+        <label for="categotyContainer">Category:</label>
+        <div class="categotyContainer valuePresenter">
+            {{category.title}}
+        </div>
+        <label for="priceContainer">Price:</label>
+        <div class="priceContainer valuePresenter">
+            {{product.price | currency:'USD':true}}
+        </div>
+    </div>
+    <div class="descriptionPresenter">
+        <label for="descriptionContainer">Descroption:</label>
+        <div class="descriptionContainer valuePresenter">
+            {{product.description}}
+        </div>
+    </div>
+</div>

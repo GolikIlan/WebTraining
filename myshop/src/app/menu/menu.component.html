@@ -1,0 +1,11 @@
+<div class="root">
+    <div [ngClass]="classes">
+        <a *ngFor="let item of menuItems" 
+        (click)="selected(item)" [class.selectedMenuItem] = "item === currentSelectedMenuItem">{{ item }}</a>
+    </div>
+    <div class="footer">
+          <a class="fa fa-facebook" href="https://en-gb.facebook.com/login/"></a>
+          <a class="fa fa-github" href="https://github.com/login"></a>
+          <a class="fa fa-envelope-o" href="mailto:yourEmail@domain.com"></a>
+    </div>
+</div>

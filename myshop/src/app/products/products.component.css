@@ -1,0 +1,75 @@
+.categories{
+    color: rgb(73, 150, 238);
+}
+
+.categories ul{
+    padding: 0;
+    display: block;
+}
+
+.products{
+    width: 100%;
+    position: relative;
+}
+
+.productsDetailsPresenter{
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, 25%);
+    background-image: url('../../assets/images/blackPaper.jpg'); 
+    background-size: cover;
+    width: 600px;
+    min-width: 300px;
+    height: 500px;
+}
+
+.withPaddingLeftAndTop{
+    padding-left: 8px;
+    padding-top: 8px;
+}
+
+.details{
+    position: absolute;
+    top:8%;
+    left: 0;
+    width: 100%;
+    height: 80%;
+}
+
+.colored{
+    background-color: #FAFAFA;
+}
+
+.red{
+    background-color: red;
+}
+
+.visibleWhenDetailsShouldBePresented{
+    opacity: 0.8;
+    background-color: gray;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.categoryPresenter{
+    color: rgb(118, 172, 243);
+    font-size: 20px;
+}
+
+.categoryPresenterSelected{
+    border-bottom: 1px rgb(118, 172, 243) solid;
+}
+
+.productItemsHolder
+{
+    margin: 0px;
+}
+
+.categories li{
+    margin-left: 5px;
+    display: inline-block;
+}

@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+html, body{
+    padding: 0px;
+    margin: 0px 5px;
+    min-width: 442px;
+}
+
+.withClearFix:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+.twentyVh{
+    height: 17vh;
+    min-height: 75px;
+}
+
+.matchToTwentyVh{
+    height:79vh;
+}
+
+.halfAScreen{
+    height: 50vh;
+}
+
+.closebtnOnSideNav {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    height: 5%;
+    text-decoration: none;
+    color: #818181;
+}
+
+.closebtnOnSideNav {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 36px;
+    margin-left: 50px;
+    height: 5%;
+    text-decoration: none;
+    color: gray;
+}
+
+
+
