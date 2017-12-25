@@ -15,7 +15,10 @@
             <div class="productItemsHolder colored" *ngIf="detailsShouldBePresented === false">
                 <div class="withClearFix">
                     <div *ngFor="let product of products" (click)="productSelected(product)">
-                        <app-product [product] = "product"></app-product>
+                        <div class="">
+                            <app-product [product] = "product"></app-product>
+                        </div>
+
                     </div>
                 </div>
             </div>

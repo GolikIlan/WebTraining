@@ -29,7 +29,6 @@
     right: 5px;
     width: 50%;
     height: 45%;
-    border: 1px red solid;
 }
 
 .descriptionPresenter{
@@ -44,3 +43,37 @@
     width: 100%;
     height: 100%;
 }
+
+@media only screen and (max-width:680px) {
+    .valuePresenter{
+        margin: 5px;
+        font-size: 15px;
+    }   
+
+    .productDetailsRootContainer label{
+        font-size: 11px;
+    }
+
+    .descriptionPresenter{
+        position: absolute;
+        top: 70%;
+        left: 5px;
+    }
+  }
+
+  @media only screen and (max-height:945px) {
+    .valuePresenter{
+        margin: 5px;
+        font-size: 15px;
+    }   
+
+    .productDetailsRootContainer label{
+        font-size: 11px;
+    }
+
+    .descriptionPresenter{
+        position: absolute;
+        top: 70%;
+        left: 5px;
+    }    
+  }

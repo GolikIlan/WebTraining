@@ -10,6 +10,8 @@
 .products{
     width: 100%;
     position: relative;
+    top:0px;
+    left:0px;
 }
 
 .productsDetailsPresenter{
@@ -73,3 +75,31 @@
     margin-left: 5px;
     display: inline-block;
 }
+
+@media only screen and (max-width:680px) {
+    .productsDetailsPresenter{
+        top: 0%;
+        left: 0%;
+        transform: translate(0%, 0%);
+        width: 320px;
+        height: 320px;
+    }
+
+    .details{
+        top:12%;
+    }
+  }
+
+  @media only screen and (max-height:780px) {
+    .productsDetailsPresenter{
+        top: 0%;
+        left: 0%;
+        transform: translate(0%, 0%);
+        width: 320px;
+        height: 320px;
+    }
+
+    .details{
+        top:12%;
+    }
+  }
