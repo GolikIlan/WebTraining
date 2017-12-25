@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, AfterContentInit } from '@angular/core';
 import { Product } from '../products/product';
 
 @Component({
@@ -6,7 +6,7 @@ import { Product } from '../products/product';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent {
   private _product: Product;
 
   constructor() { }
@@ -19,8 +19,4 @@ export class ProductComponent implements OnInit {
   get product():Product{
     return this._product;
   }
-
-  ngOnInit() {
-  }
-
 }

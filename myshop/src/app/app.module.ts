@@ -13,6 +13,7 @@ import { ProductComponent } from './product/product.component';
 import { ClosebuttonComponent } from './closebutton/closebutton.component';
 import { ProductdetailsComponent } from './productdetails/productdetails.component';
 import { SelectionStateService } from './menu/selectionStateService';
+import { AnchorwrapperComponent } from './anchorwrapper/anchorwrapper.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { SelectionStateService } from './menu/selectionStateService';
     ProductComponent,
     ClosebuttonComponent,
     ProductdetailsComponent,
+    AnchorwrapperComponent,
   ],
   imports: [
     BrowserModule, AngularFontAwesomeModule

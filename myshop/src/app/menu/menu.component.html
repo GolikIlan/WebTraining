@@ -4,8 +4,14 @@
         (click)="selected(item)" [class.selectedMenuItem] = "item === currentSelectedMenuItem">{{ item }}</a>
     </div>
     <div class="footer">
-          <a class="fa fa-facebook" href="https://en-gb.facebook.com/login/"></a>
-          <a class="fa fa-github" href="https://github.com/login"></a>
-          <a class="fa fa-envelope-o" href="mailto:yourEmail@domain.com"></a>
+        <app-anchorwrapper>
+            <a #contentAnchore class="fa fa-facebook" href="https://en-gb.facebook.com/login/" ></a>
+        </app-anchorwrapper>
+        <app-anchorwrapper>
+            <a #contentAnchore class="fa fa-github" href="https://github.com/login"></a>
+        </app-anchorwrapper>
+        <app-anchorwrapper>
+            <a #contentAnchore class="fa fa-envelope-o" href="mailto:yourEmail@domain.com"></a>
+        </app-anchorwrapper>
     </div>
 </div>

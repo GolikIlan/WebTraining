@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { Category, CategoriesDataService } from './categories.service';
 import {ProductsDataService } from './products.service';
 import { Product } from './product';
 import { ProductComponent } from '../product/product.component';
 import { fail } from 'assert';
+import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-products',
@@ -11,6 +12,7 @@ import { fail } from 'assert';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+
   private _products: Product[];
   private _selectedCategory: Category;
   selectedProduct: Product;
@@ -27,10 +29,7 @@ export class ProductsComponent implements OnInit {
     this.selectedProduct = product;
   }
 
-  handleClick(event){
-    
-  }
-
+  
   categorySelected(category:Category){
     this.selectedCategory = category;
   }
@@ -61,5 +60,4 @@ export class ProductsComponent implements OnInit {
     this.categories = this.categoriesDataService.getCategories();
     this.selectedCategory = this.categories.find((category) => category.id === "all");
   }
-
 }

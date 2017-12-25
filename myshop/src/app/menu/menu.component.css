@@ -49,3 +49,9 @@
     height: 100%;
     position: relative;
 }
+
+@media only screen and (max-height:780px) {
+    .footer{
+        bottom: 5%;
+    }
+  }
