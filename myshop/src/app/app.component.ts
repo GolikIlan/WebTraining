@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Product } from './products/product';
+import { MenuItem } from './menuItem';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  selectedProduct: Product;
   private _selectedMenuItem: any;
   private _sideNavIsVisible: boolean;
   title = 'app';
@@ -19,8 +22,18 @@ export class AppComponent {
     this.navMenu = true;
   }
 
-  onSelectedMenuItemChanged(selectedMenuItem:any){
-    this.selectedMenuItem = selectedMenuItem;
+  onProductSelectionChanged(product:Product){
+    this.selectedMenuItem = "ProductDetails";
+    this.selectedProduct = product;
+  }
+
+  closeDetails(){
+    this.selectedMenuItem = "Products";
+    this.selectedProduct = null;
+  }
+
+  onSelectedMenuItemChanged(selectedMenuItem:MenuItem){
+    this.selectedMenuItem = this.selectedMenuItem === "ProductDetails" && selectedMenuItem.title === "Products" ? "ProductDetails" : selectedMenuItem.title;
     this.closeSideNavMenu();
   }
 
@@ -39,11 +52,11 @@ export class AppComponent {
   }
 
 
-  set selectedMenuItem(value:any){
+  set selectedMenuItem(value:string){
     this._selectedMenuItem = value;
   }
 
-  get selectedMenuItem():any{
+  get selectedMenuItem():string{
     return this._selectedMenuItem;
   }
 }

@@ -1,10 +1,4 @@
 <div class="products colored">
-        <div *ngIf="detailsShouldBePresented" class="productsDetailsPresenter">
-                <app-closebutton (click)="closeDetails()" [currentClass] = "'closebtnOnSideNav'"></app-closebutton>
-                <div class="details">
-                    <app-productdetails [product] = "selectedProduct"></app-productdetails>
-                </div>
-        </div>
         <div class="categories withPaddingLeftAndTop" *ngIf="detailsShouldBePresented === false">
                 <ul>
                     <li *ngFor="let category of categories" (click) = "categorySelected(category)" [class.categoryPresenterSelected] = "category === selectedCategory">
@@ -15,10 +9,9 @@
             <div class="productItemsHolder colored" *ngIf="detailsShouldBePresented === false">
                 <div class="withClearFix">
                     <div *ngFor="let product of products" (click)="productSelected(product)">
-                        <div class="">
-                            <app-product [product] = "product"></app-product>
-                        </div>
-
+                        <app-cartaddingwrapper>
+                            <app-product #productWrapperInterface [product] = "product"></app-product>
+                        </app-cartaddingwrapper>
                     </div>
                 </div>
             </div>

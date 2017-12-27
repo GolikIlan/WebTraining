@@ -14,47 +14,24 @@
     left:0px;
 }
 
-.productsDetailsPresenter{
-    position: absolute;
-    top: 0px;
-    left: 50%;
-    transform: translate(-50%, 25%);
-    background-image: url('../../assets/images/blackPaper.jpg'); 
-    background-size: cover;
-    width: 600px;
-    min-width: 300px;
-    height: 500px;
-}
+
 
 .withPaddingLeftAndTop{
     padding-left: 8px;
     padding-top: 8px;
 }
 
-.details{
-    position: absolute;
-    top:8%;
-    left: 0;
-    width: 100%;
-    height: 80%;
-}
-
 .colored{
     background-color: #FAFAFA;
 }
 
-.red{
-    background-color: red;
+.withMargin{
+    margin-bottom: 30px;
+    margin-left: 30px;
 }
 
-.visibleWhenDetailsShouldBePresented{
-    opacity: 0.8;
-    background-color: gray;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.red{
+    background-color: red;
 }
 
 .categoryPresenter{
@@ -75,31 +52,3 @@
     margin-left: 5px;
     display: inline-block;
 }
-
-@media only screen and (max-width:680px) {
-    .productsDetailsPresenter{
-        top: 0%;
-        left: 0%;
-        transform: translate(0%, 0%);
-        width: 320px;
-        height: 320px;
-    }
-
-    .details{
-        top:12%;
-    }
-  }
-
-  @media only screen and (max-height:780px) {
-    .productsDetailsPresenter{
-        top: 0%;
-        left: 0%;
-        transform: translate(0%, 0%);
-        width: 320px;
-        height: 320px;
-    }
-
-    .details{
-        top:12%;
-    }
-  }

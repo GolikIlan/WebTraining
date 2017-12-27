@@ -1,7 +1,13 @@
 <div class="root">
     <div [ngClass]="classes">
-        <a *ngFor="let item of menuItems" 
-        (click)="selected(item)" [class.selectedMenuItem] = "item === currentSelectedMenuItem">{{ item }}</a>
+        <div *ngFor="let item of menuItems" >
+            <a *ngIf="isMenuItem(item);else cartMenuItemTemplate" (click)="selected(item)" [class.selectedMenuItem] = "item.title === currentSelectedMenuItem.title">{{ item.title }}</a>
+            <ng-template #cartMenuItemTemplate>
+                <div class="inlineAnchoreDiv">
+                    <a (click)="selected(item)" [class.selectedMenuItem] = "item.title === currentSelectedMenuItem.title">{{ item.title }} <i *ngIf="item.amount > 0" class="amountPresenter" [class.selectedMenuItem] = "item.title === currentSelectedMenuItem.title">{{item.amount}}</i></a>
+                </div>
+            </ng-template>
+        </div>
     </div>
     <div class="footer">
         <app-anchorwrapper>

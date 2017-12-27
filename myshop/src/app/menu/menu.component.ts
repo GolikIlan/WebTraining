@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { SelectionStateService } from './selectionStateService';
 import { ISubscription } from 'rxjs/Subscription';
+import { MenuItem, CartMenuItem } from '../menuItem';
+import { MenuItemsProvider } from '../menuItemsProvider';
 
 @Component({
   selector: 'app-menu',
@@ -9,25 +11,19 @@ import { ISubscription } from 'rxjs/Subscription';
 })
 export class MenuComponent implements OnDestroy, OnInit {
   private _subscription: ISubscription;
-  currentSelectedMenuItem: string;
+  currentSelectedMenuItem: MenuItem;
   private _isNavMenu: boolean;
   private _isSideMenu:boolean;
   classes:any;
 
-  menuItems  = [
-    "Home",
-    "About", 
-    "Products", 
-    "Contacts",
-  ];
+  menuItems:Array<MenuItem>
 
   @Output()
-  selectedMenuItemChanged:EventEmitter<any> = new EventEmitter<any>();
+  selectedMenuItemChanged:EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
 
-  constructor(private _selectionStateService:SelectionStateService) { 
+  constructor(private _selectionStateService:SelectionStateService, private _menuItemsProvider:MenuItemsProvider) { 
     this._isSideMenu = false;
     this._isNavMenu = false;
-    this.initSelection(this._selectionStateService.selectedMenuItem);
   }
 
   ngOnDestroy(): void {
@@ -38,18 +34,25 @@ export class MenuComponent implements OnDestroy, OnInit {
     this._subscription.unsubscribe();
   }
 
-  private initSelection(item: string) {
+  private initSelection(item: MenuItem) {
     this.onSelection(item);
     this._subscription = this._selectionStateService.selectedMenuItemChanged.subscribe( item => {
       this.onSelection(item);
   });
   }
 
-  selected(item:any){
+  selected(item:MenuItem){
     this._selectionStateService.selectedMenuItem = item;
   }
 
-  private onSelection(item: any) {
+  isMenuItem(item:MenuItem){
+    if(item instanceof CartMenuItem){
+      return false;
+    }
+    return true;
+  }
+
+  private onSelection(item: MenuItem) {
     this.selectedMenuItemChanged.emit(item);
     this.currentSelectedMenuItem = item;
   }
@@ -81,6 +84,8 @@ export class MenuComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
+    this.menuItems = this._menuItemsProvider;
+    this.initSelection(this._selectionStateService.selectedMenuItem);
   }
 
 }

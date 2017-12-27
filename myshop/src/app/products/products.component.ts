@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit, Output, EventEmitter } from '@angular/core';
 import { Category, CategoriesDataService } from './categories.service';
 import {ProductsDataService } from './products.service';
 import { Product } from './product';
@@ -19,14 +19,18 @@ export class ProductsComponent implements OnInit {
   detailsShouldBePresented:boolean;
   categories:Array<Category>;
 
+  @Output()
+  productSelectionChanged:EventEmitter<Product> = new EventEmitter<Product>();
+
   constructor(private categoriesDataService:CategoriesDataService,
      private productsDataService:ProductsDataService) { 
        this.detailsShouldBePresented = false;
      }
 
   productSelected(product:Product){
-    this.detailsShouldBePresented = true;
+    //this.detailsShouldBePresented = true;
     this.selectedProduct = product;
+    this.productSelectionChanged.emit(this.selectedProduct);
   }
 
   

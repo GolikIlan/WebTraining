@@ -14,6 +14,26 @@
     left: 0px;
 }
 
+.productsDetailsPresenter{
+    position: absolute;
+    top:0px;
+    left: 0px;
+    /*transform: translate(-50%, -50%);*/
+    background-image: url('../assets/images/blackPaper.jpg'); 
+    background-size: cover;
+    width: 600px;
+    min-width: 300px;
+    height: 500px;
+}
+
+.details{
+    position: absolute;
+    top:8%;
+    left: 0;
+    width: 100%;
+    height: 80%;
+}
+
 .red{
     background-color: red;
 }
@@ -208,12 +228,44 @@
     }
   }
 
-  @media only screen and (max-height:780px) {
-    .withMinHeightMatchedToTwentyVh{
-        min-height:330px;
+
+
+  @media only screen and (max-width:680px) {
+    .productsDetailsPresenter{
+        width: 320px;
+        height: 320px;
     }
-    
-    .withMinHeightOf75Vh{
-        min-height:328px
+
+    .details{
+        top:12%;
+    }
+
+  }
+
+  @media only screen and (max-height:780px) {
+    .productsDetailsPresenter{
+        width: 320px;
+        height: 320px;
+    }
+
+    .details{
+        top:12%;
+    }
+
+    .relative app-cartaddingwrapper{
+        position: absolute;
+        top: 0px;
+        left: 0px;
     }
   }
+
+
+    @media only screen and (max-height:520px) {
+        .withMinHeightOf75Vh{
+            min-height: 380px;
+        }
+    
+        withMinHeightMatchedToTwentyVh{
+            min-height: 390px;
+        }
+      }

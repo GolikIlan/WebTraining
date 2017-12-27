@@ -3,7 +3,7 @@ html, body{
     padding: 0px;
     margin: 0px 5px;
     min-width: 442px;
-    min-height: 442px;
+    min-height: 520px;
 }
 
 .withClearFix:after {

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from '../products/product';
+import { Product, ProductWrapperInterface } from '../products/product';
 import { CategoriesDataService, Category } from '../products/categories.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { CategoriesDataService, Category } from '../products/categories.service'
   templateUrl: './productdetails.component.html',
   styleUrls: ['./productdetails.component.css']
 })
-export class ProductdetailsComponent implements OnInit {
+export class ProductdetailsComponent implements OnInit, ProductWrapperInterface {
   private _category: Category;
   private _product: Product;
 

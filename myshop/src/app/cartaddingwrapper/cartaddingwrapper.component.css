@@ -1,0 +1,83 @@
+.adding{
+    float:left;
+    position: relative;
+    margin: 30px;
+}
+
+.adding:hover .panel{
+    visibility: visible;
+}
+
+.adding:hover .bottomPanel{
+    visibility: visible;
+}
+
+.panel{
+    visibility: collapse;
+    background-color: transparent;
+    width: 50%;
+    height: 10%;
+    position: absolute;
+    top: 0;    
+    left: 50%;
+    transform: translate(-50%,0);
+}
+
+.bottomPanel{
+    visibility: collapse;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;    
+    bottom: 0;
+    transform: translate(-50%,0);
+}
+
+.withSmalMargin{
+   margin: 5px; 
+}
+
+
+.bottomPanel i{
+    font-size: 15px;
+}
+
+.panel i{
+    font-size: 20px;
+}
+
+i{
+    color: gold;
+    margin: 0;
+    padding: 0;
+}
+
+.panel h5{
+    position: absolute;
+    top: 50%;    
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0px;
+    margin: 0px;
+    font-size: 15px;
+    color: tomato;    
+}
+
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+
+.withMarginTop{
+    margin-top: 5px;
+}
+
+
+.withMarginLeft{
+    margin-left: 25%;
+}
+
+.withMarginRight{
+    margin-right: 25%;
+}

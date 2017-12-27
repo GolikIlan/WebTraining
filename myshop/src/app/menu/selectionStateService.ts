@@ -1,21 +1,23 @@
 import { Injectable, EventEmitter } from "@angular/core";
+import { MenuItem } from "../menuItem";
+import { MenuItemsProvider } from "../menuItemsProvider";
 
 @Injectable()
 export class SelectionStateService{
-    private _selectedMenuItem:string;
-    selectedMenuItemChanged: EventEmitter<string> = new EventEmitter();
+    private _selectedMenuItem:MenuItem;
+    selectedMenuItemChanged: EventEmitter<MenuItem> = new EventEmitter();
 
 
-    constructor() {
-        this.selectedMenuItem = "Home";
+    constructor(private _menuItemsProvider:MenuItemsProvider) {
+        this.selectedMenuItem = this._menuItemsProvider.defaultSelection;
     }
 
-    set selectedMenuItem(item:string){
+    set selectedMenuItem(item:MenuItem){
         this._selectedMenuItem = item;
         this.selectedMenuItemChanged.emit(item);
     }
 
-    get selectedMenuItem():string{
+    get selectedMenuItem():MenuItem{
         return this._selectedMenuItem;
     }
 }

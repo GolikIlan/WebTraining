@@ -17,6 +17,30 @@
     transition: 0.3s;
 }
 
+.inlineAnchoreDiv{
+    margin-top: 8px;
+    position: relative;
+}
+
+.inlineAnchoreDiv a{
+    display: inline;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+
+.inlineAnchoreDiv i.amountPresenter{
+    font-size: 18px;
+    margin-left: 5px;
+    padding-left: 0;
+    position: absolute;
+    top: 0px;
+}
+ 
+
+.myLeftPanMenu{
+ margin-top: 25px;
+}
 
 .myLeftPanMenu a.selectedMenuItem{
     color: rgb(60, 188, 248);
@@ -43,6 +67,7 @@
     color: #818181;
     margin: 0px 0px 0px 6px;
     font-size: 12px;
+    text-decoration: none;
 }
 
 .root{
