@@ -10,16 +10,27 @@ import { MenuItemsProvider } from '../menuItemsProvider';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnDestroy, OnInit {
+  private _classes: any;
   private _subscription: ISubscription;
   currentSelectedMenuItem: MenuItem;
   private _isNavMenu: boolean;
   private _isSideMenu:boolean;
-  classes:any;
+  
+  @Input()
+  set classes(value:any){
+    this._classes = value;
+  }
+
+  get classes(){
+    return this._classes
+  }
 
   menuItems:Array<MenuItem>
 
   @Output()
   selectedMenuItemChanged:EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
+  @Output()
+  selectedMenuItemInitialized:EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
 
   constructor(private _selectionStateService:SelectionStateService, private _menuItemsProvider:MenuItemsProvider) { 
     this._isSideMenu = false;
@@ -27,7 +38,8 @@ export class MenuComponent implements OnDestroy, OnInit {
   }
 
   private initSelection(item: MenuItem) {
-    this.onSelection(item);
+    this.currentSelectedMenuItem = item;
+    this.selectedMenuItemInitialized.emit(item);
     this._subscription = this._selectionStateService.selectedMenuItemChanged.subscribe( item => {
       this.onSelection(item);
   });
@@ -47,32 +59,6 @@ export class MenuComponent implements OnDestroy, OnInit {
   private onSelection(item: MenuItem) {
     this.selectedMenuItemChanged.emit(item);
     this.currentSelectedMenuItem = item;
-  }
-
-  get isSideMenu():boolean{
-    return this._isSideMenu;
-  }
-
-  @Input()
-  set isSideMenu(value:boolean){
-    this._isSideMenu = value;
-    this.classes = {
-      mySideMenu: this._isNavMenu,
-      myLeftPanMenu: this._isSideMenu,
-    };
-  }
-
-  @Input()
-  set isNavMenu(value:boolean){
-    this._isNavMenu = value;
-    this.classes = {
-      mySideMenu: this._isNavMenu,
-      myLeftPanMenu: this._isSideMenu,
-    };
-  }
-
-  get isNavMenu():boolean{
-    return this._isNavMenu;
   }
 
   ngOnInit() {

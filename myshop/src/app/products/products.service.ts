@@ -16,7 +16,7 @@ export class ProductsDataService{
 
     private initStock(): any {
         for (const product of PRODUCTS_FULL) {
-            this._productInStockMap.set(product.productId, 1);
+            this._productInStockMap.set(product.productId, 7);
         }
     }
 
@@ -26,7 +26,8 @@ export class ProductsDataService{
 
     incrementStock(product:Product){
         if(this._productInStockMap.has(product.productId)){
-            this._productInStockMap.set(product.productId, 1);
+            let currentAmount = this._productInStockMap.get(product.productId)
+            this._productInStockMap.set(product.productId, currentAmount+1);
         }
         else{
             throw new Error('fatal error the product was not presented in the stock');
@@ -35,7 +36,8 @@ export class ProductsDataService{
 
     decrementStock(product:Product){
         if(this._productInStockMap.has(product.productId)){
-            this._productInStockMap.set(product.productId, 0);
+            let currentAmount = this._productInStockMap.get(product.productId)
+            this._productInStockMap.set(product.productId, currentAmount-1);
         }
         else{
             throw new Error('fatal error the product was not presented in the stock');

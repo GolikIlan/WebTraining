@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { Product } from './products/product';
 import { MenuItem } from './menuItem';
+import { MenuItemsProvider } from './menuItemsProvider';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
   selectedProduct: Product;
   private _selectedMenuItem: any;
   private _sideNavIsVisible: boolean;
@@ -15,11 +18,9 @@ export class AppComponent {
   sideMenu:boolean;
   navMenu:boolean;
 
-  constructor()
+  constructor(private _menuItemsProvider : MenuItemsProvider)
   {
     this._sideNavIsVisible = false;
-    this.sideMenu = true;
-    this.navMenu = true;
   }
 
   onProductSelectionChanged(product:Product){
@@ -33,22 +34,30 @@ export class AppComponent {
   }
 
   onSelectedMenuItemChanged(selectedMenuItem:MenuItem){
-    this.selectedMenuItem = this.selectedMenuItem === "ProductDetails" && selectedMenuItem.title === "Products" ? "ProductDetails" : selectedMenuItem.title;
+    this.onSelection(selectedMenuItem);
     this.closeSideNavMenu();
+  }
+
+  private onSelection(selectedMenuItem: MenuItem) {
+    this.selectedMenuItem = this.selectedMenuItem === "ProductDetails" && selectedMenuItem.title === "Products" ? "ProductDetails" : selectedMenuItem.title;
   }
 
   public openSideNavMenu()
   {
-    this._sideNavIsVisible = true;
+    this.sideNavIsVisible = true;
   }
 
   public closeSideNavMenu()
   {
-    this._sideNavIsVisible = false;
+    this.sideNavIsVisible = false;
   }
 
-  get sideMavIsVisible():boolean{
+  get sideNavIsVisible():boolean{
     return this._sideNavIsVisible;
+  }
+
+  set sideNavIsVisible(value:boolean){
+    this._sideNavIsVisible = value;
   }
 
 
@@ -58,5 +67,9 @@ export class AppComponent {
 
   get selectedMenuItem():string{
     return this._selectedMenuItem;
+  }
+
+  ngOnInit(): void {
+    this.selectedMenuItem = this._menuItemsProvider.defaultSelection.title;
   }
 }

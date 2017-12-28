@@ -33,6 +33,23 @@ html, body{
     min-height:73vh;
 }
 
+withFixedHeightOf73Vh{
+    min-height:73vh;
+    height: 73vh;
+}
+
+.minWidth700{
+    min-width: 700px;
+}
+
+.minWidth900{
+    min-width: 900px;
+}
+
+.minWidth1500{
+    min-width: 1500px;
+}
+
 .closebtnOnSideNav {
     position: absolute;
     top: 0;
@@ -84,6 +101,11 @@ html, body{
     max-width: 200px;
 }
 
+.wCart300{
+    width: 300px;
+    max-width: 300px;
+}
+
 .w300{
     width: 300px;
     max-width: 300px;
@@ -96,4 +118,18 @@ html, body{
 .cell{
     display: table-cell;
 }
+
+@media screen and (max-width: 1500px) {
+    .wCart300{
+        width: 150px;
+        max-width: 150px;
+    }
+  }
+
+  @media screen and (max-width: 725px) {
+    .wCart300{
+        width: 80px;
+        max-width: 80px;
+    }
+  }
 

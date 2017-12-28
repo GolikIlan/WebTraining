@@ -127,7 +127,7 @@
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
+  .sidenav {padding-top: 50px;}
   .sidenav a {font-size: 18px;}
 }
 
@@ -222,21 +222,12 @@
         width: 320px;
         height: 320px;
     }
-
-    .details{
-        top:12%;
-    }
-
   }
 
   @media only screen and (max-height:780px) {
     .productsDetailsPresenter{
         width: 320px;
         height: 320px;
-    }
-
-    .details{
-        top:12%;
     }
   }
 
@@ -249,4 +240,9 @@
         withMinHeightMatchedToTwentyVh{
             min-height: 390px;
         }
-      }
+
+        .sidenav {
+            height: 520px;
+            min-height: 520px;
+        }
+    }

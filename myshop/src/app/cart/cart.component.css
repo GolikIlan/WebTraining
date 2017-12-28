@@ -27,3 +27,14 @@
 .fontSize35{
     font-size: 35px;
 }
+
+.withLargeMarginTop{
+    margin-top: 50px;
+}
+
+.centered{
+    position: absolute;
+    left: 50%;
+    top:30px;
+    transform: translate(-50%, 0);
+}
