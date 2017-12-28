@@ -12,6 +12,10 @@
     bottom: 3%;
 }
 
+widthFull{
+    width: 100%;
+}
+
 .block{
     display: block;
 }

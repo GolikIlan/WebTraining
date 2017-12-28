@@ -33,10 +33,10 @@ html, body{
     min-height:73vh;
 }
 
-withFixedHeightOf73Vh{
+/*.withFixedHeightOf73Vh{
     min-height:73vh;
     height: 73vh;
-}
+}*/
 
 .minWidth700{
     min-width: 700px;

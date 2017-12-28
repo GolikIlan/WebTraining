@@ -1,8 +1,9 @@
 <div class="adding withClearFix">
   <ng-content></ng-content>
   <div class="panel withClearFix">
-      <div *ngIf="productInStock;else othercontent">
+      <div>
         <i class="fa fa-shopping-cart left withClearFix withMarginTop withMarginLeft" (click)="addToCart($event)"></i>
+        <h5 *ngIf="productInStock === false">not in stock</h5>
           <!--<i class="fa fa-cart-arrow-down left withClearFix withMarginTop withMarginLeft" (click)="addToCart($event)"></i>-->
           <i class="fa fa-times right withClearFix withMarginTop withMarginRight" (click)="removeFromCart($event)"></i>
       </div>

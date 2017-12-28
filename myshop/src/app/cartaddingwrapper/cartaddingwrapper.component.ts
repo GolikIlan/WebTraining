@@ -25,7 +25,10 @@ export class CartaddingwrapperComponent implements OnInit, AfterContentInit {
 
   addToCart(args:any){
     args.stopPropagation();
-    this._cartManagementService.addProductToCart(this._product);
+    if(this.productInStock)
+    {
+      this._cartManagementService.addProductToCart(this._product);
+    }
   }
 
   removeFromCart(args:any){

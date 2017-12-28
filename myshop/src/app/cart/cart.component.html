@@ -1,5 +1,5 @@
 <div class="withTopAndLeftPadding withMinHeightOf70Vh">
-    <div class="centered" *ngIf="products.length > 0; else noItemsInTemplate">
+    <div *ngIf="products.length > 0; else noItemsInTemplate">
         <span class="bottomBorder fontSize35">Cart</span>
         <div class="withTopMargin" *ngIf="products.length > 0">
             <span class="wCart300 cell bottomBorder">
