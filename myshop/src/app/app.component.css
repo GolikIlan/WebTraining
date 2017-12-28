@@ -15,10 +15,6 @@
 }
 
 .productsDetailsPresenter{
-    position: absolute;
-    top:0px;
-    left: 0px;
-    /*transform: translate(-50%, -50%);*/
     background-image: url('../assets/images/blackPaper.jpg'); 
     background-size: cover;
     width: 600px;
@@ -50,17 +46,8 @@
     min-height:77vh;
 }
 
-.withMinHeightOf75Vh{
-    min-height:75vh;
-}
-
 .topMargin{
     margin-top:15px;
-}
-
-
-.relative{
-    position: relative;
 }
 
 .leftPane{
@@ -250,12 +237,6 @@
 
     .details{
         top:12%;
-    }
-
-    .relative app-cartaddingwrapper{
-        position: absolute;
-        top: 0px;
-        left: 0px;
     }
   }
 

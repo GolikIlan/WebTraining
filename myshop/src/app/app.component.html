@@ -26,9 +26,15 @@
                 <div class="mainContentContainer withBorder withMinHeightOf75Vh colored">
                         <ng-container [ngSwitch]="selectedMenuItem">
                             <ng-container *ngSwitchCase="'ProductDetails'">
-                                <div class=" innerRootContainer relative">
+                                <div class=" innerRootContainer">
                                     <app-cartaddingwrapper>
-                                        <div class="productsDetailsPresenter relative">
+                                        <!--<div>
+                                            <app-closebutton (click)="closeDetails()" [currentClass] = "'closebtnOnSideNav'"></app-closebutton>
+                                            <div style="margin-top:35px; width:400px; height:400px; background-color:red">
+                                                    <app-productdetails #productWrapperInterface [product] = "selectedProduct"></app-productdetails>
+                                            </div>
+                                        </div>-->
+                                        <div class="productsDetailsPresenter">
                                             <app-closebutton (click)="closeDetails()" [currentClass] = "'closebtnOnSideNav'"></app-closebutton>
                                             <div class="details">
                                                 <app-productdetails #productWrapperInterface [product] = "selectedProduct"></app-productdetails>

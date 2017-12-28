@@ -26,14 +26,6 @@ export class MenuComponent implements OnDestroy, OnInit {
     this._isNavMenu = false;
   }
 
-  ngOnDestroy(): void {
-    if(this._subscription === null)
-    {
-      return;
-    }
-    this._subscription.unsubscribe();
-  }
-
   private initSelection(item: MenuItem) {
     this.onSelection(item);
     this._subscription = this._selectionStateService.selectedMenuItemChanged.subscribe( item => {
@@ -86,6 +78,14 @@ export class MenuComponent implements OnDestroy, OnInit {
   ngOnInit() {
     this.menuItems = this._menuItemsProvider;
     this.initSelection(this._selectionStateService.selectedMenuItem);
+  }
+
+  ngOnDestroy(): void {
+    if(this._subscription === null)
+    {
+      return;
+    }
+    this._subscription.unsubscribe();
   }
 
 }

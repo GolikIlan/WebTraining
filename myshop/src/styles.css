@@ -25,6 +25,14 @@ html, body{
     height: 50vh;
 }
 
+.withMinHeightOf75Vh{
+    min-height:75vh;
+}
+
+.withMinHeightOf70Vh{
+    min-height:73vh;
+}
+
 .closebtnOnSideNav {
     position: absolute;
     top: 0;
@@ -48,4 +56,44 @@ html, body{
 }
 
 
+.inline{
+    display: inline;
+}
+
+.red{
+    color: red;
+}
+
+.withSmalTopMargin{
+    margin-top: 0px;
+}
+
+.relative{
+    position: relative;
+}
+
+.w100{
+
+    width: 100px;
+    max-width: 100px;
+}
+
+.w200{
+
+    width: 200px;
+    max-width: 200px;
+}
+
+.w300{
+    width: 300px;
+    max-width: 300px;
+}
+
+.bottomBorder{
+    border-bottom: 1px red solid;
+}
+
+.cell{
+    display: table-cell;
+}
 

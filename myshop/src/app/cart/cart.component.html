@@ -1,3 +1,28 @@
-<p>
-  cart works!
-</p>
+<div class="withTopAndLeftPadding relative withMinHeightOf70Vh">
+    <span class="bottomBorder fontSize35">Cart</span>
+    <div class="withTopMargin" *ngIf="products.length > 0">
+        <span class="w300 cell bottomBorder">
+            Title
+        </span>
+        <span class="w300 cell bottomBorder">
+            Price
+        </span>
+    </div>
+    <div *ngIf="products.length > 0; else noItemsInTemplate">
+        <div *ngFor="let product of products">
+            <app-endoflinebutton [classes] = "{'withSmalTopMargin':true, 'red':true, 'fa':true, 'fa-times':true}" (buttonPressed) = "deleteButtonPressed($event)">
+                <app-cartline #parameterProvider [lineParameter] = "product"></app-cartline>
+            </app-endoflinebutton>
+        </div>
+    </div>
+    <ng-template #noItemsInTemplate>
+        <h3>no items in the cart</h3>
+    </ng-template>
+    <div *ngIf="products.length > 0" class="bottomDocked">
+        <span class="block bottomBorder">
+            Total Price: {{totalPrice| currency:"USD":"symbol-narrow"}}
+        </span>
+        <span class="block bottomBorder">
+            Total Qty  : {{totalAmount}}
+        </span>
+    </div></div>

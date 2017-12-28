@@ -1,0 +1,29 @@
+.withTopAndLeftPadding{
+   padding-top: 30px;
+   padding-left: 30px;
+}
+
+.withRedBorder{
+    border: 1px red solid;
+}
+
+.bottomDocked{
+    position: absolute;
+    bottom: 3%;
+}
+
+.block{
+    display: block;
+}
+
+.withBottomMargin{
+    margin-bottom: 25px;
+}
+
+.withTopMargin{
+    margin-top: 15px;
+}
+
+.fontSize35{
+    font-size: 35px;
+}

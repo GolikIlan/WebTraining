@@ -26,10 +26,10 @@ export class ProductsDataService{
 
     incrementStock(product:Product){
         if(this._productInStockMap.has(product.productId)){
-            this._productInStockMap[product.productId] = 1;
+            this._productInStockMap.set(product.productId, 1);
         }
         else{
-            this._productInStockMap.set(product.productId, 1); 
+            throw new Error('fatal error the product was not presented in the stock');
         }
     }
 

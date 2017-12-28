@@ -29,7 +29,23 @@ export class CartManagementService{
     }
 
     removeProductFromCart(product:Product){
-        var index = this._productsInCard.indexOf(product, 0);
+        let index = this._productsInCard.indexOf(product, 0);
+        if (index > -1) 
+        {
+            this._productsInCard.splice(index, 1);
+            this._productsDataService.incrementStock(product);
+            this.cartProductsAmountChanged.emit(this.productsAmount);
+        }
+    }
+
+    removeProductFromCartBySummary(cartSummaryDetails:CartSummaryDetails){
+        let product = this._productsInCard.find((p) => 
+        { 
+            return p.productId === cartSummaryDetails.productId 
+            && p.title === cartSummaryDetails.title 
+            && p.price === cartSummaryDetails.price;
+        });
+        let index = this._productsInCard.indexOf(product, 0);
         if (index > -1) 
         {
             this._productsInCard.splice(index, 1);

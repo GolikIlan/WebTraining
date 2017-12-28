@@ -18,6 +18,8 @@ import { CartManagementService } from './cartManagementService';
 import { MenuItemsProvider } from './menuItemsProvider';
 import { CartComponent } from './cart/cart.component';
 import { CartaddingwrapperComponent } from './cartaddingwrapper/cartaddingwrapper.component';
+import { CartlineComponent } from './cartline/cartline.component';
+import { EndoflinebuttonComponent } from './endoflinebutton/endoflinebutton.component';
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import { CartaddingwrapperComponent } from './cartaddingwrapper/cartaddingwrappe
     AnchorwrapperComponent,
     CartComponent,
     CartaddingwrapperComponent,
+    CartlineComponent,
+    EndoflinebuttonComponent,
   ],
   imports: [
     BrowserModule, AngularFontAwesomeModule

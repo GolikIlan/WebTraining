@@ -13,7 +13,7 @@
         </div>
         <label for="priceContainer">Price:</label>
         <div class="priceContainer valuePresenter">
-            {{product.price | currency:'USD':true}}
+            {{product.price | currency:'USD':"symbol-narrow"}}
         </div>
     </div>
     <div class="descriptionPresenter">
