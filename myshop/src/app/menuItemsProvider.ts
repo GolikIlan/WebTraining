@@ -14,9 +14,9 @@ export class MenuItemsProvider extends Array<MenuItem>{
 
     constructor(cartManagementService : CartManagementService) {
         super();
-        this.defaultSelection = new MenuItem("About");
-        this.push(new MenuItem("Home"));
+        this.defaultSelection = new MenuItem("Home");
         this.push(this.defaultSelection);
+        this.push(new MenuItem("About"));
         this.push(new MenuItem("Products"));
         this.push(new MenuItem("Contacts"));
         this.push(new CartMenuItem("Cart", cartManagementService));

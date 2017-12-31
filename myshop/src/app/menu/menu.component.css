@@ -108,9 +108,15 @@ div.myLeftPanMenu{
     }
 
     .myLeftPanMenu div.footer{
-        top: 5px;
+        top: -10px;
         bottom: 100%;
         left:5px;
         transform: translate(0, 0);
+    }
+  }
+
+  @media only screen and (max-width:1200px) {
+    .myLeftPanMenu a{
+        transition: 0s;
     }
   }

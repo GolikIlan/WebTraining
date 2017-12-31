@@ -3,6 +3,7 @@ import { Product } from './products/product';
 import { MenuItem } from './menuItem';
 import { MenuItemsProvider } from './menuItemsProvider';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { LocalizationService } from './localization/localizationservise';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,9 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  localizationLang: string;
 
+  supportedLangs: { display: string; value: string; }[];
   selectedProduct: Product;
   private _selectedMenuItem: any;
   private _sideNavIsVisible: boolean;
@@ -69,7 +72,22 @@ export class AppComponent implements OnInit {
     return this._selectedMenuItem;
   }
 
+  private initLocalization(): void {
+    this.supportedLangs = [
+      { display: 'english', value: 'en' },
+      { display: 'русский', value: 'ru' },
+      { display: 'עברית', value: 'heb' },
+      ];  
+      
+      this.localizationSelected('en');
+  }
+
+  localizationSelected(value:string){
+    this.localizationLang = value;
+  }
+
   ngOnInit(): void {
     this.selectedMenuItem = this._menuItemsProvider.defaultSelection.title;
+    this.initLocalization();
   }
 }

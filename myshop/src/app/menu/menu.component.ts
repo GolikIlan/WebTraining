@@ -3,6 +3,7 @@ import { SelectionStateService } from './selectionStateService';
 import { ISubscription } from 'rxjs/Subscription';
 import { MenuItem, CartMenuItem } from '../menuItem';
 import { MenuItemsProvider } from '../menuItemsProvider';
+import { LocalizationService } from '../localization/localizationservise';
 
 @Component({
   selector: 'app-menu',
@@ -10,6 +11,8 @@ import { MenuItemsProvider } from '../menuItemsProvider';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnDestroy, OnInit {
+  private _selectedLang: any;
+  supportedLangs: { display: string; value: string; }[];
   private _classes: any;
   private _subscription: ISubscription;
   currentSelectedMenuItem: MenuItem;
@@ -32,7 +35,7 @@ export class MenuComponent implements OnDestroy, OnInit {
   @Output()
   selectedMenuItemInitialized:EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
 
-  constructor(private _selectionStateService:SelectionStateService, private _menuItemsProvider:MenuItemsProvider) { 
+  constructor(private _selectionStateService:SelectionStateService, private _menuItemsProvider:MenuItemsProvider, private _localizationService:LocalizationService) { 
     this._isSideMenu = false;
     this._isNavMenu = false;
   }
@@ -62,8 +65,26 @@ export class MenuComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
+    this.refreshMenu();
+  }
+
+  private refreshMenu() {
     this.menuItems = this._menuItemsProvider;
     this.initSelection(this._selectionStateService.selectedMenuItem);
+  }
+
+  @Input()
+  set selectedLang(value:string){
+    this._selectedLang = value;
+    this.updateLang();
+  }
+
+  get selectedLang():string{
+    return this._selectedLang;
+  }
+
+  private updateLang(): void {
+    this._localizationService.use(this.selectedLang);
   }
 
   ngOnDestroy(): void {

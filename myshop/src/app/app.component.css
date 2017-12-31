@@ -86,6 +86,33 @@
     height: 30px;
 }
 
+.left{
+    float: left; 
+}
+
+.right{
+    float: right;
+}
+
+.localization{
+    font-size: 10px;
+    margin-right: 5px;
+    color: #818181;
+    transition: 0.3s;
+}
+
+.localization:hover{
+    cursor: context-menu;
+}
+
+.localizationContainer{
+    margin-top: 10px;
+}
+
+.isLocalizationSelected{
+    border-bottom: 1px #818181 solid;
+}
+
 .sidenav a {
     padding: 8px 8px 8px 32px;
     font-size: 25px;

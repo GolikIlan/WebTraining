@@ -20,6 +20,10 @@ import { CartComponent } from './cart/cart.component';
 import { CartaddingwrapperComponent } from './cartaddingwrapper/cartaddingwrapper.component';
 import { CartlineComponent } from './cartline/cartline.component';
 import { EndoflinebuttonComponent } from './endoflinebutton/endoflinebutton.component';
+import { LocalizationService } from './localization/localizationservise';
+import { LocalizationPipe } from './localization/localization.pipe';
+import { LOCALIZATION_PROVIDERS } from './localization/localizationinfra';
+import { TitleCasePipe } from '@angular/common';
 
 
 @NgModule({
@@ -36,11 +40,12 @@ import { EndoflinebuttonComponent } from './endoflinebutton/endoflinebutton.comp
     CartaddingwrapperComponent,
     CartlineComponent,
     EndoflinebuttonComponent,
+    LocalizationPipe,
   ],
   imports: [
     BrowserModule, AngularFontAwesomeModule
   ],
-  providers: [CategoriesDataService, ProductsDataService, SelectionStateService, MenuItemsProvider, CartManagementService],
+  providers: [CategoriesDataService, ProductsDataService, SelectionStateService, MenuItemsProvider, CartManagementService, LocalizationService, LOCALIZATION_PROVIDERS, TitleCasePipe,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
