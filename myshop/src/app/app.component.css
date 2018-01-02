@@ -14,22 +14,6 @@
     left: 0px;
 }
 
-.productsDetailsPresenter{
-    background-image: url('../assets/images/blackPaper.jpg'); 
-    background-size: cover;
-    width: 600px;
-    min-width: 300px;
-    height: 500px;
-}
-
-.details{
-    position: absolute;
-    top:8%;
-    left: 0;
-    width: 100%;
-    height: 80%;
-}
-
 .red{
     background-color: red;
 }

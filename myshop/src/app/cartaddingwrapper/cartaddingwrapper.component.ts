@@ -4,6 +4,7 @@ import { Product, ProductWrapperInterface } from '../products/product';
 import { ProductsDataService } from '../products/products.service';
 import { CartManagementService } from '../cartManagementService';
 import { LoginSevice } from '../login/loginservice';
+import { TargetDirective } from './target-id-directive';
 
 @Component({
   selector: 'app-cartaddingwrapper',
@@ -13,7 +14,7 @@ import { LoginSevice } from '../login/loginservice';
 export class CartaddingwrapperComponent implements OnInit, AfterContentInit {
   private _product: Product;
 
-  @ContentChild('productWrapperInterface') _projectedProductComponent:ProductWrapperInterface;
+  @ContentChild(TargetDirective) _projectedProductComponent:TargetDirective;
 
   constructor(private _productsDataService:ProductsDataService, 
     private _cartManagementService:CartManagementService, 
@@ -27,7 +28,7 @@ export class CartaddingwrapperComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    this._product = this._projectedProductComponent.product;
+    this._product = this._projectedProductComponent.target;
   }
 
   addToCart(args:any){

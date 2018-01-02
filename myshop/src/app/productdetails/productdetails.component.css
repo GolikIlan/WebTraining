@@ -1,40 +1,45 @@
-.productDetailsRootContainer{
-    width: 100%;
-    height: 100%;
-    position: relative;
+.productDetailsRoot{
+    padding:0;
+    margin:0;
+    height:75vh;
+    min-height:100%;
+    display:flex;
+    align-items:center;
 }
 
-.productDetailsRootContainer label{
-    font-size: 18px;
-    color: white;
-    border-bottom: 1px solid white;
+.marginTop{
+    margin-top: 20px;
+}
+
+.paddingSmall{
+    padding: 2px;
+}
+
+.centered{
+    display:flex;
+    align-items:center;
 }
 
 
-.detailsPresenter{
-    margin: 5px;
-    top: 0px;
-    left: 5px;
+.details{
+    margin-top: 40px;
+    margin-bottom: 10px;
 }
 
-.valuePresenter{
-    margin: 5px;
-    font-size: 25px;
-    color: wheat;
+.marginTop10{
+    margin-top: 10px;
+}
+
+.withBorder{
+    border: 1px #ccc solid;
+    border-radius: 4px;
 }
 
 .imgContainer{
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    width: 50%;
-    height: 45%;
-}
-
-.descriptionPresenter{
-    position: absolute;
-    top: 50%;
-    left: 5px;
+    width: 250px;
+    height: 140px;
+    max-width: 250px;
+    max-height: 140px;
 }
 
 .imgContainer img{
@@ -44,36 +49,33 @@
     height: 100%;
 }
 
-@media only screen and (max-width:680px) {
-    .valuePresenter{
-        margin: 5px;
-        font-size: 15px;
-    }   
+.w500{
+    width: 500px;
+    max-width: 500px;
+}
 
-    .productDetailsRootContainer label{
-        font-size: 11px;
+.noPadding{
+    padding: 0px;
+}
+
+
+@media only screen and (max-height:500px) {
+    .productDetailsRoot{
+        height:460px;
+        min-height: 460px;
+    }
+}
+
+@media only screen and (max-height:690px) {
+    .productDetailsRoot{
+        height:560px;
+        min-height: 560px;
     }
 
-    .descriptionPresenter{
-        position: absolute;
-        top: 70%;
-        left: 5px;
+    .imgContainer{
+        width: 150px;
+        height: 120px;
+        max-width: 150px;
+        max-height: 120px;
     }
-  }
-
-  @media only screen and (max-height:945px) {
-    .valuePresenter{
-        margin: 5px;
-        font-size: 15px;
-    }   
-
-    .productDetailsRootContainer label{
-        font-size: 11px;
-    }
-
-    .descriptionPresenter{
-        position: absolute;
-        top: 70%;
-        left: 5px;
-    }    
-  }
+}

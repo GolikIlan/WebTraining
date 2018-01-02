@@ -1,7 +1,6 @@
 .adding{
     float:left;
     position: relative;
-    margin: 30px;
 }
 
 .adding:hover .panel{
@@ -14,7 +13,7 @@
 
 .panel{
     visibility: collapse;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.3);
     width: 50%;
     height: 10%;
     position: absolute;
@@ -25,7 +24,7 @@
 
 .bottomPanel{
     visibility: collapse;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.4);
     position: absolute;
     left: 50%;    
     bottom: 0;

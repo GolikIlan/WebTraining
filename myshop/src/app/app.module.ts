@@ -31,6 +31,9 @@ import { CREDENTIALS_PROVIDERS } from './login/credentials';
 import { LoginSevice } from './login/loginservice';
 import { PermissionServise } from './permissions/permissionservice';
 import { PERMISSIONS_PROVIDERS } from './permissions/permissions';
+import { TargetDirective } from './cartaddingwrapper/target-id-directive';
+import { UserPermissionsStatusProvider } from './login/user-permissions-status-provider';
+import { NumberValidationDirective } from './number-validation-directive';
 
 
 @NgModule({
@@ -49,9 +52,14 @@ import { PERMISSIONS_PROVIDERS } from './permissions/permissions';
     EndoflinebuttonComponent,
     LocalizationPipe,
     LoginComponent,
+    NumberValidationDirective,
+    TargetDirective,
   ],
   imports: [
-    BrowserModule, AngularFontAwesomeModule, FormsModule, AlertModule.forRoot()
+    BrowserModule, 
+    AngularFontAwesomeModule,
+    FormsModule,
+    AlertModule.forRoot(),
   ],
   providers: [
     CategoriesDataService, 
@@ -66,6 +74,7 @@ import { PERMISSIONS_PROVIDERS } from './permissions/permissions';
      LoginSevice,
      PERMISSIONS_PROVIDERS,
      PermissionServise,
+     UserPermissionsStatusProvider,
     ],
   bootstrap: [AppComponent]
 })

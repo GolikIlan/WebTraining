@@ -30,14 +30,7 @@
                         <ng-container [ngSwitch]="selectedMenuItem">
                             <ng-container *ngSwitchCase="'ProductDetails'">
                                 <div class=" innerRootContainer">
-                                    <app-cartaddingwrapper>
-                                        <div class="productsDetailsPresenter">
-                                            <app-closebutton (click)="closeDetails()" [currentClass] = "'closebtnOnSideNav'"></app-closebutton>
-                                            <div class="details">
-                                                <app-productdetails #productWrapperInterface [product] = "selectedProduct"></app-productdetails>
-                                            </div>
-                                        </div>
-                                    </app-cartaddingwrapper>
+                                    <app-productdetails (closing)="closeDetails()" [product] = "selectedProduct"></app-productdetails>
                                 </div>
                             </ng-container>
                             <ng-container *ngSwitchCase="'About'">

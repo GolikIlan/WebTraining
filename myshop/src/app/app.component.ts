@@ -97,10 +97,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this._loginSubscription === null)
+    /*if(this._loginSubscription === null)
     {
       return;
     }
-    this._loginSubscription.unsubscribe();
+    this._loginSubscription.unsubscribe();*/
   }
 }

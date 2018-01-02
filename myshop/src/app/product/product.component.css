@@ -34,6 +34,10 @@
     height: 200px;
 }
 
+.withTopAndRightMargin{
+    margin: 30px;
+}
+
 .descriptionRootContainer
 {
     position: absolute;

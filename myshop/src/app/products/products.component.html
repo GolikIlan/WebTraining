@@ -1,5 +1,5 @@
 <div class="products colored">
-        <div class="categories withPaddingLeftAndTop" *ngIf="detailsShouldBePresented === false">
+        <div class="categories" *ngIf="detailsShouldBePresented === false">
                 <ul>
                     <li *ngFor="let category of categories" (click) = "categorySelected(category)" [class.categoryPresenterSelected] = "category === selectedCategory">
                         {{category.title | uppercase }}
@@ -9,9 +9,7 @@
             <div class="productItemsHolder colored" *ngIf="detailsShouldBePresented === false">
                 <div class="withClearFix">
                     <div *ngFor="let product of products" (click)="productSelected(product)">
-                        <app-cartaddingwrapper>
-                            <app-product #productWrapperInterface [product] = "product"></app-product>
-                        </app-cartaddingwrapper>
+                        <app-product [target]="product" [product] = "product"></app-product>
                     </div>
                 </div>
             </div>
