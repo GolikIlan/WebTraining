@@ -3,6 +3,7 @@ import { ProductComponent } from '../product/product.component';
 import { Product, ProductWrapperInterface } from '../products/product';
 import { ProductsDataService } from '../products/products.service';
 import { CartManagementService } from '../cartManagementService';
+import { LoginSevice } from '../login/loginservice';
 
 @Component({
   selector: 'app-cartaddingwrapper',
@@ -14,9 +15,15 @@ export class CartaddingwrapperComponent implements OnInit, AfterContentInit {
 
   @ContentChild('productWrapperInterface') _projectedProductComponent:ProductWrapperInterface;
 
-  constructor(private _productsDataService:ProductsDataService, private _cartManagementService:CartManagementService) { }
+  constructor(private _productsDataService:ProductsDataService, 
+    private _cartManagementService:CartManagementService, 
+    private _loginSevice:LoginSevice) { }
 
   ngOnInit() {
+  }
+
+  get isLogedIn():boolean{
+    return this._loginSevice.isLogedIn;
   }
 
   ngAfterContentInit() {

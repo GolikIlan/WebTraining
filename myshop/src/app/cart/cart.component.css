@@ -1,8 +1,3 @@
-.withTopAndLeftPadding{
-   padding-top: 30px;
-   padding-left: 30px;
-}
-
 .withRedBorder{
     border: 1px red solid;
 }

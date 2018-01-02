@@ -11,9 +11,9 @@
   <div class="sideNavHolder withClearFix">
       <span class="sideNavMenuButton inline left" (click)="openSideNavMenu()">&#9776;</span>
       <div class="right localizationContainer">
-        <a class="left localization" *ngFor="let lang of supportedLangs" [class.isLocalizationSelected] = "localizationLang === lang.value" (click)="localizationSelected(lang.value)">
+        <span class="left localization" *ngFor="let lang of supportedLangs" [class.isLocalizationSelected] = "localizationLang === lang.value" (click)="localizationSelected(lang.value)">
             {{lang.display}}
-        </a>
+        </span>
       </div>
   </div>
   <div class="headerPart">
@@ -73,6 +73,13 @@
                                     </div>
                                 </div>
                             </ng-container>
+                            <ng-container *ngSwitchCase="'Logout'">
+                                    <div class=" innerRootContainer">
+                                        <div class="withTopAndLeftPadding">
+                                            thank you for using this site!!!
+                                        </div>
+                                    </div>
+                                </ng-container>
                             <ng-container *ngSwitchCase="'Contacts'">
                                 <div class=" innerRootContainer">
                                     <div class="fontBlack withSmallPadding">
@@ -88,6 +95,13 @@
                                 <div class=" innerRootContainer">
                                     <div class="relative">
                                         <app-cart></app-cart>
+                                    </div>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngSwitchCase="'Login'">
+                                <div class=" innerRootContainer">
+                                    <div class="relative">
+                                        <app-login (userLoggedInStatusChanged)="onUserLogedIn($event)"></app-login>
                                     </div>
                                 </div>
                             </ng-container>

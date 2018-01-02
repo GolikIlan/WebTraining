@@ -1,16 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Product } from './products/product';
 import { MenuItem } from './menuItem';
 import { MenuItemsProvider } from './menuItemsProvider';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { LocalizationService } from './localization/localizationservise';
+import { LoginSevice } from './login/loginservice';
+import { ISubscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   localizationLang: string;
 
   supportedLangs: { display: string; value: string; }[];
@@ -21,10 +23,13 @@ export class AppComponent implements OnInit {
   sideMenu:boolean;
   navMenu:boolean;
 
-  constructor(private _menuItemsProvider : MenuItemsProvider)
+  constructor(private _menuItemsProvider : MenuItemsProvider, 
+    private _loginService:LoginSevice)
   {
     this._sideNavIsVisible = false;
   }
+
+  
 
   onProductSelectionChanged(product:Product){
     this.selectedMenuItem = "ProductDetails";
@@ -89,5 +94,13 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.selectedMenuItem = this._menuItemsProvider.defaultSelection.title;
     this.initLocalization();
+  }
+
+  ngOnDestroy(): void {
+    if(this._loginSubscription === null)
+    {
+      return;
+    }
+    this._loginSubscription.unsubscribe();
   }
 }

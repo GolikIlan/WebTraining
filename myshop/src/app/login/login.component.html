@@ -1,0 +1,34 @@
+<div class="root">
+    <div class="container withBorder withPadding w500px">
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+          <div class="form-group marginBottom">
+            <label>User Name</label>
+            <input type="text" required #userNameRef="ngModel" class="form-control" name="userName" [(ngModel)]="userName">
+            <div *ngIf="userNameRef.errors && (userNameRef.dirty || userNameRef.touched)" class="paddingSmall alert alert-danger">
+                <div [hidden]="!userNameRef.errors.required">
+                    please enter a password
+                </div>
+                <div [hidden]="!userNameRef.errors.incorrect">
+                    user name and password are not matched 
+                </div>
+            </div>
+          </div>
+          <div class="form-group marginBottom">
+              <label>Password</label>
+              <input type="password" required minlength="4" #passwordRef="ngModel" class="form-control" name="password" [(ngModel)]="password">
+              <div *ngIf="passwordRef.errors && (passwordRef.dirty || passwordRef.touched)" class="paddingSmall alert alert-danger">
+                  <div [hidden]="!passwordRef.errors.required">
+                      please enter a password
+                  </div>
+                  <div [hidden]="!passwordRef.errors.minlength">
+                      please enter atleast 4 characters
+                  </div>
+              </div>
+          </div>
+          <div class="form-group">
+              <button [disabled] = "!loginForm.form.valid" type="submit" class="btn btn-primary">Sign in</button>
+          </div>
+        </form>
+      </div>
+</div>
+

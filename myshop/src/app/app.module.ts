@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule} from '@angular/forms'
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { AlertModule } from 'ngx-bootstrap';
 
 
 import { AppComponent } from './app.component';
@@ -24,6 +26,11 @@ import { LocalizationService } from './localization/localizationservise';
 import { LocalizationPipe } from './localization/localization.pipe';
 import { LOCALIZATION_PROVIDERS } from './localization/localizationinfra';
 import { TitleCasePipe } from '@angular/common';
+import { LoginComponent } from './login/login.component';
+import { CREDENTIALS_PROVIDERS } from './login/credentials';
+import { LoginSevice } from './login/loginservice';
+import { PermissionServise } from './permissions/permissionservice';
+import { PERMISSIONS_PROVIDERS } from './permissions/permissions';
 
 
 @NgModule({
@@ -41,11 +48,25 @@ import { TitleCasePipe } from '@angular/common';
     CartlineComponent,
     EndoflinebuttonComponent,
     LocalizationPipe,
+    LoginComponent,
   ],
   imports: [
-    BrowserModule, AngularFontAwesomeModule
+    BrowserModule, AngularFontAwesomeModule, FormsModule, AlertModule.forRoot()
   ],
-  providers: [CategoriesDataService, ProductsDataService, SelectionStateService, MenuItemsProvider, CartManagementService, LocalizationService, LOCALIZATION_PROVIDERS, TitleCasePipe,],
+  providers: [
+    CategoriesDataService, 
+    ProductsDataService, 
+    SelectionStateService, 
+    MenuItemsProvider,
+     CartManagementService, 
+     LocalizationService, 
+     LOCALIZATION_PROVIDERS, 
+     TitleCasePipe,
+     CREDENTIALS_PROVIDERS,
+     LoginSevice,
+     PERMISSIONS_PROVIDERS,
+     PermissionServise,
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

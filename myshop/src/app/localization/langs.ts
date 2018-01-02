@@ -5,7 +5,10 @@ export const LANG_EN_TRANS = {
     "About":"About", 
     "Products":"Products", 
     "Contacts":"Contacts", 
-    "Cart":"Cart", };
+    "Cart":"Cart",
+    "Login":"Login",
+    "Logout":"Logout",
+ };
 
 
 export const LANG_HEB_NAME = "heb";
@@ -15,7 +18,10 @@ export const LANG_HEB_TRANS = {
     "About":"אודות", 
     "Products":"מוצרים", 
     "Contacts":"צור קשר", 
-    "Cart":"הסל שלי", };    
+    "Cart":"הסל שלי", 
+    "Login":"התחברות",
+    "Logout":"להתנתק",
+};    
 
     
 export const LANG_RU_NAME = "ru";
@@ -25,7 +31,10 @@ export const LANG_RU_TRANS = {
     "About":"о компании", 
     "Products":"товары", 
     "Contacts":"контакты", 
-    "Cart":"корзина", };        
+    "Cart":"корзина", 
+    "Login":"логин",
+    "Logout":"выйти",
+};        
 
 
     

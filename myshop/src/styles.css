@@ -38,6 +38,11 @@ html, body{
     height: 73vh;
 }*/
 
+.withTopAndLeftPadding{
+    padding-top: 30px;
+    padding-left: 30px;
+ }
+
 .minWidth700{
     min-width: 700px;
 }

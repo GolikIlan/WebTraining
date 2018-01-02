@@ -4,6 +4,7 @@ import { ISubscription } from 'rxjs/Subscription';
 import { MenuItem, CartMenuItem } from '../menuItem';
 import { MenuItemsProvider } from '../menuItemsProvider';
 import { LocalizationService } from '../localization/localizationservise';
+import { LoginSevice } from '../login/loginservice';
 
 @Component({
   selector: 'app-menu',
@@ -15,6 +16,7 @@ export class MenuComponent implements OnDestroy, OnInit {
   supportedLangs: { display: string; value: string; }[];
   private _classes: any;
   private _subscription: ISubscription;
+  private _loginSubscription: ISubscription;
   currentSelectedMenuItem: MenuItem;
   private _isNavMenu: boolean;
   private _isSideMenu:boolean;
@@ -35,9 +37,22 @@ export class MenuComponent implements OnDestroy, OnInit {
   @Output()
   selectedMenuItemInitialized:EventEmitter<MenuItem> = new EventEmitter<MenuItem>();
 
-  constructor(private _selectionStateService:SelectionStateService, private _menuItemsProvider:MenuItemsProvider, private _localizationService:LocalizationService) { 
+  constructor(private _selectionStateService:SelectionStateService, 
+    private _menuItemsProvider:MenuItemsProvider, 
+    private _localizationService:LocalizationService, 
+    private _loginService:LoginSevice) { 
     this._isSideMenu = false;
     this._isNavMenu = false;
+    this._loginSubscription = this._loginService.loginStatusChanged.subscribe((result) => {
+      this.onUserLogedIn(result);
+    })
+  }
+
+  onUserLogedIn(isLogedIn:boolean){
+    if(isLogedIn){
+      let homeMenuItem = this._menuItemsProvider.find((item) => item.title === "Home");
+      this.selected(homeMenuItem);
+    }
   }
 
   private initSelection(item: MenuItem) {
@@ -46,6 +61,10 @@ export class MenuComponent implements OnDestroy, OnInit {
     this._subscription = this._selectionStateService.selectedMenuItemChanged.subscribe( item => {
       this.onSelection(item);
   });
+  }
+
+  get isLogedIn(){
+    return this._loginService.isLogedIn;
   }
 
   selected(item:MenuItem){
@@ -60,6 +79,7 @@ export class MenuComponent implements OnDestroy, OnInit {
   }
 
   private onSelection(item: MenuItem) {
+    item.onSelection();
     this.selectedMenuItemChanged.emit(item);
     this.currentSelectedMenuItem = item;
   }
@@ -88,11 +108,8 @@ export class MenuComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy(): void {
-    if(this._subscription === null)
-    {
-      return;
-    }
     this._subscription.unsubscribe();
+    this._loginSubscription.unsubscribe();
   }
 
 }

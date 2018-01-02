@@ -17,6 +17,15 @@
     transition: 0.3s;
 }
 
+.myLeftPanMenu a:hover{
+    cursor: context-menu;
+}
+
+.mySideMenu a:hover{
+    cursor: context-menu;
+}
+
+
 
 .inlineAnchoreDiv{
     margin-top: 8px;

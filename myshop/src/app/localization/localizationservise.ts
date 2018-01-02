@@ -6,7 +6,7 @@ import { LOCALIZATION } from './localizationinfra';
 export class LocalizationService {
     private _currentLang:string;
 
-    constructor(@Inject(LOCALIZATION) private _translations: any) {
+    constructor(@Inject(LOCALIZATION) private _localization: any) {
     }
 
     public get currentLang() {
@@ -22,8 +22,8 @@ export class LocalizationService {
         // private perform translation
         let translation = key;
 
-        if (this._translations[this.currentLang] && this._translations[this.currentLang][key]) {
-            return this._translations[this.currentLang][key];
+        if (this._localization[this.currentLang] && this._localization[this.currentLang][key]) {
+            return this._localization[this.currentLang][key];
         }
 
         return translation;

@@ -1,0 +1,61 @@
+.withRedBorder{
+    border: 1px red solid;
+}
+
+.withPadding{
+    padding-top: 15px;
+}
+
+.root{
+    height: 75vh;
+    min-height: 75vh;
+    display: flex;;
+    align-items:center;
+}
+
+.withBorder{
+    border: 1px #ccc solid;
+    border-radius: 4px;
+}
+
+.withBlueBorder{
+    border: 1px blue solid;
+}
+
+.w300px{
+    width: 300px;
+    max-width: 300px;
+}
+
+.w400px{
+    width: 400px;
+    max-width: 400px;
+}
+
+.w500px{
+    width: 400px;
+    max-width: 400px;
+}
+
+.marginBottom{
+    margin-bottom: 10px;
+}
+
+.padding-0{
+    padding: 0px;
+}
+
+.paddingSmall{
+    padding: 2px;
+}
+
+.alertHeight{
+    height: 20px;
+    max-height: 20px;
+}
+
+.alertFont{
+    font-size: 10px;
+    color: red;
+}
+ 
