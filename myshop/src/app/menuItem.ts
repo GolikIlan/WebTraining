@@ -3,6 +3,7 @@ import { CartManagementService } from "./cartManagementService";
 import { ISubscription } from "rxjs/Subscription";
 import { LoginSevice } from "./login/loginservice";
 import { CartlineComponent } from "./cartline/cartline.component";
+import { UserPermissionsStatusProvider } from "./login/user-permissions-status-provider";
 
 
 @Injectable()
@@ -11,7 +12,6 @@ export class MenuItem {
     }
 
     onSelection(){
-        console.log("BaseMenuItem");
     }
 }
 
@@ -108,6 +108,28 @@ export class  LogoutMenuItem extends MenuItem{
 
     onSelection(){
         this._loginService.logOut();
+    }
+}
+
+@Injectable()
+export class AddProductMenuItem extends MenuItem{
+    private _loginSubscription: ISubscription;
+
+    constructor(title:string, private _loginService:LoginSevice, private _userPermissionsStatusProvider:UserPermissionsStatusProvider) {
+        super(title, _userPermissionsStatusProvider.canCurrentUserAddNewProduct());
+
+        this._loginSubscription = this._loginService.loginStatusChanged.subscribe((status) => {
+            this.whenLoggedIn(status);
+        });
+    }
+
+    whenLoggedIn(status: boolean): any {
+        this.active = this._userPermissionsStatusProvider.canCurrentUserAddNewProduct();
+    }
+
+    destroy(){
+        if(this._loginSubscription === null) return;
+        this._loginSubscription.unsubscribe();
     }
 }
 

@@ -30,9 +30,9 @@ export class LoginSevice{
         if(userName !== undefined && userName === loginData.userName)
             {
                 this._isLogedIn = true;
-                this.loginStatusChanged.emit(this._isLogedIn)
                 this._token = new LoginToken(loginData.userName, loginData.password);
-                return LoginResult.LogedIn
+                this.loginStatusChanged.emit(this._isLogedIn);
+                return LoginResult.LogedIn;
             }
             return LoginResult.Failed;
     }

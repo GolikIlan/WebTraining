@@ -9,6 +9,7 @@ import { UserPermissionsStatusProvider } from '../login/user-permissions-status-
   styleUrls: ['./productdetails.component.css']
 })
 export class ProductdetailsComponent implements OnInit, ProductWrapperInterface {
+  private _productToEdit: Product;
   private _categories: Category[];
   private _isInEditMode: boolean;
   private _editPermission: boolean;
@@ -53,12 +54,24 @@ export class ProductdetailsComponent implements OnInit, ProductWrapperInterface 
   }
 
   onSubmit(form:any){
+    let categoryId = form.value["categorySelection"]
+    let title = form.value["title"];
+    let image = form.value["image"];
+    let price = form.value["price"];
+    let description = form.value["description"];
+
+    this._productToEdit = new Product("255", categoryId, image, title, price, description);
+  }
+
+  onSaveResultIsReady(result:boolean){
+    if(result){
+      this._product.categoryId = this._productToEdit.categoryId;
+      this._product.price = this._productToEdit.price;
+      this._product.title = this._productToEdit.title;
+      this._product.description = this._productToEdit.description;
+      this._product.image = this._productToEdit.image;
+    }
     this._isInEditMode = false;
-    this.product.categoryId = form.value["categorySelection"]
-    this.product.title = form.value["title"];
-    this.product.image = form.value["image"];
-    this.product.price = form.value["price"];
-    this.product.description = form.value["description"];
   }
 
   get canEdit():boolean{

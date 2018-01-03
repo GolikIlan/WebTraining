@@ -6,6 +6,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { LocalizationService } from './localization/localizationservise';
 import { LoginSevice } from './login/loginservice';
 import { ISubscription } from 'rxjs/Subscription';
+import { SelectionStateService } from './menu/selectionStateService';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
   navMenu:boolean;
 
   constructor(private _menuItemsProvider : MenuItemsProvider, 
-    private _loginService:LoginSevice)
+    private _loginService:LoginSevice, private _selectionStateService:SelectionStateService)
   {
     this._sideNavIsVisible = false;
   }
@@ -39,6 +40,12 @@ export class AppComponent implements OnInit, OnDestroy {
   closeDetails(){
     this.selectedMenuItem = "Products";
     this.selectedProduct = null;
+  }
+
+  onAddProductClosing(){
+    let item:MenuItem = this._menuItemsProvider.find(item => item.title === "Products");
+    if(item === undefined) return;
+    this._selectionStateService.selectedMenuItem = item;
   }
 
   onSelectedMenuItemChanged(selectedMenuItem:MenuItem){

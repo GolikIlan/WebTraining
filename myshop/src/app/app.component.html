@@ -84,6 +84,11 @@
                                     </div>
                                 </div>
                             </ng-container>
+                            <ng-container *ngSwitchCase="'Add New Product'">
+                                <div class=" innerRootContainer">
+                                    <app-add-new-product (closing)="onAddProductClosing()"></app-add-new-product>
+                                </div>
+                            </ng-container>
                             <ng-container *ngSwitchCase="'Cart'">
                                 <div class=" innerRootContainer">
                                     <div class="relative">
@@ -91,6 +96,13 @@
                                     </div>
                                 </div>
                             </ng-container>
+                            <ng-container *ngSwitchCase="'Send Message'">
+                                    <div class=" innerRootContainer">
+                                        <div class="relative">
+                                            <app-send-message></app-send-message>
+                                        </div>
+                                    </div>
+                                </ng-container>
                             <ng-container *ngSwitchCase="'Login'">
                                 <div class=" innerRootContainer">
                                     <div class="relative">

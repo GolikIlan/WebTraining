@@ -3,7 +3,41 @@ import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms'
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AlertModule } from 'ngx-bootstrap';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import {
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatStepperModule,
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -34,7 +68,50 @@ import { PERMISSIONS_PROVIDERS } from './permissions/permissions';
 import { TargetDirective } from './cartaddingwrapper/target-id-directive';
 import { UserPermissionsStatusProvider } from './login/user-permissions-status-provider';
 import { NumberValidationDirective } from './number-validation-directive';
+import { AddNewProductComponent } from './add-new-product/add-new-product.component';
+import { SaveDialogComponent } from './save-dialog/save-dialog.component';
+import { CdkTableModule } from '@angular/cdk/table';
+import { SaveOnClickDialogProviderDirective, SendOnClickDialogProviderDirective } from './save-directive';
+import { SendMessageComponent } from './send-message/send-message.component';
 
+
+@NgModule({
+  exports: [
+    CdkTableModule,
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+  ]
+})
+export class OwnMaterialModule {}
 
 @NgModule({
   declarations: [
@@ -54,13 +131,21 @@ import { NumberValidationDirective } from './number-validation-directive';
     LoginComponent,
     NumberValidationDirective,
     TargetDirective,
+    AddNewProductComponent,
+    SaveDialogComponent,
+    SaveOnClickDialogProviderDirective,
+    SendMessageComponent,
+    SendOnClickDialogProviderDirective,
   ],
   imports: [
-    BrowserModule, 
+    BrowserModule,
+    BrowserAnimationsModule,
+    OwnMaterialModule, 
     AngularFontAwesomeModule,
     FormsModule,
     AlertModule.forRoot(),
   ],
+  entryComponents: [SaveDialogComponent],
   providers: [
     CategoriesDataService, 
     ProductsDataService, 

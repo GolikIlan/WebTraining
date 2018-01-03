@@ -24,6 +24,12 @@ export class ProductsDataService{
         return PRODUCTS_FULL;
     }
 
+    addNewProduct(product:Product){
+        product.productId = `${PRODUCTS_FULL.length + 1}`;
+        this._productInStockMap.set(product.productId, 7);
+        PRODUCTS_FULL.push(product)
+    }
+
     incrementStock(product:Product){
         if(this._productInStockMap.has(product.productId)){
             let currentAmount = this._productInStockMap.get(product.productId)

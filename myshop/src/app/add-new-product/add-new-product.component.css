@@ -1,0 +1,23 @@
+.root{
+    height: 75vh;
+    min-height: 75vh;
+    display: flex;;
+    align-items:center;
+}
+
+.marginTop{
+    margin-top: 30px;
+}
+
+.withLeftMargin{
+    margin-left: 5px;
+}
+
+.withBorder{
+    border: 1px #ccc solid;
+    border-radius: 4px;
+}
+
+.marginBottom{
+    margin-bottom: 10px;
+}

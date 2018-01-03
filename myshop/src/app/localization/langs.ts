@@ -8,6 +8,8 @@ export const LANG_EN_TRANS = {
     "Cart":"Cart",
     "Login":"Login",
     "Logout":"Logout",
+    "Add New Product":"Add New Product",
+    "Send Message":"Send Message",
  };
 
 
@@ -21,6 +23,8 @@ export const LANG_HEB_TRANS = {
     "Cart":"הסל שלי", 
     "Login":"התחברות",
     "Logout":"להתנתק",
+    "Add New Product":"הוסף מוצר חדש",
+    "Send Message":"שלח הודעה",
 };    
 
     
@@ -34,6 +38,8 @@ export const LANG_RU_TRANS = {
     "Cart":"корзина", 
     "Login":"логин",
     "Logout":"выйти",
+    "Add New Product":"добавить новый продукт",
+    "Send Message":"отправить сообщение",
 };        
 
 
