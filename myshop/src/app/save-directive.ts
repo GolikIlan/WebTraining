@@ -1,4 +1,4 @@
-import { Directive, Input, OnInit, ElementRef, Renderer, HostListener, Output, EventEmitter } from '@angular/core';
+import { Directive, AfterViewChecked, AfterContentInit, Input, OnInit, ElementRef, Renderer, HostListener, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { SaveDialogComponent } from './save-dialog/save-dialog.component';
 
@@ -61,6 +61,30 @@ export class SendOnClickDialogProviderDirective implements OnInit{
 
     whenDialogClosed(result: boolean): any {
         this.sendResultIsReady.emit(result);
+    }
+
+
+    ngOnInit(): void {
+    }
+}
+
+@Directive({ 
+    selector: '[loadListener]' 
+})
+export class OnLoadListenerDirective implements OnInit, AfterViewInit{
+
+    @Output()
+   loadOccured:EventEmitter<boolean> = new EventEmitter<boolean>(); 
+    constructor() {
+    }
+
+
+    private raiseLoadOccured() {
+        this.loadOccured.emit(true);
+    }
+
+    ngAfterViewInit(): void {
+        setTimeout(_=> this.raiseLoadOccured(), 0);
     }
 
 

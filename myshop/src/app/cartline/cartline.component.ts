@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../products/product';
 import { LineParameterInterface } from '../endoflinebutton/lineParameterInterface';
+import { NavigationManagerService } from '../navigation-manager-service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cartline',
@@ -11,7 +13,17 @@ export class CartlineComponent implements LineParameterInterface {
 
   private _lineParameter:Product;
 
-  constructor() { }
+  @Output()
+  lineSelected:EventEmitter<string> = new EventEmitter<string>();
+
+  constructor() { 
+
+  }
+
+  selected(){
+    this.lineSelected.emit(this.lineParameter.productId);
+  }
+
 
 
   get lineParameter():Product{

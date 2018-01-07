@@ -72,7 +72,7 @@ import { NumberValidationDirective } from './number-validation-directive';
 import { AddNewProductComponent } from './add-new-product/add-new-product.component';
 import { SaveDialogComponent } from './save-dialog/save-dialog.component';
 import { CdkTableModule } from '@angular/cdk/table';
-import { SaveOnClickDialogProviderDirective, SendOnClickDialogProviderDirective } from './save-directive';
+import { SaveOnClickDialogProviderDirective, SendOnClickDialogProviderDirective, OnLoadListenerDirective } from './save-directive';
 import { SendMessageComponent } from './send-message/send-message.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
@@ -135,9 +135,11 @@ const routes: Routes = [
   {path: 'products/:id', component:ProductdetailsComponent},
   {path: 'products', component:ProductsComponent},
   {path: 'add', canActivate:[AuthGuard, HasPermissionGuard], component:AddNewProductComponent},
-  {path: 'cart', canActivate:[AuthGuard], component:CartComponent},
+  {path: 'cart', canActivate:[AuthGuard], component:CartComponent, children: [
+    {path: ':id', component: CartDetailsComponent},
+    {path: '**', component: PageNotFoundComponent}]},
   {path: 'login', component:LoginComponent},
-  {path: '**', component: PageNotFoundComponent}
+  {path: '**', component: PageNotFoundComponent, }
 ];
 
 @NgModule({
@@ -168,6 +170,7 @@ const routes: Routes = [
     SaveOnClickDialogProviderDirective,
     SendMessageComponent,
     SendOnClickDialogProviderDirective,
+    OnLoadListenerDirective,
   ],
   imports: [
     BrowserModule,

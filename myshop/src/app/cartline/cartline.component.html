@@ -1,8 +1,10 @@
-<div class="inline">
-  <span class="wCart300 cell">
-      {{lineParameter.title}}
-  </span>
-  <span class="wCart300 cell">
-      {{lineParameter.price | currency:"USD":"symbol-narrow"}}
-  </span>
+<div class="cell h30" (click)="selected()">
+    <div>
+        <span class="wCart300 cell">
+            {{lineParameter.title}}
+        </span>
+        <span class="wCart300 cell">
+            {{lineParameter.price | currency:"USD":"symbol-narrow"}}
+        </span>
+    </div>
 </div>

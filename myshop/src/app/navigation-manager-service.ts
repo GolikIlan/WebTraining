@@ -1,4 +1,4 @@
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { Injectable } from "@angular/core";
 
 @Injectable()
@@ -12,4 +12,13 @@ export class NavigationManagerService{
         console.log();
         this._router.navigate(navigationPathParams);
     }
+
+    navigateToWithRelativeParent(navigationPathParams:Array<string>, route:ActivatedRoute):void
+    {
+        console.log(navigationPathParams);
+        this._router.navigate(navigationPathParams, {relativeTo: route});
+    }
+
+    
+
 }

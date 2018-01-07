@@ -12,8 +12,17 @@
         <div >
             <div *ngFor="let product of products">
                 <app-endoflinebutton [classes] = "{'withSmalTopMargin':true, 'red':true, 'fa':true, 'fa-times':true}" (buttonPressed) = "deleteButtonPressed($event)">
-                    <app-cartline #parameterProvider [lineParameter] = "product"></app-cartline>
+                    <app-cartline [target] = "product" (lineSelected)="lineSelected($event)" [lineParameter] = "product"></app-cartline>
                 </app-endoflinebutton>
+                <div *ngIf="isHidden === false">
+                        <div *ngIf="isSelected(product.productId)">
+                                <app-endoflinebutton [classes] = "{'withSmalTopMargin':true, 'red':true, 'fa':true, 'fa-refresh':true}" (buttonPressed) = "refresh($event)">
+                                    <div class="rect inline" [target] = "product" loadListener (loadOccured)="routerOutletLoaded()">
+                                         <router-outlet></router-outlet>
+                                    </div>
+                                </app-endoflinebutton>
+                            </div>
+                </div>
             </div>
             <div *ngIf="products.length > 0" class="withLargeMarginTop">
                 <span class="block">

@@ -1,5 +1,6 @@
 import { Component, OnInit, ContentChild, AfterContentInit, Output, EventEmitter, Input } from '@angular/core';
 import { LineParameterInterface } from './lineParameterInterface';
+import { TargetDirective } from '../cartaddingwrapper/target-id-directive';
 
 @Component({
   selector: 'app-endoflinebutton',
@@ -12,14 +13,14 @@ export class EndoflinebuttonComponent implements OnInit, AfterContentInit {
 
   @Output()
   buttonPressed:EventEmitter<any> = new EventEmitter<any>();
-  @ContentChild('parameterProvider') _projectedContent:LineParameterInterface;
+  @ContentChild(TargetDirective) _projectedProductComponent:TargetDirective;
 
   constructor() { 
 
   }
 
   ngAfterContentInit() {
-    this._parameter = this._projectedContent.lineParameter;
+    this._parameter = this._projectedProductComponent.target;
   }
 
   ngOnInit() {
