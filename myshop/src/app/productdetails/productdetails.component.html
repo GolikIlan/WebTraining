@@ -1,8 +1,8 @@
 <div class="productDetailsRoot">
-    <div class="container withBorder relative w500">
+    <div class="container withBorder noPadding relative w500">
         <app-cartaddingwrapper *ngIf="IsInEditMode == false; else editFormTemplate">
                 <app-closebutton (click)="closeDetails()" [currentClass] = "'closebtnOnSideNav'"></app-closebutton>
-                <div [target]="product" productWrapperInterface class="details">
+                <div [target]="product" productWrapperInterface class="details withSidePadding">
                         <div class="col-md-12 col-sm-12">
                                 <div class="imgContainer">
                                     <img src="{{product.image}}" alt="product image">
@@ -40,59 +40,62 @@
                 </div>
         </app-cartaddingwrapper>
         <ng-template #editFormTemplate>
-                <form #editForm="ngForm" (ngSubmit)="onSubmit(editForm)">
-                    <h4>Edit</h4>
-                        <div class="form-group marginBottom marginTop">
-                            <label>Category</label>
-                            <select #selectElemRef="ngModel" (change)="setNewCategory(selectElemRef.value)" name="categorySelection" [ngModel] = "product.categoryId">
-                                <option *ngFor="let category of categories" [value]="category.id">
-                                    {{category.title}}
-                                </option>
-                            </select>
-                            <div *ngIf="selectElemRef.errors && (imageRef.dirty || imageRef.touched)" class="paddingSmall alert alert-danger">
-                                <div [hidden]="!selectElemRef.errors.required">
-                                    please enter a category
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group marginBottom">
-                          <label>Image</label>
-                          <input type="text" required #imageRef="ngModel" class="form-control" name="image" [ngModel]="product.image">
-                          <div *ngIf="imageRef.errors && (imageRef.dirty || imageRef.touched)" class="paddingSmall alert alert-danger">
-                              <div [hidden]="!imageRef.errors.required">
-                                  please enter an image path
-                              </div>
-                          </div>
-                        </div>
-                        <div class="form-group marginBottom">
-                            <label>Title</label>
-                            <input type="text" required #titleRef="ngModel" class="form-control" name="title" [ngModel]="product.title">
-                            <div *ngIf="titleRef.errors && (titleRef.dirty || titleRef.touched)" class="paddingSmall alert alert-danger">
-                                <div [hidden]="!titleRef.errors.required">
-                                    please enter a title
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group marginBottom">
-                                <label>Price</label>
-                                <input type="number" required forbiddenMinimum = "0"  #priceRef="ngModel" class="form-control" name="price" [ngModel]="product.price">
-                                <div *ngIf="priceRef.errors && (priceRef.dirty || priceRef.touched)" class="paddingSmall alert alert-danger">
-                                    <div [hidden]="!priceRef.errors.required">
-                                        please enter a price
+                <app-closebutton (click)="closeEdit()" [currentClass] = "'closebtnOnSideNav'"></app-closebutton>
+                <div class="withSidePadding">
+                        <form #editForm="ngForm" (ngSubmit)="onSubmit(editForm)">
+                                <h4 class="marginTop50">Edit</h4>
+                                    <div class="form-group marginBottom marginTop">
+                                        <label>Category</label>
+                                        <select #selectElemRef="ngModel" (change)="setNewCategory(selectElemRef.value)" name="categorySelection" [ngModel] = "product.categoryId">
+                                            <option *ngFor="let category of categories" [value]="category.id">
+                                                {{category.title}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="selectElemRef.errors && (imageRef.dirty || imageRef.touched)" class="paddingSmall alert alert-danger">
+                                            <div [hidden]="!selectElemRef.errors.required">
+                                                please enter a category
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div [hidden]="!priceRef.errors.validateLarger">
-                                        please enter number larger than 0
+                                    <div class="form-group marginBottom">
+                                      <label>Image</label>
+                                      <input type="text" required #imageRef="ngModel" class="form-control" name="image" [ngModel]="product.image">
+                                      <div *ngIf="imageRef.errors && (imageRef.dirty || imageRef.touched)" class="paddingSmall alert alert-danger">
+                                          <div [hidden]="!imageRef.errors.required">
+                                              please enter an image path
+                                          </div>
+                                      </div>
                                     </div>
-                                </div>
-                        </div>
-                        <div class="form-group marginBottom">
-                            <label>Description</label>
-                            <input type="text" class="form-control" name="description" [ngModel]="product.description">
-                        </div>
-                        <div class="form-group">
-                            <button [disabled] = "!editForm.form.valid" (saveResultIsReady)="onSaveResultIsReady($event)" clickListener type="submit" class="btn btn-primary">Save</button>
-                        </div>
-                    </form>
+                                    <div class="form-group marginBottom">
+                                        <label>Title</label>
+                                        <input type="text" required #titleRef="ngModel" class="form-control" name="title" [ngModel]="product.title">
+                                        <div *ngIf="titleRef.errors && (titleRef.dirty || titleRef.touched)" class="paddingSmall alert alert-danger">
+                                            <div [hidden]="!titleRef.errors.required">
+                                                please enter a title
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group marginBottom">
+                                            <label>Price</label>
+                                            <input type="number" required forbiddenMinimum = "0"  #priceRef="ngModel" class="form-control" name="price" [ngModel]="product.price">
+                                            <div *ngIf="priceRef.errors && (priceRef.dirty || priceRef.touched)" class="paddingSmall alert alert-danger">
+                                                <div [hidden]="!priceRef.errors.required">
+                                                    please enter a price
+                                                </div>
+                                                <div [hidden]="!priceRef.errors.validateLarger">
+                                                    please enter number larger than 0
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="form-group marginBottom">
+                                        <label>Description</label>
+                                        <input type="text" class="form-control" name="description" [ngModel]="product.description">
+                                    </div>
+                                    <div class="form-group">
+                                        <button [disabled] = "!editForm.form.valid" (saveResultIsReady)="onSaveResultIsReady($event)" clickListener type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </form>
+                </div>
         </ng-template>
     </div>
 </div>

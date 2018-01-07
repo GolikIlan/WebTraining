@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LoginSevice, LoginData, LoginResult } from './loginservice';
+import { NavigationManagerService } from '../navigation-manager-service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
   private _password:string;
 
 
-  constructor(private _loginService:LoginSevice) { }
+  constructor(private _loginService:LoginSevice, 
+    private _navigationManagerService:NavigationManagerService) { }
 
   get password():string{
     return this._password;
@@ -49,6 +51,8 @@ export class LoginComponent implements OnInit {
     }
     else if(resultString === LoginResult[LoginResult.LogedIn]){
       form.controls['userName'].setErrors(null);
+      form.reset();
+      this._navigationManagerService.navigateTo(["home"]);
     }
   }
 

@@ -30,6 +30,16 @@ export class MenuComponent implements OnDestroy, OnInit {
     return this._classes
   }
 
+  //{exact:true}
+  getMatchingStatus(item:MenuItem):any{
+    if(item.path === "product"){
+      return {exact:false};
+    }
+    else{
+      return {exact:true};
+    }
+  }
+
   menuItems:Array<MenuItem>
 
   @Output()
@@ -79,7 +89,6 @@ export class MenuComponent implements OnDestroy, OnInit {
   }
 
   private onSelection(item: MenuItem) {
-    item.onSelection();
     this.selectedMenuItemChanged.emit(item);
     this.currentSelectedMenuItem = item;
   }

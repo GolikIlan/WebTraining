@@ -55,6 +55,10 @@ html, body{
     min-width: 1500px;
 }
 
+.withSmallPadding{
+    padding: 10px;
+}
+
 /*.closebtnOnSideNav {
     position: absolute;
     top: 0;

@@ -8,19 +8,17 @@ import { UserPermissionsStatusProvider } from "./login/user-permissions-status-p
 
 @Injectable()
 export class MenuItem {
-    constructor(public title:string, public active:boolean) {
+    constructor(public title:string, public active:boolean, public path:string) {
     }
 
     onSelection(){
     }
 }
 
-
-
 @Injectable()
 export class MenuItemWithAmount extends MenuItem{
-    constructor(title:string, active:boolean, public amount:number) {
-        super(title, active);
+    constructor(title:string, active:boolean, public amount:number, path:string) {
+        super(title, active, path);
     }
 }
 
@@ -31,11 +29,8 @@ export class CartMenuItem extends MenuItemWithAmount{
 
     constructor(title:string, 
         private _cartManagementService:CartManagementService,
-        private _loginService:LoginSevice) {
-        super(title, _loginService.isLogedIn, 55555);
-        /*this._subscription = this._cartManagementService.cartProductsAmountChanged.subscribe( amount => {
-            this.whenAmountChanged(amount);
-        });*/
+        private _loginService:LoginSevice, path:string) {
+        super(title, _loginService.isLogedIn, 55555, path);
 
         this._loginSubscription = this._loginService.loginStatusChanged.subscribe((status) => {
             this.whenLoggedIn(status);
@@ -45,10 +40,6 @@ export class CartMenuItem extends MenuItemWithAmount{
     whenLoggedIn(status: boolean): any {
         this.active = status
     }
-
-    /*private whenAmountChanged(amount: number){
-        this.amount = amount;
-    }*/
 
     get amount():number{
         return this._cartManagementService.productsAmount;
@@ -67,8 +58,8 @@ export class CartMenuItem extends MenuItemWithAmount{
 export class  LoginMenuItem extends MenuItem{
     private _loginSubscription: ISubscription;
 
-    constructor(title:string,  private _loginService:LoginSevice) {
-        super(title, _loginService.isLogedIn === false);
+    constructor(title:string,  private _loginService:LoginSevice, path:string) {
+        super(title, _loginService.isLogedIn === false, path);
 
         this._loginSubscription = this._loginService.loginStatusChanged.subscribe((status) => {
             this.whenLoggedIn(status);
@@ -89,8 +80,8 @@ export class  LoginMenuItem extends MenuItem{
 export class  LogoutMenuItem extends MenuItem{
     private _loginSubscription: ISubscription;
 
-    constructor(title:string, private _loginService:LoginSevice) {
-        super(title, _loginService.isLogedIn);
+    constructor(title:string, private _loginService:LoginSevice, path:string) {
+        super(title, _loginService.isLogedIn, path);
 
         this._loginSubscription = this._loginService.loginStatusChanged.subscribe((status) => {
             this.whenLoggedIn(status);
@@ -105,18 +96,14 @@ export class  LogoutMenuItem extends MenuItem{
         if(this._loginSubscription === null) return;
         this._loginSubscription.unsubscribe();
     }
-
-    onSelection(){
-        this._loginService.logOut();
-    }
 }
 
 @Injectable()
 export class AddProductMenuItem extends MenuItem{
     private _loginSubscription: ISubscription;
 
-    constructor(title:string, private _loginService:LoginSevice, private _userPermissionsStatusProvider:UserPermissionsStatusProvider) {
-        super(title, _userPermissionsStatusProvider.canCurrentUserAddNewProduct());
+    constructor(title:string, private _loginService:LoginSevice, private _userPermissionsStatusProvider:UserPermissionsStatusProvider, path:string) {
+        super(title, _userPermissionsStatusProvider.canCurrentUserAddNewProduct(), path);
 
         this._loginSubscription = this._loginService.loginStatusChanged.subscribe((status) => {
             this.whenLoggedIn(status);

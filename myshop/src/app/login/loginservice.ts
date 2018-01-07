@@ -38,6 +38,7 @@ export class LoginSevice{
     }
 
     logOut(){
+        if(this.isLogedIn === false) return;
         this._isLogedIn = false;
         this._token = this._noLoggedInToken;
         this.loginStatusChanged.emit(this._isLogedIn)

@@ -7,8 +7,20 @@
     align-items:center;
 }
 
+.noPadding{
+    padding: 0px;
+}
+
+.closeButton{
+    margin-bottom: 10px;
+}
+
 .marginTop{
     margin-top: 20px;
+}
+
+.marginTop50{
+    margin-top: 50px;
 }
 
 .paddingSmall{
@@ -24,6 +36,11 @@
 .details{
     margin-top: 40px;
     margin-bottom: 10px;
+}
+
+.withSidePadding{
+    padding-left:15px;
+    padding-right:15px;
 }
 
 .marginTop10{

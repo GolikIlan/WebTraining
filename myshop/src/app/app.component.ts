@@ -104,6 +104,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    console.log("app components reloaded");
     /*if(this._loginSubscription === null)
     {
       return;

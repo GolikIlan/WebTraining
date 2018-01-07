@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Product } from "./product";
 import { PRODUCTS_FULL } from "./products.mock";
 import { ProductComponent } from "../product/product.component";
+import { UserPermissionsStatusProvider } from "../login/user-permissions-status-provider";
 
 
 @Injectable()
@@ -9,7 +10,7 @@ export class ProductsDataService{
 
     private _productInStockMap:Map<string, number>;
 
-    constructor() {
+    constructor(private _userPermissionsStatusProvider:UserPermissionsStatusProvider) {
         this._productInStockMap = new Map<string, number>();
         this.initStock();
     }
@@ -22,6 +23,10 @@ export class ProductsDataService{
 
     getProducts():Array<Product>{
         return PRODUCTS_FULL;
+    }
+
+    getProductById(id:string){
+        return PRODUCTS_FULL.find(product => product.productId  === id);
     }
 
     addNewProduct(product:Product){

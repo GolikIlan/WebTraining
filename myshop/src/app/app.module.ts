@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms'
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AlertModule } from 'ngx-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { RouterModule, Routes } from "@angular/router";
 
 import {
   MatAutocompleteModule,
@@ -73,6 +74,15 @@ import { SaveDialogComponent } from './save-dialog/save-dialog.component';
 import { CdkTableModule } from '@angular/cdk/table';
 import { SaveOnClickDialogProviderDirective, SendOnClickDialogProviderDirective } from './save-directive';
 import { SendMessageComponent } from './send-message/send-message.component';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LogoutComponent } from './logout/logout.component';
+import { NavigationManagerService } from './navigation-manager-service';
+import { HasPermissionGuard } from './has-permission.guard';
+import { AuthGuard } from './auth.guard';
+import { CartDetailsComponent } from './cart-details/cart-details.component';
 
 
 @NgModule({
@@ -109,13 +119,35 @@ import { SendMessageComponent } from './send-message/send-message.component';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-  ]
+  ],
+  declarations: [CartDetailsComponent],
 })
 export class OwnMaterialModule {}
+
+
+const routes: Routes = [
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: 'logout', component: LogoutComponent},
+  {path: 'home', component: HomeComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'send', component: SendMessageComponent},
+  {path: 'contacts', component: ContactsComponent},
+  {path: 'products/:id', component:ProductdetailsComponent},
+  {path: 'products', component:ProductsComponent},
+  {path: 'add', canActivate:[AuthGuard, HasPermissionGuard], component:AddNewProductComponent},
+  {path: 'cart', canActivate:[AuthGuard], component:CartComponent},
+  {path: 'login', component:LoginComponent},
+  {path: '**', component: PageNotFoundComponent}
+];
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent, 
+    AboutComponent, 
+    ContactsComponent,
+    LogoutComponent,
+    PageNotFoundComponent,
     MenuComponent,
     ProductsComponent,
     HeaderComponent,
@@ -143,7 +175,7 @@ export class OwnMaterialModule {}
     OwnMaterialModule, 
     AngularFontAwesomeModule,
     FormsModule,
-    AlertModule.forRoot(),
+    RouterModule.forRoot(routes),
   ],
   entryComponents: [SaveDialogComponent],
   providers: [
@@ -160,7 +192,12 @@ export class OwnMaterialModule {}
      PERMISSIONS_PROVIDERS,
      PermissionServise,
      UserPermissionsStatusProvider,
+     NavigationManagerService,
+     AuthGuard, 
+     HasPermissionGuard,
     ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+}
