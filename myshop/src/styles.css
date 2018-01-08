@@ -128,6 +128,10 @@ html, body{
     display: table-cell;
 }
 
+.box{
+    display: block;
+}
+
 @media screen and (max-width: 1500px) {
     .wCart300{
         width: 150px;
@@ -136,9 +140,9 @@ html, body{
   }
 
   @media screen and (max-width: 725px) {
-    .wCart300{
+    /*.wCart300{
         width: 80px;
         max-width: 80px;
-    }
+    }*/
   }
 

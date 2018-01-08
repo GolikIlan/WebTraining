@@ -141,7 +141,7 @@
   .sidenav a {font-size: 18px;}
 }
 
-@media only screen and (max-width:1200px) {
+@media only screen and (max-width:1510px) {
     /* For tablets: */
     .leftPane{
         visibility: hidden;

@@ -7,20 +7,6 @@
     bottom: 3%;
 }
 
-.selected{
-    visibility: visible;
-    height: 60px;
-}
-
-.notSelected{
-    visibility: collapse;
-    height: 0px;
-}
-
-.rect{
-    background-color: rgba(250, 141, 82, 0.467);
-}
-
 widthFull{
     width: 100%;
 }

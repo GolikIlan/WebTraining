@@ -69,6 +69,39 @@ export class SendOnClickDialogProviderDirective implements OnInit{
 }
 
 @Directive({ 
+    selector: '[showClickListener]' 
+})
+export class ShowOnClickDialogProviderDirective {
+
+    @Output()
+    sendResultIsReady:EventEmitter<boolean> = new EventEmitter<boolean>(); 
+
+    @Input()header:string;
+    @Input()msg:string;
+
+    constructor(private dialog:MatDialog) {
+        
+    }
+
+    @HostListener('click') 
+    onClick(){
+        let dialogRef = this.dialog.open(SaveDialogComponent, {data: {
+            header: this.header,
+            message: this.msg,
+          }});
+      
+          dialogRef.afterClosed().subscribe(result => {
+            this.whenDialogClosed(result);
+          });
+    }
+
+    private whenDialogClosed(result: boolean): any {
+        this.sendResultIsReady.emit(result);
+    }
+
+}
+
+@Directive({ 
     selector: '[loadListener]' 
 })
 export class OnLoadListenerDirective implements OnInit, AfterViewInit{

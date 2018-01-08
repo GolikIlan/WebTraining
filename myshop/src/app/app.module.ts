@@ -72,7 +72,7 @@ import { NumberValidationDirective } from './number-validation-directive';
 import { AddNewProductComponent } from './add-new-product/add-new-product.component';
 import { SaveDialogComponent } from './save-dialog/save-dialog.component';
 import { CdkTableModule } from '@angular/cdk/table';
-import { SaveOnClickDialogProviderDirective, SendOnClickDialogProviderDirective, OnLoadListenerDirective } from './save-directive';
+import { SaveOnClickDialogProviderDirective, SendOnClickDialogProviderDirective, OnLoadListenerDirective, ShowOnClickDialogProviderDirective } from './save-directive';
 import { SendMessageComponent } from './send-message/send-message.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
@@ -170,6 +170,7 @@ const routes: Routes = [
     SaveOnClickDialogProviderDirective,
     SendMessageComponent,
     SendOnClickDialogProviderDirective,
+    ShowOnClickDialogProviderDirective,
     OnLoadListenerDirective,
   ],
   imports: [
@@ -198,6 +199,7 @@ const routes: Routes = [
      NavigationManagerService,
      AuthGuard, 
      HasPermissionGuard,
+     ShowOnClickDialogProviderDirective,
     ],
   bootstrap: [AppComponent]
 })

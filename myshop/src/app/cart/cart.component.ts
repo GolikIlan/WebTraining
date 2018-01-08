@@ -5,6 +5,7 @@ import { OnDestroy, AfterContentChecked } from '@angular/core/src/metadata/lifec
 import { Product } from '../products/product';
 import { NavigationManagerService } from '../navigation-manager-service';
 import { ActivatedRoute } from '@angular/router';
+import { ShowOnClickDialogProviderDirective } from '../save-directive';
 
 @Component({
   selector: 'app-cart',
@@ -12,6 +13,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit, OnDestroy {
+  private _deleteDialogSubscription: ISubscription;
+
+  private _detailsToDelete: any;
   isHidden: boolean;
   private _isRedyForRouting: boolean;
 
@@ -27,14 +31,23 @@ export class CartComponent implements OnInit, OnDestroy {
   private _summary: CartSummaryDetails[];
 
   constructor(private _cartManagementService:CartManagementService, private _navigationManager:NavigationManagerService,
-    private _route:ActivatedRoute) { 
+    private _route:ActivatedRoute, private _deleteDialogPresenter:ShowOnClickDialogProviderDirective) { 
       this._isRedyForRouting = false;
       this.isHidden = true;
-    this._subscription = this._cartManagementService.cartProductsAmountChanged.subscribe( amount => {
+      this.initDeleteDialog();
+      this._subscription = this._cartManagementService.cartProductsAmountChanged.subscribe( amount => {
       this._summary = this._cartManagementService.summary;
       this.totalPrice = this.getTotalPrice();
       this.totalAmount = this._summary.length;
   });
+  }
+
+  initDeleteDialog(): any {
+    this._deleteDialogPresenter.header = "Delete";
+    this._deleteDialogPresenter.msg = "Are you sure?";
+    this._deleteDialogSubscription = this._deleteDialogPresenter.sendResultIsReady.subscribe((result) => {
+      this.onDeleteConfirmationResult(result);
+    })
   }
 
   routerOutletLoaded(){
@@ -84,11 +97,21 @@ export class CartComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._subscription.unsubscribe();
+    this._deleteDialogSubscription.unsubscribe();
   }
 
   deleteButtonPressed(parameter:any){
-    let details = <CartSummaryDetails> parameter;
-    this._cartManagementService.removeProductFromCartBySummary(details);
+    this._detailsToDelete = <CartSummaryDetails> parameter;
+    this._deleteDialogPresenter.onClick();
+  }
+
+  private onDeleteConfirmationResult(args:boolean){
+    if(args === false){
+      this._detailsToDelete = undefined;
+    }
+    else{
+      this._cartManagementService.removeProductFromCartBySummary(this._detailsToDelete);
+    }
   }
 
   refresh(parameter:any){
