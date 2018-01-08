@@ -1,19 +1,27 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ViewChild, Component, OnInit, Output, EventEmitter, ElementRef, AfterViewInit } from '@angular/core';
 import { CategoriesDataService, Category } from '../products/categories.service';
 import { Product } from '../products/product';
 import { ProductsDataService } from '../products/products.service';
+import { FormGroup } from '@angular/forms/src/model';
+import { AfterContentInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { IsDirtyIndicationProvider } from '../is-dirty-indication-provider';
 
 @Component({
   selector: 'app-add-new-product',
   templateUrl: './add-new-product.component.html',
   styleUrls: ['./add-new-product.component.css']
 })
-export class AddNewProductComponent implements OnInit {
+export class AddNewProductComponent implements OnInit, AfterViewInit, IsDirtyIndicationProvider {
+
+  private _childForm: any;
   private _productToSave: Product;
   private _categories: Category[];
 
+  @ViewChild("addForm") form:ElementRef
+
   @Output()
   closing:EventEmitter<string> = new EventEmitter<string>();
+
 
   constructor(private _categoriesDataService:CategoriesDataService, 
     private _productsService:ProductsDataService) {
@@ -35,16 +43,25 @@ export class AddNewProductComponent implements OnInit {
     this._productToSave = new Product("255", categoryId, image, title, price, description);
   }
 
+  ngAfterViewInit(): void {
+    this._childForm = this.form;
+  }
+
+  isDirty():boolean{
+    return this._childForm.dirty === true;
+  }
+
+
   onSaveResultIsReady(args:boolean){
     if(args)
     {
       this._productsService.addNewProduct(this._productToSave);
-      this.closing.emit("AddNewProductComponent");
+      this._childForm.reset();
     }
   }
 
-  cancel(){
-    this.closing.emit("AddNewProductComponent");
+  reset(){
+    this._childForm.reset();
   }
 
   ngOnInit() {

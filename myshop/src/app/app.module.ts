@@ -83,6 +83,7 @@ import { NavigationManagerService } from './navigation-manager-service';
 import { HasPermissionGuard } from './has-permission.guard';
 import { AuthGuard } from './auth.guard';
 import { CartDetailsComponent } from './cart-details/cart-details.component';
+import { CanExitNotSavedRouteGuard } from './can-exit-add-new-route.guard';
 
 
 @NgModule({
@@ -132,9 +133,9 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'send', component: SendMessageComponent},
   {path: 'contacts', component: ContactsComponent},
-  {path: 'products/:id', component:ProductdetailsComponent},
+  {path: 'products/:id', component:ProductdetailsComponent, canDeactivate:[CanExitNotSavedRouteGuard]},
   {path: 'products', component:ProductsComponent},
-  {path: 'add', canActivate:[AuthGuard, HasPermissionGuard], component:AddNewProductComponent},
+  {path: 'add', canDeactivate:[CanExitNotSavedRouteGuard] ,canActivate:[AuthGuard, HasPermissionGuard], component:AddNewProductComponent},
   {path: 'cart', canActivate:[AuthGuard], component:CartComponent, children: [
     {path: ':id', component: CartDetailsComponent},
     {path: '**', component: PageNotFoundComponent}]},
@@ -199,6 +200,7 @@ const routes: Routes = [
      NavigationManagerService,
      AuthGuard, 
      HasPermissionGuard,
+     CanExitNotSavedRouteGuard,
      ShowOnClickDialogProviderDirective,
     ],
   bootstrap: [AppComponent]

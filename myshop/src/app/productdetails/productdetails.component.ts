@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Product, ProductWrapperInterface } from '../products/product';
 import { CategoriesDataService, Category } from '../products/categories.service';
@@ -6,20 +6,24 @@ import { UserPermissionsStatusProvider } from '../login/user-permissions-status-
 import { ISubscription } from 'rxjs/Subscription';
 import { ProductsDataService } from '../products/products.service';
 import { NavigationManagerService } from '../navigation-manager-service';
+import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { IsDirtyIndicationProvider } from '../is-dirty-indication-provider';
 
 @Component({
   selector: 'app-productdetails',
   templateUrl: './productdetails.component.html',
   styleUrls: ['./productdetails.component.css']
 })
-export class ProductdetailsComponent implements OnInit, ProductWrapperInterface {
-
-  _navigationSubscription: ISubscription;
+export class ProductdetailsComponent implements OnInit, AfterViewInit,ProductWrapperInterface, IsDirtyIndicationProvider {
+  private _childForm: any;
+  private _navigationSubscription: ISubscription;
   private _productToEdit: Product;
   private _categories: Category[];
   private _isInEditMode: boolean;
   private _editPermission: boolean;
   private _product: Product;
+
+  @ViewChild("editForm") form:ElementRef
 
   @Output()
   closing:EventEmitter<string> = new EventEmitter<string>();
@@ -31,6 +35,18 @@ export class ProductdetailsComponent implements OnInit, ProductWrapperInterface 
     private _navigationManagerService:NavigationManagerService) {
       this._isInEditMode = false;
       this._categories = this._categoriesDataService.getCategories();
+  }
+
+  ngAfterViewInit(): void {
+    this._childForm = this.form;
+  }
+
+  isDirty():boolean{
+    this._childForm = this.form;
+    if(this._childForm === undefined){
+      return false;
+    }
+    return this._childForm.dirty === true;
   }
 
   @Input()
