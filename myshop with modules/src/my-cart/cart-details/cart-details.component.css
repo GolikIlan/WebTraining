@@ -1,0 +1,52 @@
+
+.with-size{
+    width: 300px;
+    min-width: 300px;
+    height: 200px;
+    min-height: 200px;
+}
+
+.redBorder{
+    border: 1px red solid;
+}
+
+
+.greenBorder{
+    border: 1px green solid;
+}
+
+.wH{
+    width: 150px;
+}
+
+.hT{
+    height: 80px;
+}
+
+.noPadding{
+    padding: 0px;
+}
+
+padding-5{
+    padding: 5px;
+}
+
+.emptyCell{
+    width: 300px;
+    min-width: 300px;
+    height: 200px;
+    min-height: 200px;
+}
+
+
+
+
+@media screen and (max-width: 1500px) {
+    .emptyCell{
+        width: 0px;
+        min-width: 0px;
+    }
+}
+
+
+

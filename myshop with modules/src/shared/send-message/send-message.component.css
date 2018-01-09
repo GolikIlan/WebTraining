@@ -1,0 +1,42 @@
+.withPadding{
+    padding-top: 15px;
+}
+
+.root{
+    height: 75vh;
+    min-height: 75vh;
+    display: flex;;
+    align-items:center;
+}
+
+.withBorder{
+    border: 1px #ccc solid;
+    border-radius: 4px;
+}
+
+.large{
+
+    height: 150px;
+    max-height: 150px;
+    max-width: 350px;
+} 
+
+.paddingSmall{
+    padding: 2px;
+}
+
+.fontSizeSmall{
+    font-size: 12px;
+}
+
+.withScroll{
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+@media only screen and (max-height:600px) {
+    .root{
+        height: 550px;
+    }
+  }

@@ -1,0 +1,131 @@
+.mySideMenu a{
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.myLeftPanMenu a{
+    margin-top: 8px;
+    margin-left: 8px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+}
+
+.myLeftPanMenu a:hover{
+    cursor: context-menu;
+}
+
+.mySideMenu a:hover{
+    cursor: context-menu;
+}
+
+
+
+.inlineAnchoreDiv{
+    margin-top: 8px;
+    position: relative;
+}
+
+.inlineAnchoreDiv a{
+    display: inline;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+
+.inlineAnchoreDiv i.amountPresenter{
+    font-size: 18px;
+    margin-left: 5px;
+    padding-left: 0;
+    position: absolute;
+    top: 0px;
+}
+
+
+ 
+
+div.myLeftPanMenu{
+ margin-top: 25px;
+}
+
+.myLeftPanMenu a.selectedMenuItem{
+    color: rgb(60, 188, 248);
+}
+
+.mySideMenu a.selectedMenuItem{
+    color: rgb(60, 188, 248);
+}
+
+
+.mySideMenu, .myLeftPanMenu{
+    height: 95%;
+}
+
+.footer{
+    height: 25px;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    bottom: 30px;
+    transform: translate(-50%, 0);
+}
+
+.footer a{
+    color: #818181;
+    margin: 0px 0px 0px 6px;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.root{
+    height: 100%;
+    position: relative;
+}
+
+.myLeftPanMenu div.footer a{
+    display: inline;
+    color: #818181;
+    margin: 0px 0px 0px 6px;
+    font-size: 12px;
+    text-decoration: none;
+    padding: 0px;
+}
+
+.mySideMenu div.footer a{
+    display: inline;
+    color: #818181;
+    margin: 0px 0px 0px 6px;
+    font-size: 12px;
+    text-decoration: none;
+    padding: 0px;
+}
+
+  
+
+  @media screen and (max-height: 680px) {
+    .mySideMenu div.footer{
+        top: -55px;
+        bottom: 100%;
+        left:5px;
+        transform: translate(0, 0);
+    }
+
+    .myLeftPanMenu div.footer{
+        top: -10px;
+        bottom: 100%;
+        left:5px;
+        transform: translate(0, 0);
+    }
+  }
+
+  @media only screen and (max-width:1510px) {
+    .myLeftPanMenu a{
+        transition: 0s;
+    }
+  }

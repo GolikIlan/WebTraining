@@ -1,0 +1,37 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="header niceRed twentyVh withClearFix">
+  <!---->
+<div id="mySidenav" class="sidenav" *ngIf="sideNavIsVisible">
+  <app-closebutton (click)="closeSideNavMenu()" [currentClass] = "'closebtnOnSideNav'"></app-closebutton>
+  <!--<a href="javascript:void(0)" class="closebtn" (click)="closeSideNavMenu()">&times;</a>-->
+  <div class="appMenuNavPart">
+      <app-menu [selectedLang] = "localizationLang" [classes]="{'mySideMenu':true, 'myLeftPanMenu':false}" (selectedMenuItemChanged) = "onSelectedMenuItemChanged($event)" ></app-menu>
+  </div>
+</div>
+<div class="sideNavHolder withClearFix">
+    <span class="sideNavMenuButton inline left" (click)="openSideNavMenu()">&#9776;</span>
+    <div class="right localizationContainer">
+      <span class="left localization" *ngFor="let lang of supportedLangs" [class.isLocalizationSelected] = "localizationLang === lang.value" (click)="localizationSelected(lang.value)">
+          {{lang.display}}
+      </span>
+    </div>
+</div>
+<div class="headerPart">
+    <app-header ></app-header>
+</div>
+</div>
+<div class="withClearFix">
+<div class="leftPane matchToTwentyVh topMargin colored">
+    <app-menu [selectedLang] = "localizationLang" [classes]="{'mySideMenu':false, 'myLeftPanMenu':true}" (selectedMenuItemChanged) = "onSelectedMenuItemChanged($event)"></app-menu>
+</div>
+<div class="mainContent ">
+      <div class="withSmallPadding topMargin withMinHeightMatchedToTwentyVh colored">
+              <div class="mainContentContainer withBorder withMinHeightOf75Vh colored">
+                  <div class="innerRootContainer">
+                      <router-outlet></router-outlet>
+                  </div>
+              </div>
+      </div>
+</div>
+
+

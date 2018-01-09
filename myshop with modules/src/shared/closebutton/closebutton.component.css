@@ -1,0 +1,8 @@
+span:hover {
+    color: black;
+    cursor: context-menu;
+}
+
+span:active{
+    transform: scale(0.95);
+}

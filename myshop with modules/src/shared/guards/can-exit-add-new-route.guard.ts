@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { CanDeactivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { AddNewProductComponent } from './add-new-product/add-new-product.component';
-import { ShowOnClickDialogProviderDirective } from './save-directive';
 import { ISubscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
-import { IsDirtyIndicationProvider } from './is-dirty-indication-provider';
+import { ShowOnClickDialogProviderDirective } from '../directives/show-dialog-on-click-directive';
+import { IsDirtyIndicationProvider } from '../../core/interfaces/is-dirty-indication-provider';
 
 @Injectable()
 export class CanExitNotSavedRouteGuard implements CanDeactivate<IsDirtyIndicationProvider> {
@@ -14,7 +13,6 @@ export class CanExitNotSavedRouteGuard implements CanDeactivate<IsDirtyIndicatio
   
 
 constructor(private _deleteDialogPresenter:ShowOnClickDialogProviderDirective) {
- this.initDeleteDialog();
  this._response = new Subject();
 }
 
@@ -27,6 +25,7 @@ initDeleteDialog(): any {
 }
 
 private onDeleteConfirmationResult(args:boolean){
+  this._deleteDialogSubscription.unsubscribe();
   setTimeout(() => {
     this._response.next(args);
   }, 10);
@@ -37,7 +36,8 @@ canDeactivate(component: IsDirtyIndicationProvider,
   currentRoute: ActivatedRouteSnapshot, 
   currentState: RouterStateSnapshot, nextState?: RouterStateSnapshot): Observable<boolean> {
     if(component.isDirty()){
-      this._deleteDialogPresenter.onClick();
+      this.initDeleteDialog();
+      this._deleteDialogPresenter.show();
       return this._response;
     }
     setTimeout(() => {

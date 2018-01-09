@@ -1,0 +1,141 @@
+/* You can add global styles to this file, and also import other style files */
+html, body{
+    padding: 0px;
+    margin: 0px 5px;
+    min-width: 442px;
+    min-height: 520px;
+}
+
+.withClearFix:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+.twentyVh{
+    height: 17vh;
+    min-height: 75px;
+}
+
+.matchToTwentyVh{
+    height:79vh;
+}
+
+.halfAScreen{
+    height: 50vh;
+}
+
+.withMinHeightOf75Vh{
+    min-height:75vh;
+}
+
+.withMinHeightOf70Vh{
+    min-height:73vh;
+}
+
+/*.withFixedHeightOf73Vh{
+    min-height:73vh;
+    height: 73vh;
+}*/
+
+.withTopAndLeftPadding{
+    padding-top: 30px;
+    padding-left: 30px;
+ }
+
+.minWidth700{
+    min-width: 700px;
+}
+
+.minWidth900{
+    min-width: 900px;
+}
+
+.minWidth1500{
+    min-width: 1500px;
+}
+
+.withSmallPadding{
+    padding: 10px;
+}
+
+/*.closebtnOnSideNav {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    height: 5%;
+    text-decoration: none;
+    color: #818181;
+}*/
+
+.closebtnOnSideNav {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 36px;
+    margin-left: 50px;
+    height: 5%;
+    text-decoration: none;
+    color: gray;
+}
+
+
+.inline{
+    display: inline;
+}
+
+.red{
+    color: red;
+}
+
+.withSmalTopMargin{
+    margin-top: 5px;
+}
+
+.relative{
+    position: relative;
+}
+
+.w100{
+
+    width: 100px;
+    max-width: 100px;
+}
+
+.w200{
+
+    width: 200px;
+    max-width: 200px;
+}
+
+.wCart300{
+    width: 300px;
+    max-width: 300px;
+}
+
+.w300{
+    width: 300px;
+    max-width: 300px;
+}
+
+.bottomBorder{
+    border-bottom: 1px red solid;
+}
+
+.cell{
+    display: table-cell;
+}
+
+.box{
+    display: block;
+}
+
+@media screen and (max-width: 1500px) {
+    .wCart300{
+        width: 150px;
+        max-width: 150px;
+    }
+  }
+

@@ -1,0 +1,16 @@
+<div class="products colored">
+        <div class="categories" *ngIf="detailsShouldBePresented === false">
+                <ul>
+                    <li *ngFor="let category of categories" (click) = "categorySelected(category)" [class.categoryPresenterSelected] = "category === selectedCategory">
+                        {{category.title | uppercase }}
+                    </li>
+                </ul>
+        </div>
+            <div class="productItemsHolder colored" *ngIf="detailsShouldBePresented === false">
+                <div class="withClearFix">
+                    <div *ngFor="let product of products" (click)="productSelected(product)">
+                        <app-product [target]="product" [product] = "product"></app-product>
+                    </div>
+                </div>
+            </div>
+</div>

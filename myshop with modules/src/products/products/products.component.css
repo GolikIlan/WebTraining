@@ -1,0 +1,54 @@
+.categories{
+    color: rgb(73, 150, 238);
+}
+
+.categories ul{
+    padding: 0;
+    display: block;
+}
+
+.products{
+    width: 100%;
+    position: relative;
+    top:0px;
+    left:0px;
+}
+
+
+
+.withPaddingLeftAndTop{
+    padding-left: 8px;
+    padding-top: 8px;
+}
+
+.colored{
+    background-color: #FAFAFA;
+}
+
+.withMargin{
+    margin-bottom: 30px;
+    margin-left: 30px;
+}
+
+.red{
+    background-color: red;
+}
+
+.categoryPresenter{
+    color: rgb(118, 172, 243);
+    font-size: 20px;
+}
+
+.categoryPresenterSelected{
+    border-bottom: 1px rgb(118, 172, 243) solid;
+}
+
+.productItemsHolder
+{
+    margin: 0px;
+}
+
+.categories li{
+    margin-left: 5px;
+    display: inline-block;
+}

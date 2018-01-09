@@ -1,0 +1,25 @@
+<div class="root">
+    <div [ngClass]="classes">
+        <div *ngFor="let item of menuItems" >
+            <div *ngIf="item.active">
+                    <a *ngIf="isMenuItem(item);else cartMenuItemTemplate" (click)="selected(item)" routerLinkActive="selectedMenuItem" [routerLink]="[item.path]">{{ item.title | localization }}</a>
+                    <ng-template #cartMenuItemTemplate>
+                        <div class="inlineAnchoreDiv">
+                            <a (click)="selected(item)" routerLinkActive="selectedMenuItem" [routerLink]="[item.path]">{{ item.title | localization }} <i *ngIf="item.amount > 0" class="amountPresenter" [class.selectedMenuItem] = "item.title === currentSelectedMenuItem.title">{{item.amount}}</i></a>
+                        </div>
+                    </ng-template>
+            </div>
+        </div>
+        <div class="footer">
+                <app-anchorwrapper>
+                    <a #contentAnchore class="fa fa-facebook" href="https://en-gb.facebook.com/login/" ></a>
+                </app-anchorwrapper>
+                <app-anchorwrapper>
+                    <a #contentAnchore class="fa fa-github" href="https://github.com/login"></a>
+                </app-anchorwrapper>
+                <app-anchorwrapper>
+                    <a #contentAnchore class="fa fa-envelope-o" href="mailto:yourEmail@domain.com"></a>
+                </app-anchorwrapper>
+            </div>
+    </div>
+</div>

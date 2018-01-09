@@ -1,0 +1,22 @@
+<div class="withTopAndRightMargin floatedLeft withClearFix">
+        <app-cartaddingwrapper>
+                <div [target]="product"  class="productItem">
+                    <div  class="imgContainer">
+                        <img src="{{product.image}}" alt="product image">
+                    </div>
+                    <div class="productItemHeadereader black">
+                        <div class="nameContainer">
+                            {{product.title}}
+                        </div>
+                        <div class="priceContainer">
+                            {{product.price | currency:"USD":"symbol-narrow"}}
+                        </div>
+                        <div class="descriptionRootContainer white">
+                            <div class="descriptionContainer colorBlack">
+                                {{product.description}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </app-cartaddingwrapper>
+</div>

@@ -1,0 +1,41 @@
+<div class="withTopAndLeftPadding withMinHeightOf70Vh">
+    <div *ngIf="products.length > 0; else noItemsInTemplate">
+        <span class="bottomBorder fontSize35">Cart</span>
+        <div class="withTopMargin" *ngIf="products.length > 0">
+            <span class="wCart300 cell bottomBorder">
+                Title
+            </span>
+            <span class="wCart300 cell bottomBorder">
+                Price
+            </span>
+        </div>
+        <div >
+            <div *ngFor="let product of products">
+                <app-endoflinebutton [classes] = "{'withSmalTopMargin':true, 'red':true, 'fa':true, 'fa-times':true}" 
+                (buttonPressed) = "deleteButtonPressed($event)">
+                    <app-cartline [target] = "product" (lineSelected)="lineSelected($event)" [lineParameter] = "product"></app-cartline>
+                </app-endoflinebutton>
+                <div *ngIf="isHidden === false">
+                        <div *ngIf="isSelected(product.productId)">
+                                <app-endoflinebutton [classes] = "{'withSmalTopMargin':true, 'red':true, 'fa':true, 'fa-refresh':true}" (buttonPressed) = "refresh($event)">
+                                    <div class="inline" [target] = "product" loadListener (loadOccured)="routerOutletLoaded()">
+                                         <router-outlet></router-outlet>
+                                    </div>
+                                </app-endoflinebutton>
+                            </div>
+                </div>
+            </div>
+            <div *ngIf="products.length > 0" class="withLargeMarginTop">
+                <span class="block">
+                    Total Price: {{totalPrice| currency:"USD":"symbol-narrow"}}
+                </span>
+                <span class="block">
+                    Total Qty  : {{totalAmount}}
+                </span>
+            </div>
+        </div>
+    </div>
+    <ng-template #noItemsInTemplate>
+        <h3>no items in the cart</h3>
+    </ng-template>
+    </div>
