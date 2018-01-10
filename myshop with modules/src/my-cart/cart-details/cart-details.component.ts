@@ -3,6 +3,8 @@ import { ISubscription } from 'rxjs/Subscription';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../core/product-model/product';
 import { ProductsDataService } from '../../core/product-services/products.service';
+import { Observable } from 'rxjs/Observable';
+
 
 
 @Component({
@@ -11,7 +13,7 @@ import { ProductsDataService } from '../../core/product-services/products.servic
   styleUrls: ['./cart-details.component.css']
 })
 export class CartDetailsComponent implements OnInit, OnDestroy {
-  private _product: Product;
+  private _product: Observable<Product>;
   private _routeSubscription:ISubscription;
 
   constructor(private _productsDataService:ProductsDataService, private _route: ActivatedRoute) {
@@ -31,14 +33,15 @@ export class CartDetailsComponent implements OnInit, OnDestroy {
   loadDetails(productId:string): void {
     this.product = this._productsDataService.getProductById(productId);
     console.log(`loading details ${productId}`);
-    console.log(`loading details ${this.product.productId}`);
+    this.product.map(p => console.log(`loading details ${p.productId}`));
+    
   }
 
-  set product(value:Product) {
+  set product(value:Observable<Product>) {
     this._product = value;
   }
 
-  get product():Product{
+  get product():Observable<Product>{
     return this._product;
   }
 

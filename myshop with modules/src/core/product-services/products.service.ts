@@ -1,38 +1,64 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Inject } from "@angular/core";
 import { PRODUCTS_FULL } from "./products.mock";
 import { UserPermissionsStatusProvider } from "../permissions-service/user-permissions-status-provider";
 import { Product } from "../product-model/product";
+import { Subject } from "rxjs/Subject";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/filter";
+import "rxjs/add/operator/map";
+
 
 
 
 @Injectable()
 export class ProductsDataService{
 
+    private _subject:BehaviorSubject<Array<Product>>;
+    private _observabProducts:Observable<Array<Product>>;
+    private _products: Product[];
+
     private _productInStockMap:Map<string, number>;
 
-    constructor(private _userPermissionsStatusProvider:UserPermissionsStatusProvider) {
-        this._productInStockMap = new Map<string, number>();
-        this.initStock();
+    constructor(
+        private _userPermissionsStatusProvider:UserPermissionsStatusProvider,
+        @Inject(PRODUCTS_FULL) products: any) {
+        this._subject = new BehaviorSubject<Array<Product>>([]);
+        this._observabProducts = this._subject.asObservable();
+            
+        this.init(products);
     }
 
+    private async init(products: any) {
+        this._products = <Array<Product>> await products.getProducts();
+        this._productInStockMap = new Map<string, number>();
+        this.initStock();
+        this._subject.next(this._products);
+    }
+
+
     private initStock(): any {
-        for (const product of PRODUCTS_FULL) {
+        for (const product of this._products) {
             this._productInStockMap.set(product.productId, 7);
         }
     }
 
-    getProducts():Array<Product>{
-        return PRODUCTS_FULL;
+    getProducts():Observable<Array<Product>>{
+        return this._observabProducts;
     }
 
-    getProductById(id:string){
-        return PRODUCTS_FULL.find(product => product.productId  === id);
+    getProductById(id:string):Observable<Product>{
+        let product = this.getProducts().
+            filter(products => products.length > 0).
+            map(products => products.find(product => product.productId === id));
+        return product;
     }
 
     addNewProduct(product:Product){
-        product.productId = `${PRODUCTS_FULL.length + 1}`;
+        product.productId = `${this._products.length + 1}`;
         this._productInStockMap.set(product.productId, 7);
-        PRODUCTS_FULL.push(product)
+        this._products.push(product)
+        this._subject.next(this._products);
     }
 
     incrementStock(product:Product){

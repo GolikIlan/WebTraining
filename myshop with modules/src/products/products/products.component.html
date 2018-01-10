@@ -8,7 +8,7 @@
         </div>
             <div class="productItemsHolder colored" *ngIf="detailsShouldBePresented === false">
                 <div class="withClearFix">
-                    <div *ngFor="let product of products" (click)="productSelected(product)">
+                    <div *ngFor="let product of products | async" (click)="productSelected(product)">
                         <app-product [target]="product" [product] = "product"></app-product>
                     </div>
                 </div>

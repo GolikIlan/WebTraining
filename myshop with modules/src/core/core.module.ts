@@ -17,6 +17,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { HasPermissionGuard } from './guards/has-permission.guard';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { PRODUCTS_PROVIDERS } from './product-services/products.mock';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { RouterModule } from '@angular/router';
     NavigationManagerService,
     AuthGuard, 
     HasPermissionGuard,
-    CategoriesDataService, 
+    CategoriesDataService,
+    PRODUCTS_PROVIDERS, 
   ]
 })
 export class CoreModule { 

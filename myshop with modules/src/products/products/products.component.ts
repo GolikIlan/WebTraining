@@ -4,6 +4,7 @@ import { Product } from '../../core/product-model/product';
 import { Category, CategoriesDataService } from '../../core/product-services/categories.service';
 import { ProductsDataService } from '../../core/product-services/products.service';
 import { NavigationManagerService } from '../../core/navigation_service/navigation-manager-service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-products',
@@ -11,7 +12,7 @@ import { NavigationManagerService } from '../../core/navigation_service/navigati
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-   private _products: Product[];
+  private _products: Observable<Array<Product>>;
   private _selectedCategory: Category;
   selectedProduct: Product;
   detailsShouldBePresented:boolean;
@@ -49,13 +50,14 @@ export class ProductsComponent implements OnInit {
     return this._selectedCategory;
   }
 
-  get products():Array<Product>{
-    return this._products.filter((product) => {
+  get products():Observable<Array<Product>>{
+    return this._products.map(products => products.filter(product => {
       if(this._selectedCategory.id === "all") 
       {
         return true;
       }
-      return product.categoryId === this._selectedCategory.id});
+      return product.categoryId === this._selectedCategory.id
+    }));
   }
 
   closeDetails(){

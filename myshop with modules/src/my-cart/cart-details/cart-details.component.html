@@ -2,22 +2,22 @@
   <div class="container inline">  
       <form class="custom padding-5 inline">
         <div class="col-sm-7 col-md-7 col-xs-7 noPadding">
-            <img class="cell wH hT" src="{{product.image}}" alt="product image">
+            <img class="cell wH hT" src="{{(product | async).image}}" alt="product image">
         </div>
         <div class="col-sm-4 col-sm-offset-1 col-md-4 col-md-offset-1 col-xs-4 col-xs-offset-1 noPadding">
             <div class="form-group row">
                 <label for="title" class="col-sm-12 col-md-12 col-form-label green">Title:</label>
                 <div id="title" class="col-sm-12 col-md-12">
-                    <span class="box">{{product.title}}</span>
+                    <span class="box">{{(product | async).title}}</span>
                 </div>
                 <label for="price" class="col-sm-12 col-md-12 col-form-label green">Price:</label>
                 <div id="price" class="col-sm-12 col-md-12">
-                    <span class="box">{{product.price}}</span>
+                    <span class="box">{{(product | async).price | currency:'USD':"symbol-narrow"}}</span>
                 </div>
             </div>
         </div>
         <div class="col-sm-12 col-md-12 noPadding">
-            <span>{{product.description}}</span>
+            <span>{{(product | async).description}}</span>
         </div>
       </form>
   </div>

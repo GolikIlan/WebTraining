@@ -7,20 +7,24 @@ import { UserPermissionsStatusProvider } from '../../core/permissions-service/us
 import { ProductsDataService } from '../../core/product-services/products.service';
 import { NavigationManagerService } from '../../core/navigation_service/navigation-manager-service';
 import { IsDirtyIndicationProvider } from '../../core/interfaces/is-dirty-indication-provider';
+import { Observable } from 'rxjs/Observable';
+import "rxjs/add/operator/do";
+import "rxjs/add/operator/map";
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'app-productdetails',
   templateUrl: './productdetails.component.html',
   styleUrls: ['./productdetails.component.css']
 })
-export class ProductdetailsComponent implements OnInit, AfterViewInit,ProductWrapperInterface, IsDirtyIndicationProvider {
+export class ProductdetailsComponent implements OnInit, AfterViewInit, IsDirtyIndicationProvider {
   private _childForm: any;
   private _navigationSubscription: ISubscription;
   private _productToEdit: Product;
   private _categories: Category[];
   private _isInEditMode: boolean;
   private _editPermission: boolean;
-  private _product: Product;
+  private _product: Observable<Product>;
 
   @ViewChild("editForm") form:ElementRef
 
@@ -49,11 +53,11 @@ export class ProductdetailsComponent implements OnInit, AfterViewInit,ProductWra
   }
 
   @Input()
-  set product(value:Product){
+  set product(value:Observable<Product>){
     this._product = value;
   }
 
-  get product():Product{
+  get product():Observable<Product>{
     return this._product;
   }
 
@@ -71,8 +75,8 @@ export class ProductdetailsComponent implements OnInit, AfterViewInit,ProductWra
     console.log(category);
   }
 
-  get category():Category{
-    return this._categories.find((category) => category.id === this._product.categoryId);
+  get category():Observable<Category>{
+    return this.product.map(p => this._categories.find((category) => category.id === p.categoryId));
   }
 
   edit(){
@@ -84,7 +88,7 @@ export class ProductdetailsComponent implements OnInit, AfterViewInit,ProductWra
   }
 
   onSubmit(form:any){
-    let categoryId = form.value["categorySelection"]
+    let categoryId = form.value["categorySelection"];
     let title = form.value["title"];
     let image = form.value["image"];
     let price = form.value["price"];
@@ -95,11 +99,18 @@ export class ProductdetailsComponent implements OnInit, AfterViewInit,ProductWra
 
   onSaveResultIsReady(result:boolean){
     if(result){
-      this._product.categoryId = this._productToEdit.categoryId;
-      this._product.price = this._productToEdit.price;
-      this._product.title = this._productToEdit.title;
-      this._product.description = this._productToEdit.description;
-      this._product.image = this._productToEdit.image;
+      let sub = this.product.map(p => {
+        p.categoryId = this._productToEdit.categoryId;
+        p.price = this._productToEdit.price;
+        p.title = this._productToEdit.title;
+        p.description = this._productToEdit.description;
+        p.image = this._productToEdit.image;
+        return p;
+      }).subscribe(p => {
+        let s = new BehaviorSubject<Product>(p);
+        this.product = s.asObservable();
+      });
+      sub.unsubscribe();
     }
     this._isInEditMode = false;
   }
@@ -113,7 +124,8 @@ export class ProductdetailsComponent implements OnInit, AfterViewInit,ProductWra
   }
 
   private loadProduct(id:string): any {
-    this.product = this._productsService.getProductById(id);
+    this.product = this._productsService
+    .getProductById(id);
   }
 
   ngOnInit() {
