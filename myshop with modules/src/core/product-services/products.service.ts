@@ -1,5 +1,5 @@
 import { Injectable, Inject } from "@angular/core";
-import { PRODUCTS_FULL } from "./products.mock";
+import { PRODUCTS_FULL, ProductsProviderHttpBased } from "./products.mock";
 import { UserPermissionsStatusProvider } from "../permissions-service/user-permissions-status-provider";
 import { Product } from "../product-model/product";
 import { Subject } from "rxjs/Subject";
@@ -22,7 +22,7 @@ export class ProductsDataService{
 
     constructor(
         private _userPermissionsStatusProvider:UserPermissionsStatusProvider,
-        @Inject(PRODUCTS_FULL) products: any) {
+        products: ProductsProviderHttpBased) {
         this._subject = new BehaviorSubject<Array<Product>>([]);
         this._observabProducts = this._subject.asObservable();
             
@@ -48,10 +48,15 @@ export class ProductsDataService{
     }
 
     getProductById(id:string):Observable<Product>{
-        let product = this.getProducts().
+        let result:Observable<Product>;
+        let sub = this.getProducts().
             filter(products => products.length > 0).
-            map(products => products.find(product => product.productId === id));
-        return product;
+            map(products => products.find(product => product.productId === id)).subscribe(product => {
+                let s = new BehaviorSubject<Product>(product);
+                result = s.asObservable();
+            });
+        sub.unsubscribe();
+        return result;
     }
 
     addNewProduct(product:Product){

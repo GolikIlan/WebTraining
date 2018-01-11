@@ -1,6 +1,7 @@
 import { Product } from "../product-model/product";
-import { InjectionToken } from "@angular/core";
+import { InjectionToken, Injectable } from "@angular/core";
 import { ProductsRoutingModule } from "../../products/products-routing.module";
+import { HttpClient } from '@angular/common/http';
 
 class ProductsProvider{
     private _products:Array<Product> =  [
@@ -15,7 +16,7 @@ class ProductsProvider{
     
         new Product("6","2", "./assets/images/clothes.jpg", "Shirt", 1.50, "Shirt - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."), 
         new Product("7","2", "./assets/images/clothes.jpg", "T-Shirt", 1.50, "T-Shirt - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."), 
-        new Product("8","2", "./assets/images/clothes.jpg", "T-Shirt", 1.50, "Pans - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."), 
+        new Product("8","2", "./assets/images/clothes.jpg", "Pans", 1.50, "Pans - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."), 
      
         new Product("9","3", "./assets/images/children-Car-Toy.jpg", "Car-Toy", 1.50, "Car - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."), 
         new Product("10","3", "./assets/images/children-Doll-Toy.jpg", "Doll-Toy", 1.50, "Doll - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."),
@@ -44,16 +45,36 @@ class ProductsProvider{
 
 }
 
+/*       return  this._http.get('./assets/products.json')
+        .map(response => <Array<Product>>response.json().data)
+        .toPromise(); */
+
 const products_empty:Array<Product> = [];
 const provider:ProductsProvider = new ProductsProvider();
 
 export const PRODUCTS_FULL = new InjectionToken<ProductsProvider>('products');
 export const PRODUCTS_EMPTY = new InjectionToken('empty_products')
 
-export const PRODUCTS_PROVIDERS = [
+export const PRODUCTS_PROVIDERS_MOCK = [
     { provide: PRODUCTS_FULL,  useValue:provider },
     { provide: PRODUCTS_EMPTY, useValue:products_empty},
 ];
+
+
+@Injectable()
+export class ProductsProviderHttpBased {
+    constructor(private _http:HttpClient) {
+    }
+
+    async getProducts():Promise<Array<Product>>{
+        return  this._http.get('./assets/products.json')
+        .map(response => {
+            let result = <Array<Product>>response["data"];
+            return result;
+        })
+        .toPromise();
+    }
+}
 
 
 

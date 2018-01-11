@@ -24,7 +24,6 @@ export class AddNewProductComponent implements OnInit, AfterViewInit, IsDirtyInd
 
   constructor(private _categoriesDataService:CategoriesDataService, 
     private _productsService:ProductsDataService) {
-      this._categories = this._categoriesDataService.getCategories();
   }
 
   get categories():Array<Category>{
@@ -63,7 +62,8 @@ export class AddNewProductComponent implements OnInit, AfterViewInit, IsDirtyInd
     this._childForm.reset();
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this._categories = <Array<Category>> await this._categoriesDataService.getCategories();
   }
 
 }

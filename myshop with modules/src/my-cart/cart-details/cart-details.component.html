@@ -10,7 +10,7 @@
                 <div id="title" class="col-sm-12 col-md-12">
                     <span class="box">{{(product | async).title}}</span>
                 </div>
-                <label for="price" class="col-sm-12 col-md-12 col-form-label green">Price:</label>
+                <label for="price" class="col-sm-12 col-md-12 col-form-label green">Current Price:</label>
                 <div id="price" class="col-sm-12 col-md-12">
                     <span class="box">{{(product | async).price | currency:'USD':"symbol-narrow"}}</span>
                 </div>

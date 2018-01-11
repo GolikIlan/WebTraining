@@ -1,7 +1,7 @@
 <div class="withTopAndLeftPadding withMinHeightOf70Vh">
-    <div *ngIf="products.length > 0; else noItemsInTemplate">
+    <div *ngIf="(products | async).length > 0; else noItemsInTemplate">
         <span class="bottomBorder fontSize35">Cart</span>
-        <div class="withTopMargin" *ngIf="products.length > 0">
+        <div class="withTopMargin" *ngIf="(products | async).length > 0">
             <span class="wCart300 cell bottomBorder">
                 Title
             </span>
@@ -10,7 +10,7 @@
             </span>
         </div>
         <div >
-            <div *ngFor="let product of products">
+            <div *ngFor="let product of products | async">
                 <app-endoflinebutton [classes] = "{'withSmalTopMargin':true, 'red':true, 'fa':true, 'fa-times':true}" 
                 (buttonPressed) = "deleteButtonPressed($event)">
                     <app-cartline [target] = "product" (lineSelected)="lineSelected($event)" [lineParameter] = "product"></app-cartline>
@@ -25,12 +25,12 @@
                             </div>
                 </div>
             </div>
-            <div *ngIf="products.length > 0" class="withLargeMarginTop">
+            <div *ngIf="(products | async).length > 0" class="withLargeMarginTop">
                 <span class="block">
-                    Total Price: {{totalPrice| currency:"USD":"symbol-narrow"}}
+                    Total Price: {{(totalPrice | async) | currency:"USD":"symbol-narrow"}}
                 </span>
                 <span class="block">
-                    Total Qty  : {{totalAmount}}
+                    Total Qty  : {{(totalAmount | async)}}
                 </span>
             </div>
         </div>

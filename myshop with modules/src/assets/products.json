@@ -1,0 +1,124 @@
+{
+    "data":[
+        {
+            "productId":"1",
+            "categoryId":"1",
+            "image":"./assets/images/food.jpg",
+            "title":"Apples",
+            "price":"2.50",
+            "description":"Apples - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        },
+        {
+            "productId":"2",
+            "categoryId":"1",
+            "image":"./assets/images/food.jpg",
+            "title":"Bananas",
+            "price":"3.50",
+            "description":"Bananas - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        },
+        {
+            "productId":"3",
+            "categoryId":"1",
+            "image":"./assets/images/food.jpg",
+            "title":"Cheese",
+            "price":"4.50",
+            "description":"Cheese - - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        },
+        {
+            "productId":"4",
+            "categoryId":"1",
+            "image":"./assets/images/food.jpg",
+            "title":"Dark Choclate",
+            "price":"5.50",
+            "description":"Dark Choclate - - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        },
+        {
+            "productId":"5",
+            "categoryId":"1",
+            "image":"./assets/images/food.jpg",
+            "title":"Eggs",
+            "price":"1.50",
+            "description":"Eggs - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        },
+        {
+            "productId":"6",
+            "categoryId":"2",
+            "image":"assets/images/clothes.jpg",
+            "title":"Shirt",
+            "price":"1.50",
+            "description":"Shirt - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        },
+        {
+            "productId":"7",
+            "categoryId":"2",
+            "image":"assets/images/clothes.jpg",
+            "title":"T-Shirt",
+            "price":"1.58",
+            "description":"T-Shirt - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        },
+        {
+            "productId":"8",
+            "categoryId":"2",
+            "image":"assets/images/clothes.jpg",
+            "title":"Pans",
+            "price":"2.56",
+            "description":"Pans - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        },
+        {
+            "productId":"9",
+            "categoryId":"3",
+            "image":"./assets/images/children-Car-Toy.jpg",
+            "title":"Car-Toy",
+            "price":"1.50",
+            "description":"Car - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        },
+        {
+            "productId":"10",
+            "categoryId":"3",
+            "image":"./assets/images/children-Doll-Toy.jpg",
+            "title":"Dol-Toy",
+            "price":"1.50",
+            "description":"Doll - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        },
+        {
+            "productId":"11",
+            "categoryId":"4",
+            "image":"./assets/images/tv.jpg",
+            "title":"TV",
+            "price":"1.50",
+            "description":"TV - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        },
+        {
+            "productId":"12",
+            "categoryId":"4",
+            "image":"./assets/images/fridge.jpg",
+            "title":"Fridge",
+            "price":"1.50",
+            "description":"Fridge - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        },
+        {
+            "productId":"13",
+            "categoryId":"5",
+            "image":"./assets/images/carpet.jpg",
+            "title":"Carpet",
+            "price":"1.50",
+            "description":"Carpet - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        },
+        {
+            "productId":"14",
+            "categoryId":"5",
+            "image":"./assets/images/table.jpg",
+            "title":"Table",
+            "price":"1.50",
+            "description":"Table - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        },
+        {
+            "productId":"15",
+            "categoryId":"5",
+            "image":"./assets/images/cup.jpg",
+            "title":"Cup",
+            "price":"1.50",
+            "description":"Cup - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."
+        }
+    ]
+}

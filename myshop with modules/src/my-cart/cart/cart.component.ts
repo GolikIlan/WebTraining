@@ -4,6 +4,7 @@ import { ISubscription } from 'rxjs/Subscription';
 import { CartSummaryDetails, CartManagementService } from '../../core/cart-service/cartManagementService';
 import { ShowOnClickDialogProviderDirective } from '../../shared/directives/show-dialog-on-click-directive';
 import { NavigationManagerService } from '../../core/navigation_service/navigation-manager-service';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -20,9 +21,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   selecteId: string;
   private _selectedProduct: CartSummaryDetails;
-  totalAmount: number;
-  totalPrice: any;
-
+  
   whenAmountChanged(): any {
     throw new Error("Method not implemented.");
   }
@@ -37,9 +36,9 @@ export class CartComponent implements OnInit, OnDestroy {
       this.isHidden = true;
       this.initDeleteDialog();
       this._subscription = this._cartManagementService.cartProductsAmountChanged.subscribe( amount => {
-      this._summary = this._cartManagementService.summary;
+      /*this._summary = this._cartManagementService.summary;
       this.totalPrice = this.getTotalPrice();
-      this.totalAmount = this._summary.length;
+      this.totalAmount = this._summary.length;*/
   });
   }
 
@@ -86,14 +85,22 @@ export class CartComponent implements OnInit, OnDestroy {
     this._navigationManager.navigateToWithRelativeParent(navigationPath, this._route);
   }
 
-  get products():Array<CartSummaryDetails>{
-    return this._summary;
+  get products():Observable<Array<CartSummaryDetails>>{
+    return this._cartManagementService.summary;
+  }
+
+  get totalAmount(): Observable<number>{
+    return this._cartManagementService.summary.map(array => array.length);
+  }
+
+  get totalPrice(): Observable<number>{
+    return this._cartManagementService.summary.map(array => this.getTotalPrice(array));
   }
 
   ngOnInit() {
-    this._summary = this._cartManagementService.summary;
+    /*this._summary = this._cartManagementService.summary;
     this.totalPrice = this.getTotalPrice();
-    this.totalAmount = this._summary.length;
+    this.totalAmount = this._summary.length;*/
   }
 
   ngOnDestroy(): void {
@@ -120,10 +127,10 @@ export class CartComponent implements OnInit, OnDestroy {
     this.isHidden = true;
   }
 
-  private getTotalPrice():number{
+  private getTotalPrice(summary:Array<CartSummaryDetails> ):number{
     let total = 0;
-    for (const details of this._summary) {
-      total += details.price;
+    for (const details of summary) {
+      total += (+details.price);
     }
     return total;
   }

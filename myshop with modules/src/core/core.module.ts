@@ -17,7 +17,9 @@ import { AuthGuard } from './guards/auth.guard';
 import { HasPermissionGuard } from './guards/has-permission.guard';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { PRODUCTS_PROVIDERS } from './product-services/products.mock';
+import { PRODUCTS_PROVIDERS_MOCK, ProductsProviderHttpBased } from './product-services/products.mock';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoggingInterceptor } from '../core/interceptors/logging-interceptor';
 
 @NgModule({
   imports: [
@@ -39,7 +41,9 @@ import { PRODUCTS_PROVIDERS } from './product-services/products.mock';
     AuthGuard, 
     HasPermissionGuard,
     CategoriesDataService,
-    PRODUCTS_PROVIDERS, 
+    PRODUCTS_PROVIDERS_MOCK,
+    ProductsProviderHttpBased, 
+    { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
   ]
 })
 export class CoreModule { 

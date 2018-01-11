@@ -1,0 +1,28 @@
+{
+    "data":[
+        {
+            "id":"1",
+            "title":"Foods"
+        },
+        {
+            "id":"2",
+            "title":"Clothes"
+        },
+        {
+            "id":"3",
+            "title":"Children"
+        },
+        {
+            "id":"4",
+            "title":"Electronics"
+        },
+        {
+            "id":"5",
+            "title":"Home"
+        },
+        {
+            "id":"all",
+            "title":"All"
+        }
+    ]
+}

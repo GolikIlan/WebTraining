@@ -51,6 +51,9 @@ export class ProductsComponent implements OnInit {
   }
 
   get products():Observable<Array<Product>>{
+    if(this._products === undefined){
+      return null;
+    }
     return this._products.map(products => products.filter(product => {
       if(this._selectedCategory.id === "all") 
       {
@@ -64,9 +67,9 @@ export class ProductsComponent implements OnInit {
     this.detailsShouldBePresented = false;
   }
 
-  ngOnInit() {
-    this._products = this._productsDataService.getProducts();
-    this.categories = this._categoriesDataService.getCategories();
+  async ngOnInit() {
+    this.categories = <Array<Category>> await this._categoriesDataService.getCategories();
     this.selectedCategory = this.categories.find((category) => category.id === "all");
+    this._products = this._productsDataService.getProducts();
   }
 }

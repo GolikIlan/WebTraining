@@ -35,13 +35,22 @@ export class CartaddingwrapperComponent implements OnInit, AfterContentInit {
     args.stopPropagation();
     if(this.productInStock)
     {
-      this._cartManagementService.addProductToCart(this._product);
+      this._cartManagementService.addProductToCart(this.cloneProduct(this._product));
     }
+  }
+
+  cloneProduct(product: Product): Product {
+    return new Product(product.productId, 
+      product.categoryId, 
+      product.image, 
+      product.title, 
+      product.price, 
+      product.description);
   }
 
   removeFromCart(args:any){
     args.stopPropagation();
-    this._cartManagementService.removeProductFromCart(this._product);
+    this._cartManagementService.removeProductFromCart(this.cloneProduct(this._product));
   }
 
   get productInStock():boolean{

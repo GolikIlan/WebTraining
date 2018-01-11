@@ -11,6 +11,7 @@ import { Observable } from 'rxjs/Observable';
 import "rxjs/add/operator/do";
 import "rxjs/add/operator/map";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ProductComponent } from '../product/product.component';
 
 @Component({
   selector: 'app-productdetails',
@@ -37,7 +38,6 @@ export class ProductdetailsComponent implements OnInit, AfterViewInit, IsDirtyIn
     private _productsService:ProductsDataService,
     private _navigationManagerService:NavigationManagerService) {
       this._isInEditMode = false;
-      this._categories = this._categoriesDataService.getCategories();
   }
 
   ngAfterViewInit(): void {
@@ -97,6 +97,10 @@ export class ProductdetailsComponent implements OnInit, AfterViewInit, IsDirtyIn
     this._productToEdit = new Product("255", categoryId, image, title, price, description);
   }
 
+  get isReady():boolean{
+    return this.product !== undefined && this.product !== null;
+  }
+
   onSaveResultIsReady(result:boolean){
     if(result){
       let sub = this.product.map(p => {
@@ -124,16 +128,16 @@ export class ProductdetailsComponent implements OnInit, AfterViewInit, IsDirtyIn
   }
 
   private loadProduct(id:string): any {
-    this.product = this._productsService
-    .getProductById(id);
+    this.product = this._productsService.getProductById(id);
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this._categories = <Array<Category>> await this._categoriesDataService.getCategories();
+    this._editPermission = this._userPermissionsStatusProvider.canCurrentUserEditProductDetails()
     this._navigationSubscription = this._activatedRoute.paramMap.subscribe(param => {
       let productId = param.get('id');
       this.loadProduct(productId);
     });
-    this._editPermission = this._userPermissionsStatusProvider.canCurrentUserEditProductDetails()
   }
 
 }

@@ -3,6 +3,9 @@ import { ISubscription } from "rxjs/Subscription";
 import { CartManagementService } from "../cart-service/cartManagementService";
 import { LoginSevice } from "../login-service/loginservice";
 import { UserPermissionsStatusProvider } from "../permissions-service/user-permissions-status-provider";
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/filter";
+import "rxjs/add/operator/map";
 
 @Injectable()
 export class MenuItem {
@@ -21,14 +24,14 @@ export class MenuItemWithAmount extends MenuItem{
 }
 
 @Injectable()
-export class CartMenuItem extends MenuItemWithAmount{
+export class CartMenuItem extends MenuItem{
     private _loginSubscription: ISubscription;
     //private _subscription: ISubscription;
 
     constructor(title:string, 
         private _cartManagementService:CartManagementService,
         private _loginService:LoginSevice, path:string) {
-        super(title, _loginService.isLogedIn, 55555, path);
+        super(title, _loginService.isLogedIn, path);
 
         this._loginSubscription = this._loginService.loginStatusChanged.subscribe((status) => {
             this.whenLoggedIn(status);
@@ -39,11 +42,11 @@ export class CartMenuItem extends MenuItemWithAmount{
         this.active = status
     }
 
-    get amount():number{
-        return this._cartManagementService.productsAmount;
+    get amount():Observable<number>{
+        return this._cartManagementService.summary.map(details => details.length);
     }
 
-    set amount(value:number){
+    set amount(value:Observable<number>){
     }
 
     destroy(){

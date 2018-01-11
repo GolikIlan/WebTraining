@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 export class Category{
     constructor(public id:string, public title:string) {
@@ -15,8 +16,15 @@ export class CategoriesDataService{
         new Category("4", "Electronics"), 
         new Category("3", "Children"), 
         new Category("all", "All"),]
+
+    constructor(private _http:HttpClient) {
+    }
     
-    getCategories():Array<Category>{
-        return this._categories;
+    getCategories():Promise<Array<Category>>{
+        return  this._http.get('./assets/categories.json')
+        .map(response => {
+            let result = <Array<Category>>response["data"];
+            return result;})
+        .toPromise();
     }
 }

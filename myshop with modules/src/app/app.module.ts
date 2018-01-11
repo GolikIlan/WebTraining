@@ -13,6 +13,7 @@ import { MainLayoutModule } from '../layout/main-layout.module';
 import { MainLayoutComponent } from '../layout/main-layout/main-layout.component';
 import { ProductsModule } from '../products/products.module';
 import { CoreModule } from '../core/core.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { CoreModule } from '../core/core.module';
     MainLayoutModule,
     ProductsModule,
     CoreModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
