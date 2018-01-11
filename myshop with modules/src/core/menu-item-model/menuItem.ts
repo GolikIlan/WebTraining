@@ -62,19 +62,26 @@ export class  LoginMenuItem extends MenuItem{
     constructor(title:string,  private _loginService:LoginSevice, path:string) {
         super(title, _loginService.isLogedIn === false, path);
 
-        this._loginSubscription = this._loginService.loginStatusChanged.subscribe((status) => {
+        /*this._loginSubscription = this._loginService.loginStatusChanged.subscribe((status) => {
             this.whenLoggedIn(status);
-        });
+        });*/
     }
 
-    whenLoggedIn(status: boolean): any {
+    get active():boolean{
+        return this._loginService.isLogedIn === false;
+    }
+
+    set active(value:boolean){
+    }
+
+    /*whenLoggedIn(status: boolean): any {
         this.active = status === false;
     }
 
     destroy(){
         if(this._loginSubscription === null) return;
         this._loginSubscription.unsubscribe();
-    }
+    }*/
 }
 
 @Injectable()

@@ -3,7 +3,7 @@ import { InjectionToken, Injectable } from "@angular/core";
 import { ProductsRoutingModule } from "../../products/products-routing.module";
 import { HttpClient } from '@angular/common/http';
 
-class ProductsProvider{
+export class ProductsProvider{
     private _products:Array<Product> =  [
         new Product("1", "1", "./assets/images/food.jpg", "Apples", 2.50, 
         "Apples - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..."), 
@@ -30,19 +30,10 @@ class ProductsProvider{
     ];
 
     async getProducts():Promise<Array<Product>>{
-        //const response = await this.http.get(this.currentPriceUrl).toPromise();
-        //return response.json().bpi[currency].rate;
         return new Promise<Array<Product>>(resolve =>
-            setTimeout(resolve, 2000))
+            setTimeout(resolve, 0))
             .then(() => this._products);
     }
-
-    private delay(ms: number):Promise<void> {
-        return new Promise<void>(resolve =>
-          setTimeout(resolve, ms));
-      }
-
-
 }
 
 /*       return  this._http.get('./assets/products.json')
@@ -62,8 +53,9 @@ export const PRODUCTS_PROVIDERS_MOCK = [
 
 
 @Injectable()
-export class ProductsProviderHttpBased {
+export class ProductsProviderHttpBased extends ProductsProvider{
     constructor(private _http:HttpClient) {
+        super();
     }
 
     async getProducts():Promise<Array<Product>>{

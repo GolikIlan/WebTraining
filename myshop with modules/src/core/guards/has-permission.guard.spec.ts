@@ -1,15 +1,15 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+// import { TestBed, async, inject } from '@angular/core/testing';
 
-import { HasPermissionGuard } from './has-permission.guard';
+// import { HasPermissionGuard } from './has-permission.guard';
 
-describe('HasPermissionGuard', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [HasPermissionGuard]
-    });
-  });
+// describe('HasPermissionGuard', () => {
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({
+//       providers: [HasPermissionGuard]
+//     });
+//   });
 
-  it('should ...', inject([HasPermissionGuard], (guard: HasPermissionGuard) => {
-    expect(guard).toBeTruthy();
-  }));
-});
+//   it('should ...', inject([HasPermissionGuard], (guard: HasPermissionGuard) => {
+//     expect(guard).toBeTruthy();
+//   }));
+// });

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MainLayoutComponent } from '../layout/main-layout/main-layout.component';
 
 
 @Component({
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  @ViewChild('mainLayout') mainLayout:MainLayoutComponent;
 }

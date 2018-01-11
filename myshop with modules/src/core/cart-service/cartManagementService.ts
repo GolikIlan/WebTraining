@@ -27,8 +27,11 @@ export class CartManagementService{
     }
 
     get productsAmount():number{
-        if(this._loginService.loginToken.token === undefined) return 0;
-        if(this._productsInCart.has(this._loginService.loginToken.token)){
+        const token = this._loginService.loginToken;
+        console.log(token.token);
+        if(token.token === undefined) return 0;
+        console.log(token.token);
+        if(this._productsInCart.has(token.token)){
             const newLocal = this._productsInCart.get(this._loginService.loginToken.token);
             return newLocal.length;
         }
@@ -38,14 +41,18 @@ export class CartManagementService{
     }
 
     addProductToCart(product:Product){
-        if(this._productsInCart.has(this._loginService.loginToken.token)){
-            let productsByToken = this._productsInCart.get(this._loginService.loginToken.token)
+        const loginToken = this._loginService.loginToken;
+        console.log(loginToken.token);
+        if(this._productsInCart.has(loginToken.token)){
+            let productsByToken = this._productsInCart.get(loginToken.token)
             productsByToken.push(product);
+            console.log("added");
         }
         else{
             let arr = new Array<Product>();
             arr.push(product);
-            this._productsInCart.set(this._loginService.loginToken.token, arr);
+            this._productsInCart.set(loginToken.token, arr);
+            console.log("added");
         }
         this._productsDataService.decrementStock(product);
         this.cartProductsAmountChanged.emit(this.productsAmount);

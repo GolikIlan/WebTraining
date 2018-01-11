@@ -1,5 +1,5 @@
 import { Injectable, Inject } from "@angular/core";
-import { PRODUCTS_FULL, ProductsProviderHttpBased } from "./products.mock";
+import { PRODUCTS_FULL, ProductsProviderHttpBased, ProductsProvider } from "./products.mock";
 import { UserPermissionsStatusProvider } from "../permissions-service/user-permissions-status-provider";
 import { Product } from "../product-model/product";
 import { Subject } from "rxjs/Subject";
@@ -20,9 +20,7 @@ export class ProductsDataService{
 
     private _productInStockMap:Map<string, number>;
 
-    constructor(
-        private _userPermissionsStatusProvider:UserPermissionsStatusProvider,
-        products: ProductsProviderHttpBased) {
+    constructor(products: ProductsProvider) {
         this._subject = new BehaviorSubject<Array<Product>>([]);
         this._observabProducts = this._subject.asObservable();
             

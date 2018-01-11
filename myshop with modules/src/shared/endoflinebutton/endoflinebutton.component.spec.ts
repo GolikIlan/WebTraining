@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+// import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EndoflinebuttonComponent } from './endoflinebutton.component';
+// import { EndoflinebuttonComponent } from './endoflinebutton.component';
 
-describe('EndoflinebuttonComponent', () => {
-  let component: EndoflinebuttonComponent;
-  let fixture: ComponentFixture<EndoflinebuttonComponent>;
+// describe('EndoflinebuttonComponent', () => {
+//   let component: EndoflinebuttonComponent;
+//   let fixture: ComponentFixture<EndoflinebuttonComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ EndoflinebuttonComponent ]
-    })
-    .compileComponents();
-  }));
+//   beforeEach(async(() => {
+//     TestBed.configureTestingModule({
+//       declarations: [ EndoflinebuttonComponent ]
+//     })
+//     .compileComponents();
+//   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(EndoflinebuttonComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//   beforeEach(() => {
+//     fixture = TestBed.createComponent(EndoflinebuttonComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });
